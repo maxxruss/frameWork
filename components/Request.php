@@ -14,10 +14,19 @@ class Request
     protected $controller = 'index';
     protected $action = 'index';
     protected $controllerNamespace = 'controllers';
+    protected $inputArr = [
+        'get' => [],
+        'post' => [],
+    ];
 
     public function init()
     {
         $url =  $_SERVER['REQUEST_URI'];
+
+        $url = $cleanUrl = stristr($url, '?', true);
+
+        $this->inputArr['get']  = $_GET;
+        $this->inputArr['post'] = $_POST;
 
         $path = explode('/',$url);
 
@@ -38,11 +47,37 @@ class Request
             $instanceController = new $classController();
 
             if(method_exists($instanceController,$action)) {
-                call_user_func_array([$instanceController,$action],[]);
+                call_user_func_array([$instanceController,$action],[$this]);
             } else {
                 throw new \Exception('Метод не существует');
             }
         }
+
+    }
+
+    public function get($key = null) {
+        if(empty($key)) {
+            return $this->inputArr['get'];
+        }
+
+        if(isset($this->inpuArr['get'][$key])) {
+            return $this->inputArr['get'][$key];
+        }
+
+        return null;
+
+    }
+
+    public function post($key = null) {
+        if(empty($key)) {
+            return $this->inputArr['post'];
+        }
+
+        if(isset($this->inpuArr['post'][$key])) {
+            return $this->inputArr['post'][$key];
+        }
+
+        return null;
 
     }
 }
