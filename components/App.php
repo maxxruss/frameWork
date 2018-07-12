@@ -14,6 +14,7 @@ class App
 {
     public $request = null;
     public $auth = null;
+    public $db = null;
 
     public function __construct()
     {
@@ -21,6 +22,8 @@ class App
         $this->request->init();
         $this->auth = new Auth();
         $this->auth->init();
+        $this->db = new Db();
+        $this->db->init();
 
     }
 

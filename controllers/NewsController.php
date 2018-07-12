@@ -20,6 +20,6 @@ class NewsController extends Controller
 
         $news = $newsModel->getNews();
 
-        $this->render('Шаблон новостей ', $news);
+        $this->render('index', $news);
     }
 }

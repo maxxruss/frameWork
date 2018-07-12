@@ -11,30 +11,43 @@ namespace components;
 
 class Db
 {
-    use \components\Traits\Singletone;
+    //use \components\Traits\Singletone;
 
     private $pdo;
     public $host = 'localhost';
     public $username = 'root';
     public $database = 'base';
     public $password = '';
+    public $port = '3306';
     public $charset = 'utf8';
+    public $opt;
+    //public $dsn;
 
-    private function __construct() {
-        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->database .';charset=' . $this->charset;
-        $opt = [
+    /**public function __construct() {
+        $this->dsn = 'mysql:host=' . $this->host . '; port=' . $this->port . ';dbname=' . $this->database .';charset=' . $this->charset;
+        $this->opt = [
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
         ];
-        $this->pdo = new \PDO($dsn, $this->username, $this->password, $opt);
+    }**/
+
+
+
+    public function init() {
+
+        $dsn = 'mysql:host=localhost; dbname=base; charset=utf8';
+
+        $this->pdo = new \PDO($dsn, $this->username, $this->password);
+
+        echo('<pre>');
+        //var_dump($opt);
+        echo('</pre>');
     }
-
-
     /**
      * @return \PDO
      */
 
-    public static function getPDO() {
-        return self::getInstance()->pdo;
+    public function getPDO() {
+        return $this->pdo;
     }
 }

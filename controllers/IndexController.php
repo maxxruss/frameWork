@@ -12,7 +12,9 @@ namespace controllers;
 use components\Auth;
 use components\Controller;
 use models\Blog;
+use models\Menu;
 use models\News;
+use models\User;
 
 class IndexController extends Controller
 {
@@ -26,10 +28,10 @@ class IndexController extends Controller
         $oneNews = $newsModel->getOneNews(1);
 
         $blogModel = new Blog();
-        $blog = $blogModel->getBlog(2);
+        $oneBlog = $blogModel->getOneBlog(2);
 
-        $this->render('Главный шаблон ', [
-            'blog' => $blog,
+        $this->render('index', [
+            'oneBlog' => $oneBlog,
             'oneNews' => $oneNews,
         ]);
     }

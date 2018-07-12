@@ -9,6 +9,7 @@
 namespace controllers;
 
 use components\Controller;
+use components\Request;
 use models\Blog;
 
 class BlogController extends Controller
@@ -19,7 +20,7 @@ class BlogController extends Controller
 
         $blogs = $blogModel->getBlogs();
 
-        $this->render('blogs.index.tmpl',$blogs);
+        $this->render('blog/index',$blogs);
 
 
     }
@@ -33,8 +34,8 @@ class BlogController extends Controller
     {
         $blogModel = new Blog();
 
-        $blog = $blogModel->getBlog(1);
+        $blog = $blogModel->getOneBlog(1);
 
-        $this->render('blog.index.tmpl',$blog);
+        $this->render('index',$blog);
     }
 }
