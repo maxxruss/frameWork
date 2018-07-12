@@ -7,7 +7,7 @@
  */
 
 namespace components;
-
+include_once '../config/iConfig.php';
 
 class Model
 {

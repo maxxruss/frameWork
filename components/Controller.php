@@ -11,12 +11,25 @@ namespace components;
 
 class Controller
 {
+    public $templateFolder;
+    public $templateExtension;
+
+    public function __construct($templateFolder, $templateExtension)
+    {
+        $this->templateExtension = $templateExtension;
+        $this->templateFolder = $templateFolder;
+    }
+
     protected function render($template , $params = [])
     {
-        echo "<br> Будет создан шаблон " . $template . 'с параметрами:';
-        echo "<pre>";
-        var_dump($params);
-        echo "</pre>";
+        $loader = new \Twig_Loader_Filesystem($this->templateFolder);
 
+        $twig = new \Twig_Environment($loader);
+
+        $templateInstance = $twig->loadTemplate($template . $this->templateExtension );
+
+        $content = $templateInstance->render($params);
+
+        return $content;
     }
 }
