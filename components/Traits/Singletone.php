@@ -16,7 +16,7 @@ trait Singletone
     private function __wakeup() {}
     private function __clone() {}
 
-    public function getInstance() {
+    public static function getInstance() {
 
         if(empty(self::$instance)) {
             self::$instance = new self();

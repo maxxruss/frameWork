@@ -28,28 +28,28 @@ class Model
         $pdo = new Db();
         $pdo->getPDO();
 
-       // $statement = $pdo->query('select * from '. $this->table );
+        $statement = $pdo->query('select * from '. $this->table );
 
-       // return $statement->fetchAll();
+        return $statement->fetchAll();
     }
 
     public function getAll() {
         $pdo = new Db();
         $pdo->getPDO();
 
-        //$statement = $pdo->query('select * from '. $this->table );
+        $statement = $pdo->query('select * from '. $this->table );
 
-       // return $statement->fetchAll();
+        return $statement->fetchAll();
     }
 
     public function getOne($id) {
         $pdo = new Db();
         $pdo->getPDO();
 
-        //$statement = $pdo->query('select * from '. $this->table .' where id = ' . $id .' limit 1');
-        //$result = $statement->fetchAll();
+        $statement = $pdo->query('select * from '. $this->table .' where id = ' . $id .' limit 1');
+        $result = $statement->fetchAll();
 
-       // return empty($result[0]) ? null : $result[0];
+        return empty($result[0]) ? null : $result[0];
     }
 
     public function update($id, $values) {

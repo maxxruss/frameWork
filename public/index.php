@@ -9,4 +9,4 @@ use components\App;
 
 $app = new App();
 
-//var_dump($app->db->getPDO());
+var_dump($app->db->getPDO());
