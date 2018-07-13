@@ -30,23 +30,9 @@ class Db
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
         ];
 
-        $this->pdo = new \PDO($dsn, $this->username, $this->password);
+        $this->pdo = new \PDO($dsn, $this->username, $this->password, $opt);
     }
 
-
-
-    public function init() {
-
-
-
-
-        $statement = $this->pdo->query("select * from users");
-
-
-        echo('<pre>');
-        var_dump($statement->fetchAll());
-        echo('</pre>');
-    }
     /**
      * @return \PDO
      */
@@ -55,8 +41,5 @@ class Db
         return self::getInstance()->pdo;
     }
 
-    public function query()
-    {
-        return $this->pdo->query('select * from blogs');
-    }
+
 }

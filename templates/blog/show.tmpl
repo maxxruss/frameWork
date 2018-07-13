@@ -11,18 +11,15 @@
 <body>
 
 blog.tmpl
-<a href="/lesson5/public/news">новости</a>
-
-<a href="/lesson5/public/blog">блог</a>
-<a href="/lesson5/public">индекс</a>
+<a href="/public/news">новости</a>
+<a href="/public/blog">блог</a>
+<a href="/public">индекс</a>
 
 привет
 
-<ul>
-    {% for blog1 in blogsOne %}
-        <li>{{ blog1 }}</li>
-    {% endfor %}
-</ul>
+{{ blogsOne.title }}
+{{ blogsOne.content }}
+
 
 
 </body>

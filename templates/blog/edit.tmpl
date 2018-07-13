@@ -10,20 +10,18 @@
 </head>
 <body>
 
-blog.tmpl
-<a href="/lesson5/public/news/show">новости</a>
+{{blogEdit}}
 
-<a href="/lesson5/public/blog/show">блог</a>
-<a href="/lesson5/public">индекс</a>
+edit.tmpl
+<a href="/public/news/show">новости</a>
+<a href="/public/blog/show">блог</a>
+<a href="/public">индекс</a>
 
-
-<ul>
-    {% for blog1 in blogsAll %}
-        <li>{{ blog1.id }}</li>
-        <li>{{ blog1.title }}</li>
-        <li>{{ blog1.content }}</li>
-    {% endfor %}
-</ul>
-        {{ info }}
+<form action="/public/blog/edit" method="post" enctype="multipart/form-data">
+    <input class='upload_input' type="text" name="title" placeholder="Заголовок блога" value='{{blogsOne.title}}'>
+	<textarea class='upload_short_desc' name="content" placeholder="Текст блога">{{blogsOne.content}}</textarea>
+	<input type="hidden"  name="id" value="{{blogsOne.id}}">
+    <input class='upload_input menu_list_link' name='edit' type="submit">
+</form>
 </body>
 </html>

@@ -23,11 +23,9 @@ class App
         $this->auth = new Auth();
         $this->auth->init();
         $this->db = new Db();
-        $this->db->init();
-
+        $this->db::getPDO();
     }
 
     public function init() {
-
     }
 }

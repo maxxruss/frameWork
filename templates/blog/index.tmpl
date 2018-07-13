@@ -10,9 +10,12 @@
 </head>
 <body>
 index.tmpl
-<a href="/lesson5/public/news">новости</a>
-<a href="/lesson5/public/blog">блог</a>
-<a href="/lesson5/public">индекс</a>
+<a href="/public/news">новости</a>
+<a href="/public/blog">блог</a>
+<a href="/public">индекс</a>
+
+{{blogAdd}}
+{{blogsDelete}}
 
 
 <ul>
@@ -20,10 +23,12 @@ index.tmpl
         <li>{{ blog1.id }}</li>
         <li>{{ blog1.title }}</li>
         <li>{{ blog1.content }}</li>
-        <a href='edit.php?id={{ good['goods_id'] }}' class='edit'>✎</a>
-                    <a href='delete.php?id={{ good['goods_id'] }}' class='edit'>☒</a>
+        <a href='/public/blog/edit?id={{ blog1.id }}' class='edit'>✎</a>
+        <a href='/public/blog/delete?id={{ blog1.id }}' class='edit'>☒</a>
     {% endfor %}
 </ul>
+
+<a href="/public/blog/add">Добавить блог</a>
 
 </body>
 </html>

@@ -11,24 +11,14 @@
 <body>
 
 blog.tmpl
-<a href="/lesson5/public/news">новости</a>
-<a href="/lesson5/public/blog">блог</a>
-<a href="/lesson5/public">индекс</a>
+<a href="/public/news">новости</a>
+<a href="/public/blog">блог</a>
+<a href="/public">индекс</a>
 
-<form action="add" method="post" enctype="multipart/form-data">
-	<select class='upload_select' name="category_id">
-		<option value="4">Маска</option>
-		<option value="2">Гидрокостюм</option>
-		<option value="3">Горнолыжные ботинки</option>
-		<option value="1">Вейкборд</option>
-	</select>
-    <input class='upload_input' type="text" name="title" required>
-	<textarea class='upload_short_desc' name="description_short" placeholder="Краткое описание товара" required></textarea>
-	<textarea class='upload_long_desc' name="description_long" placeholder="Подробное описание товара"></textarea>
-    <input class='upload_input' type="number" name="price" placeholder="Цена" required>
-    <input class='upload_input upload_file' type='file' name='file_name'>
-    <input class='upload_input menu_list_link' type="submit">
-	<span class='accepted'>{{ done }}</span>
+<form action="/public/blog/add" method="post" enctype="multipart/form-data">
+    <input class='upload_input' type="text" name="title" placeholder="Заголовок блога">
+	<textarea class='upload_short_desc' name="content" placeholder="Текст блога"></textarea>
+    <input class='upload_input menu_list_link' name='add' type="submit">
 </form>
 </body>
 </html>

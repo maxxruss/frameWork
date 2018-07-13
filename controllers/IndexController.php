@@ -28,9 +28,9 @@ class IndexController extends Controller
         $oneNews = $newsModel->getOneNews(1);
 
         $blogModel = new Blog();
-        $oneBlog = $blogModel->getOneBlog(2);
+        $oneBlog = $blogModel->getOneBlogs(2);
 
-        $this->render('index', [
+        echo $this->render('index', [
             'oneBlog' => $oneBlog,
             'oneNews' => $oneNews,
         ]);

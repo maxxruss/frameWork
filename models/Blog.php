@@ -24,7 +24,23 @@ class Blog extends Model
         return $this->getAll();
     }
 
-    public function getOneBlog($id) {
+    public function getOneBlogs($id) {
         return $this->getOne($id);
+    }
+
+    public function selectBlogs($parameters) {
+        return $this->select(($parameters));
+    }
+
+    public function createBlogs($values) {
+        return $this->create($values);
+    }
+
+    public function updateBlogs($id, $values) {
+        return $this->update($id, $values);
+    }
+
+    public function deleteBlogs($id) {
+        return $this->delete($id);
     }
 }

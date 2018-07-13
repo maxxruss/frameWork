@@ -30,6 +30,8 @@ class Controller
 
         $content = $templateInstance->render($params);
 
+        //echo ($this->templateFolder.$template.$this->templateExtension);
+
         return $content;
     }
 }
