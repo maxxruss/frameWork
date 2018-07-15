@@ -6,24 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="../css/style.css">
-    <title>Главная</title>
+    <title>Новости</title>
 </head>
 <body>
 
-blog.tmpl
-<a href="/lesson5/public/news/show">новости</a>
+<a href="/public/news">новости</a>
+<a href="/public/blog">блог</a>
+<a href="/public">индекс</a>
 
-<a href="/lesson5/public/blog/show">блог</a>
-<a href="/lesson5/public">индекс</a>
-
-
-<ul>
-    {% for blog1 in blogsAll %}
-        <li>{{ blog1.id }}</li>
-        <li>{{ blog1.title }}</li>
-        <li>{{ blog1.content }}</li>
-    {% endfor %}
-</ul>
-        {{ info }}
+<form action="/public/news/add" method="post" enctype="multipart/form-data">
+    <input class='upload_input' type="text" name="title" placeholder="Заголовок новости">
+	<textarea class='upload_short_desc' name="content" placeholder="Текст новости"></textarea>
+    <input class='upload_input menu_list_link' name='add' type="submit">
+</form>
 </body>
 </html>

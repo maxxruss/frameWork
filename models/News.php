@@ -28,16 +28,16 @@ class News extends Model
         return $this->getOne($id);
     }
 
-    public function selectNews(array $parameters) {
-        return $this->select(array ($parameters));
+    public function selectNews($parameters) {
+        return $this->select($parameters);
     }
 
-    public function createNews(array $values) {
-        return $this->create(array ($values));
+    public function createNews($values) {
+        return $this->create($values);
     }
 
-    public function updateNews($id, array $values) {
-        return $this->update($id, array ($values));
+    public function updateNews($values) {
+        return $this->update($values);
     }
 
     public function deleteNews($id) {

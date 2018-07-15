@@ -27,14 +27,10 @@ class Request
             $url = $cleanUrl = stristr($url, '?', true);
         }
 
-
         $this->inputArr['get']  = $_GET;
         $this->inputArr['post'] = $_POST;
 
         $path = explode('/',$url);
-
-        //print_r($path);
-
 
         if(count($path) == 4) {
             $this->controller = $path[2];
@@ -46,18 +42,10 @@ class Request
 
         $classController = $this->controllerNamespace . '\\' . ucfirst($this->controller) . 'Controller';
 
-        //print_r($classController);
-
-
         $action = 'action' . ucfirst($this->action);
-
-        print_r($action);
 
         if(class_exists($classController)) {
             $instanceController = new $classController('../templates/' . $this->controller.'/', '.tmpl');
-            echo('<pre>');
-            //var_dump($instanceController);
-            echo('</pre>');
 
             if(method_exists($instanceController,$action)) {
                 call_user_func_array([$instanceController,$action],[$this]);

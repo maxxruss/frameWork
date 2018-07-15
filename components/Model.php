@@ -25,7 +25,7 @@ class Model implements Query
          ];
 
         $pdo = Db::getPDO();
-        $statement = $pdo->query('select * from '. $this->table.' where '. $parameters = ['where'].' orderby '.$parameters = ['orderby'].' limit '.$parameters = ['limit']);
+        $statement = $pdo->query('select * from '. $this->table . ' where ' . $parameters = ['where'].' orderby '.$parameters = ['orderby'].' limit '.$parameters = ['limit']);
 
         return $statement->fetchAll();
     }
@@ -46,15 +46,19 @@ class Model implements Query
         return empty($result[0]) ? null : $result[0];
     }
 
-    public function update($id, $values) {
+    public function update($values) {
 
-        if(!$this->validate($values, $this->rules)) {
+        /**if(!$this->validate($values, $this->rules)) {
             return false;
-        }
-
-
+        }**/
         $pdo = Db::getPDO();
-        $statement = $pdo->query(" UPDATE ". $this->table ." SET title = " . $values['title'] .",  content = ".$values['content']." where id = " . $id);
+
+        $statement = $pdo->query("UPDATE `" . $this->table .
+            "` SET `title` = '" . $values['title'] .
+            "', `content` = '" . $values['content'] . "' WHERE `id` = '" .
+            $values['id'] . "'");
+
+        //var_dump($statement);
         //$result = $statement->fetchAll();
         //return empty($result[0]) ? null : $result[0];
 
@@ -62,7 +66,6 @@ class Model implements Query
     }
 
     public function create($values) {
-        print_r($values);
 
         /**if(!$this->validate($values, $this->rules)) {
             echo 'не работает';
@@ -71,11 +74,7 @@ class Model implements Query
 
         $pdo = DB::getPDO();
 
-        echo('<pre>');
-        var_dump($values);
-        echo('</pre>');
-
-        $pdo->query("INSERT INTO `blogs` (`title`, `content`) VALUES ('" .
+        $pdo->query("INSERT INTO ". $this->table. "(`title`, `content`) VALUES ('" .
             $values['title'] . "', '" . $values['content'] . "')");
 
         /**INSERT INTO old_links (id,id_user,link) VALUES (1,1,'ya.ru')
@@ -91,7 +90,7 @@ class Model implements Query
 
     public function delete($id) {
         $pdo = Db::getPDO();
-        $pdo->query('DELETE * from '. $this->table .' where id = ' . $id);
+        $pdo->query('DELETE from '. $this->table .' where id = ' . $id);
         return true;
     }
 

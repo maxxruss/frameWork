@@ -16,10 +16,8 @@ class BlogController extends Controller
 {
     public function actionIndex()
     {
-        echo "blogs - показать blogs";
         $blogModel = new Blog();
         $blogsAll = $blogModel->getBlogs();
-        print_r($blogsAll);
 
         echo $this->render('index', [
             'blogsAll' => $blogsAll
@@ -28,7 +26,6 @@ class BlogController extends Controller
 
     public function actionShow()
     {
-        echo "blogs - показать 1 blogs";
         $blogModel = new Blog();
         $blogsOne = $blogModel->getOneBlogs(1);
         echo $this->render('show', [
@@ -64,9 +61,8 @@ class BlogController extends Controller
 
     public function actionEdit()
     {
-        $id = $_GET['id'];
-
-        if ($id>0) {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
             $blogModel = new Blog();
             $blogsOne = $blogModel->getOneBlogs($id);
             echo $this->render('edit', [
@@ -74,7 +70,7 @@ class BlogController extends Controller
             ]);
         } else {
             $blogModel = new Blog();
-            $blogModel->updateBlogs($id, $_POST);
+            $blogModel->updateBlogs($_POST);
             $blogEdit = 'Блог успешно изменен!';
             echo $this->render('index', [
                 'blogEdit' => $blogEdit

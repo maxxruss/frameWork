@@ -36,8 +36,8 @@ class Blog extends Model
         return $this->create($values);
     }
 
-    public function updateBlogs($id, $values) {
-        return $this->update($id, $values);
+    public function updateBlogs($values) {
+        return $this->update($values);
     }
 
     public function deleteBlogs($id) {

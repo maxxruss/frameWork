@@ -13,28 +13,19 @@ index.tmpl
 <a href="/public/news">новости</a>
 <a href="/public/blog">блог</a>
 <a href="/public">индекс</a>
+
+
 <ul>
-    {% for blog in blogsOne %}
-        <li>{{ blog }}</li>
-    {% endfor %}
+      <li>{{ oneBlog.id }}</li>
+      <li>{{ oneBlog.title }}</li>
+      <li>{{ oneBlog.content }}</li>
 </ul>
 
 <ul>
-    {% for blog1 in blogsAll %}
-        <li>{{ blog1.id }}</li>
-        <li>{{ blog1.title }}</li>
-        <li>{{ blog1.content }}</li>
-    {% endfor %}
+      <li>{{ blog.id }}</li>
+      <li>{{ blog.title }}</li>
+      <li>{{ blog.content }}</li>
 </ul>
-
-<ul>
-    {% for news in oneNews %}
-        <li>{{ news }}</li>
-    {% endfor %}
-</ul>
-
-
-
 
 </body>
 </html>

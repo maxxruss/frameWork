@@ -20,15 +20,17 @@ class IndexController extends Controller
 {
     public function actionIndex()
     {
-        if(Auth::check()) {
+        if(Auth::check()==true) {
             echo " Привет зарегистрированный пользователь! ";
+        } else {
+            echo " Привет незнакомец! ";
         }
 
         $newsModel = new News();
         $oneNews = $newsModel->getOneNews(1);
 
         $blogModel = new Blog();
-        $oneBlog = $blogModel->getOneBlogs(2);
+        $oneBlog = $blogModel->getOneBlogs(6);
 
         echo $this->render('index', [
             'oneBlog' => $oneBlog,

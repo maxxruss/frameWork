@@ -13,7 +13,7 @@ interface Query
     public function select($parameters);
     public function getAll();
     public function getOne($id);
-    public function update($id, $values);
+    public function update($values);
     public function create($values);
     public function delete($id);
     public function validate($values, $rules);
