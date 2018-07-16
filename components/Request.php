@@ -45,7 +45,7 @@ class Request
         $action = 'action' . ucfirst($this->action);
 
         if(class_exists($classController)) {
-            $instanceController = new $classController('../templates/' . $this->controller.'/', '.tmpl');
+            $instanceController = new $classController('../templates/', '.tmpl');
 
             if(method_exists($instanceController,$action)) {
                 call_user_func_array([$instanceController,$action],[$this]);

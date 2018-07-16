@@ -12,54 +12,72 @@ use components\Db;
 
 class Auth
 {
-    private static $user_data;
-    private static $login;
-    private static $password;
+    private $user_db;
+    private $login;
+    private $password;
+    private $resultInit;
 
-
-    private function check()
+    public function check()
     {
-
-        $isAuth = 0;
+        $isAuth = false;
         /**
          * авторизация через логин и пароль
          */
+        if (isset($_POST['login']) && isset($_POST['password'])) {
+            $this->login = $_POST['login'];
+            $this->password = $_POST['password'];
 
-        self::$login = $_POST['login'];
-        self::$password = $_POST['password'];
+            // получаем данные пользователя по логину
 
-        // получаем данные пользователя по логину
-        /**$link = getConnection();
-         * $sql = "SELECT id_user, user_name, user_password FROM users WHERE user_login = '" . mysqli_real_escape_string($link, $username) . "'";
-         * $user_data = getRowResult($sql, $link);**/
+            $pdo = Db::getPDO();
+            $statement = $pdo->query("SELECT id, login, pass FROM `users` WHERE `login` = '" . $this->login . "'");
 
+            $this->user_db = $statement->fetchAll()[0];
+            //print_r ($this->user_db);
 
-        $pdo = Db::getPDO();
-        $statement = $pdo->query('select id, login, pass from users where login = ' . self::$login);
-        self::$user_data = $statement->fetchAll();
+            // проверяем соответствие логина и пароля
+            if (!empty($this->user_db)) {
+                if ($this->user_db['login'] == $this->login && $this->user_db['pass'] == md5($this->password)) {
+                    //echo '  верно    ';
+                    $isAuth = true;
+                } else {
+                    //echo '   неверно   ';
+                    //setcookie("auto_authorized", "");
+                    //print_r ($_COOKIE);
+                }
+            }
+
+            // если стояла галка, то запоминаем пользователя на сутки
+            /**if (isset($_POST['rememberme']) && $_POST['rememberme'] == 'on') {
+                setcookie("id_user", $this->user_db['id'], time() + 86400);
+                setcookie("cookie_hash1", $this->user_db['pass'], time() + 86400);
+                setcookie("auto_authorized", "1", time() + 3600 * 24 * 30 * 12);
+                //print_r ($_COOKIE);
+
+            }**/
+
+            // сохраним данные в сессию
+            $_SESSION['user'] = $this->user_db;
+            print_r($_SESSION) ;
+            //unset( $_COOKIE[ 'cookie_hash1']);
+            //print_r($_COOKIE);
+
+        }
+        //print_r ($_COOKIE);
+        //echo ($_COOKIE['cookie_hash']);
+        //print_r($_SESSION['user']);
+        //print_r($_SESSION['user']);
+        //print_r($_COOKIE);
 
         return $isAuth;
     }
 
-    private static function rememberMe()
+    public function logOut()
     {
-        // если стояла галка, то запоминаем пользователя на сутки
-        if (isset($_POST['rememberme']) && $_POST['rememberme'] == 'on') {
-            setcookie("id_user", self::$user_data['id'], time() + 86400);
-            setcookie("cookie_hash", self::$user_data['pass'], time() + 86400);
-        }
+        //setcookie("auto_authorized", "", -1);
+        session_unset();
+        print_r($_SESSION);
 
-        // сохраним данные в сессию
-        $_SESSION['user'] = self::$user_data;
-    }
-
-
-    private static function hashPassword($password)
-    {
-        /**$salt = md5(uniqid(SALT2, true));
-         * $salt = substr(strtr(base64_encode($salt), '+', '.'), 0, 22);
-         * return crypt($password, '$2a$08$' . $salt);**/
-        return md5($password);
     }
 
     /**
@@ -68,17 +86,7 @@ class Auth
      * @param $hash
      * @return bool
      */
-    protected function Authentication()
-    {
-        // проверяем соответствие логина и пароля
-        if (!empty(self::$user_data)) {
-            if (self::$user_data['login'] == self::$login && self::$user_data['pass'] == md5(self::$password)) {
-                $this->isAuth = 1;
-            } else {
-                echo 'неверный логин или пароль';
-            }
-        }
-    }
+
 
     private function alreadyLoggedIn()
     {
@@ -86,32 +94,46 @@ class Auth
     }
 
 
-    public static function init()
+    public function init()
     {
-
         /**
          * валидация пользовательского куки
          * @return bool
          */
+        /**if (isset($_COOKIE[ 'auto_authorized'])&&isset($_COOKIE[ 'PHPSESSID'])) {
+            $pdo = Db::getPDO();
+            $statement = $pdo->query("select id, login, pass from users where session_id = '" . $_COOKIE[ 'PHPSESSID'] . "'");
+            $this->user_db = $statement->fetchAll()[0];
+             !isset($this->user_db) ? null : $_SESSION['user'] = $this->user_db;
+             //print_r($_SESSION['user']);
+            setcookie("id", "", time() - 3600 * 24 * 30 * 12, "/");
+            setcookie("hash", "", time() - 3600 * 24 * 30 * 12, "/");
+            $this->resultInit = true;
+            //echo 'true';
+        } else {
+            $this->resultInit = false;
+            //echo 'false';
+            session_unset();
+        }**/
 
-        $result = false;
-
-        if (isset($_COOKIE['id_user']) && isset($_COOKIE['cookie_hash'])) {
+        if (isset($_SESSION['user'])) {
             // получаем данные пользователя по id
             $pdo = Db::getPDO();
-            $statement = $pdo->query('select id, login, pass from users where login = ' . self::$login);
-            self::$user_data = $statement->fetchAll();
+            $statement = $pdo->query("select id, login, pass from users where login = '" . $_SESSION['user']['login'] . "'");
+            $this->user_db = $statement->fetchAll()[0];
 
-            if ((self::$user_data['pass'] !== $_COOKIE['user_hash']) || (self::$user_data['id'] !== $_COOKIE['id_user'])) {
-                setcookie("id", "", time() - 3600 * 24 * 30 * 12, "/");
-                setcookie("hash", "", time() - 3600 * 24 * 30 * 12, "/");
+            if (($this->user_db['pass'] !== $_SESSION['user']['pass']) || ($this->user_db['id'] !== $_SESSION['id'])) {
+                //setcookie("id", "", time() - 3600 * 24 * 30 * 12, "/");
+                //setcookie("hash", "", time() - 3600 * 24 * 30 * 12, "/");
+                $this->resultInit = true;
+                //echo 'true';
             } else {
-                header("Location: /");
+                $this->resultInit = false;
+                //echo 'false';
+                session_unset();
             }
-            $result = true;
-        } else {
-            $result = false;
         }
-        return $result;
+        print_r($_SESSION);
+        return $this->resultInit;
     }
 }

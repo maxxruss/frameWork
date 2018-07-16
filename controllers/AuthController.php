@@ -11,30 +11,35 @@ namespace controllers;
 
 use components\Controller;
 use components\Request;
-use models\News;
+use models\User;
 
-class NewsController extends Controller
+class AuthController extends Controller
 {
+
+
     public function actionIndex()
     {
-        if ($this->initResult==true) {
-            echo ('Привет, '.$_SESSION['user']['login']);
+        $userModel = new User();
+        if (($userModel->checkUser())==true) {
+            echo ($userModel->checkUser());
+            echo $this->render('cab.index', [
+                'authResult' => 'авторизация пройдена'
+            ]);
         } else {
-            echo " Привет незнакомец! ";
+            echo ($userModel->checkUser());
+            echo $this->render('cab.index', [
+                'authResult' => 'неверный логин или пароль'
+            ]);
         }
-        $newsModel = new News();
-        $newsAll = $newsModel->getNews();
-        echo $this->render('news.index', [
-            'newsAll' => $newsAll
-        ]);
+
     }
 
-    public function actionShow()
+    public function actionLogout()
     {
-        $newsModel = new News();
-        $newsOne = $newsModel->getOneNews(1);
-        echo $this->render('news.show', [
-            'newsOne' => $newsOne
+        $userModel = new User();
+        $userModel->logOut1();
+        echo $this->render('cab.logout', [
+            'logout' => 'logout'
         ]);
     }
 
@@ -48,17 +53,17 @@ class NewsController extends Controller
                 $newsModel = new News();
                 $newsModel->createNews($_POST);
                 $newsAdd = 'Новость успешно добавлена!';
-                echo $this->render('news.index', [
+                echo $this->render('index', [
                     'newsAdd' => $newsAdd
                 ]);
             } else {
                 $newsAdd = 'Вы ничего не вели';
-                echo $this->render('news.index', [
+                echo $this->render('index', [
                     'newsAdd' => $newsAdd
                 ]);
             }
         } else {
-            echo $this->render('news.add', [
+            echo $this->render('add', [
                 //'blogsOne' => $blogsOne
             ]);
         }
@@ -70,14 +75,14 @@ class NewsController extends Controller
             $id = $_GET['id'];
             $newsModel = new News();
             $newsOne = $newsModel->getOneNews($id);
-            echo $this->render('news.edit', [
+            echo $this->render('edit', [
                 'newsOne' => $newsOne
             ]);
         } else {
             $newsModel = new News();
             $newsModel->updateNews($_POST);
             $newsEdit = 'Новость успешно изменена!';
-            echo $this->render('news.index', [
+            echo $this->render('index', [
                 'newsEdit' => $newsEdit
             ]);
         }
@@ -88,7 +93,7 @@ class NewsController extends Controller
         $id = $_GET['id'];
         $newsModel = new News();
         $newsModel->deleteNews($id);
-        echo $this->render('news.index', [
+        echo $this->render('index', [
             'newsDelete' => 'Новость успешно удалена'
         ]);
     }

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once "../Twig-1.35.3/lib/Twig/Autoloader.php";
 Twig_Autoloader::register();
 

@@ -8,16 +8,22 @@
 
 namespace components;
 
+use components\Auth;
+
 
 class Controller
 {
     public $templateFolder;
     public $templateExtension;
+    public $userInit;
+    public $initResult;
 
     public function __construct($templateFolder, $templateExtension)
     {
         $this->templateExtension = $templateExtension;
         $this->templateFolder = $templateFolder;
+        $userInit = new Auth;
+        $this->initResult = $userInit->init();
     }
 
     protected function render($template , $params = [])

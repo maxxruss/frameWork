@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="../css/style.css">
+    <title>Главная</title>
+</head>
+<body>
+<br>
+<br>
+cab.logout.
+
+{{ logout }}
+
+<form action= "/public/auth" method="post">
+    <p><input type="text" name="login" /></p>
+    <p><input type="password" name="password" /></p>
+    <p><input type="checkbox" name="rememberme" /></p>
+    <p><input type="submit" value="Войти" /></p>
+</form>
+
+<br>
+<br>
+
+index.tmpl
+<a href="/public/news">новости</a>
+<a href="/public/blog">блог</a>
+<a href="/public">индекс</a>
+
+
+<ul>
+      <li>{{ oneBlog.id }}</li>
+      <li>{{ oneBlog.title }}</li>
+      <li>{{ oneBlog.content }}</li>
+</ul>
+
+<ul>
+      <li>{{ blog.id }}</li>
+      <li>{{ blog.title }}</li>
+      <li>{{ blog.content }}</li>
+</ul>
+
+</body>
+</html>

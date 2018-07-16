@@ -8,8 +8,6 @@
 
 namespace components;
 
-
-
 class App
 {
     public $request = null;
@@ -20,7 +18,7 @@ class App
     {
         $this->request = new Request();
         $this->request->init();
-        Auth::init();
+        //Auth::init();
         $this->db = new Db();
         $this->db::getPDO();
     }

@@ -20,8 +20,8 @@ class IndexController extends Controller
 {
     public function actionIndex()
     {
-        if(Auth::check()==true) {
-            echo " Привет зарегистрированный пользователь! ";
+        if ($this->initResult==true) {
+            echo ('Привет, '.$_SESSION['user']['login']);
         } else {
             echo " Привет незнакомец! ";
         }

@@ -9,6 +9,7 @@
 namespace models;
 
 use components\Model;
+use components\Auth;
 
 class User extends Model
 {
@@ -34,5 +35,15 @@ class User extends Model
 
     public function getUsers() {
         return $this->getAll();
+    }
+
+    public function checkUser() {
+        $check = new Auth();
+        return $check->check();
+    }
+
+    public function logOut1() {
+        $logout = new Auth();
+        return $logout->logOut();
     }
 }
