@@ -1,0 +1,398 @@
+@import "../packages/bootstrap-4.0.0-beta.2/scss/bootstrap.scss";
+body {
+	background: lightyellow;
+}
+main {
+	max-width:1345px;
+	margin:0 auto;
+}
+.head {	
+    max-width: 1345px;
+    justify-content: space-between;
+	margin: 0 auto;
+}
+.headTitle {
+	text-align:center;
+}
+.navbar-light {
+	background: palegoldenrod;
+}
+
+#aside1 {  /* селектор блока, который будет оставаться на месте */
+  position: fixed;
+  z-index: 101;
+}
+
+.sticky {
+  position: fixed;
+  top: 0px;  /* если ноль заменить на число (и в скрипте тоже), то блок будет прилипать до того, как верхний край окна браузера дойдёт до верхнего края элемента. Может быть отрицательным числом. Применим, например, при фиксированном сверху меню */
+  z-index: 101;  
+}
+
+.header {
+  height: 100px;
+  background-image: url("../images/layer2.png");
+  background-size: cover;
+}
+
+.goodsTable {
+	display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    max-width: 1345px;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.goodsWrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 270px;
+	height:550px;
+    border-radius: 30px 30px 10px 10px;
+	margin: 25px auto;
+    background: lemonchiffon;
+    box-shadow: 0 0 25px #777;
+	border: 1px solid transparent; 
+    position:relative;
+}
+
+
+a:hover {
+     text-decoration:none;
+ }
+ 
+.goodsWrap:hover {
+     border-color:gray;
+ }
+.goodImg {
+    border-radius: 30px;
+	box-shadow: 0 0 25px #777;
+}
+
+.wrapGoodImg {
+	text-align: center;
+    margin-top: 30px;
+    position:relative;
+}
+
+.sticker {
+    right: -50px;
+    top: -50px;
+	position:absolute;
+	/**z-index: 10;**/
+}
+.stickerImg {
+	width:125px;
+	height:125px;
+	position:relative;
+}
+.stickerTextFit {
+	text-align: center;
+    /**line-height: 100px;**/
+    font-family: cursive;
+    font-weight: 900;
+    font-size: 30px;
+	position:absolute;
+	left: 42px;
+    top: 40px;
+	color: green;
+}
+.stickerTextHit {
+	text-align: center;
+    /**line-height: 100px;**/
+    font-family: cursive;
+    font-weight: 900;
+    font-size: 30px;
+	position:absolute;
+	left: 42px;
+    top: 40px;
+	color:red;
+}
+.wrapGoodInfo {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.goodsNameFull {
+	text-align:center;
+	font-family: 'El Messiri', sans-serif;
+	font-size: 30px;
+    line-height: 50px;
+}	
+
+.goodsPrice {
+	height: 40px;
+    line-height: 40px;
+	padding: 0 20px 0 20px;
+	text-align:right;
+	color:red;
+}
+.goodsParam {
+	margin: 0 auto;
+	padding: 0 20px 0 20px;
+	height: 100px;
+}
+a {
+	text-decoration: none;
+	color:black;
+	&:hover {
+		color:black;
+	};
+	&:visited {
+		color:black;
+	};
+	&:active {
+		color:black;
+	};
+}
+
+.btnWrap{
+	text-align: center;
+	
+}
+
+.addToBasket, .deleteToBasket{
+	background:palegoldenrod;
+	    width: 90%;
+		margin:5px auto;
+		border: 1px solid black;
+}
+ 
+.goodsWrapItem {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+    /* height: 550px; */
+    margin: 25px auto;
+    background: lemonchiffon;
+    box-shadow: 0 0 25px #777;
+    border: 1px solid transparent;
+    /* position: relative; */
+} 
+
+.wrapGoodImgItem {
+	margin: auto 0;
+}
+
+.goodsPriceItem {
+	height: 40px;
+    line-height: 40px;
+	padding: 0 20px 0 20px;
+	text-align:center;
+	color:red;
+}
+
+.goodsWeightItem {
+	margin: 20px auto;
+    padding: 0 20px 0 20px;
+}
+
+.stickerImgItem {
+	width: 50px;
+    height: 50px;
+}
+
+.stickerItem {
+	display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin: 0 auto;
+}
+
+.stickerTextItem {
+	text-align: center;
+    font-family: cursive;
+    font-weight: 900;
+    font-size: 30px;
+    color: green;
+	margin:0 20px;
+}
+
+.explain {
+	line-height: 50px;
+}
+
+.btnWrapItem{
+	display:flex;
+	flex-direction:column;
+	justify-content:space-evenly;
+	text-align: center;
+	width:300px;
+}
+ 
+
+.basketInfo>a:hover {
+	color:black;
+}
+
+.basketInfoOut {
+	width:125px;
+	color: olive;
+    /**background-color: transparent;
+    background-image: none;**/
+    border-color: olive;
+}
+
+.basketInfoOut:hover {
+	color: #fff;
+    background-color: olive;
+    border-color: olive;
+}
+
+.btn-outline-success.focus, .btn-outline-success:focus {
+    box-shadow: 0 0 0 0.2rem olive;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-success.dropdown-toggle:focus {
+	    box-shadow: 0 0 0 0.2rem olive;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active, .show>.btn-outline-success.dropdown-toggle {
+    color: #fff;
+    background-color: olive;
+    border-color: olive;
+}
+
+.adminTable {
+	display:flex;
+	flex-direction:column;
+}
+
+.headTable {
+	display:flex;
+	flex-direction:row;
+	border:1px black solid;
+}
+.adminRow {
+	display:flex;
+	flex-direction:row;
+	border:1px black solid;
+}
+
+.formAdmin {
+	display:flex;
+	flex-direction:row;
+	border:1px black solid;
+}
+
+.formOrder {
+	width: 500px;
+    margin: 50px auto;
+}
+.id {
+	min-width:50px;
+	max-width:50px;
+
+}
+.nameFull {
+min-width:250px;
+max-width:250px;
+}
+.price {
+	min-width:50px;
+	max-width:50px;
+}
+.param {
+	min-width:150px;
+	max-width:150px;
+}
+.weight {
+	min-width:50px;
+	max-width:50px;
+}
+.discount {
+	min-width:70px;
+	max-width:70px;
+}
+.loadFile {
+	min-width:260px;
+	max-width:260px;
+}
+.stickerAdmin {
+	min-width:150px;
+	max-width:150px;
+}
+.views {
+	min-width:100px;
+	max-width:100px;
+}
+.operation {
+	width:200px;
+}
+
+
+.rowCell {
+	border: solid black 1px;
+	background: lemonchiffon;
+	text-align:center;
+	line-height: 46px;
+    height: 50px;
+}
+.headerCell {
+	background:palegoldenrod;
+	border: solid black 1px;
+	text-align:center;
+	line-height: 46px;
+    height: 50px;
+	font-weight:600;
+}
+
+.orderBody {
+	display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+	justify-content: space-around;
+}
+.formOrder {
+	display: flex;
+    flex-direction: column;
+}
+.btnAdmin {
+	background:palegoldenrod;
+	border: 1px solid black;		
+	max-width:100px;
+	min-width:100px;
+}
+.orderTable {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.countModal {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	width:100px;
+	line-height: 14px;
+}
+
+.promoWrap {
+	display: flex;
+    flex-direction: row;
+    justify-content: start;
+	margin:25px 0;
+}
+
+.promoWrap>i {
+	margin:0 50px;
+}
+
+.promoHeader {
+	text-align:center;
+	font-family: 'El Messiri', sans-serif;
+	font-size: 60px;
+	font-weight:700;
+	color: olive;
+}
+	
+.thanks {
+	text-align: center;
+	margin: 50px auto;
+	font-family: 'El Messiri', sans-serif;
+	color: olive;
+    font-size: 40px;
+    font-weight: 500;
+}

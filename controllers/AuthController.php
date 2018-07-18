@@ -21,17 +21,14 @@ class AuthController extends Controller
     {
         $userModel = new User();
         if (($userModel->checkUser())==true) {
-            echo ($userModel->checkUser());
             echo $this->render('cab.index', [
                 'authResult' => 'авторизация пройдена'
             ]);
         } else {
-            echo ($userModel->checkUser());
             echo $this->render('cab.index', [
                 'authResult' => 'неверный логин или пароль'
             ]);
         }
-
     }
 
     public function actionLogout()
@@ -39,6 +36,13 @@ class AuthController extends Controller
         $userModel = new User();
         $userModel->logOut1();
         echo $this->render('cab.logout', [
+            'logout' => 'logout'
+        ]);
+    }
+
+    public function actionAuthorization()
+    {
+        echo $this->render('auth.index', [
             'logout' => 'logout'
         ]);
     }

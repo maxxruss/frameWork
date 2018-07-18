@@ -47,6 +47,9 @@ class Request
         if(class_exists($classController)) {
             $instanceController = new $classController('../templates/', '.tmpl');
 
+            //echo $classController;
+            //echo $action;
+
             if(method_exists($instanceController,$action)) {
                 call_user_func_array([$instanceController,$action],[$this]);
             } else {

@@ -11,21 +11,20 @@
 <body>
 {% include 'menu.tmpl' %}
 <br>
+auth.index.
+
+{{ authResult }}
+
+<form action="/public/auth" method="post">
+    <p><input type="text" name="login" /></p>
+    <p><input type="password" name="password" /></p>
+    <p><input type="submit" value="Войти" /></p>
+</form>
+
+<br>
 <br>
 
 
-
-<ul>
-      <li>{{ oneBlog.id }}</li>
-      <li>{{ oneBlog.title }}</li>
-      <li>{{ oneBlog.content }}</li>
-</ul>
-
-<ul>
-      <li>{{ blog.id }}</li>
-      <li>{{ blog.title }}</li>
-      <li>{{ blog.content }}</li>
-</ul>
 
 </body>
 </html>

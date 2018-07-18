@@ -20,12 +20,6 @@ class IndexController extends Controller
 {
     public function actionIndex()
     {
-        if ($this->initResult==true) {
-            echo ('Привет, '.$_SESSION['user']['login']);
-        } else {
-            echo " Привет незнакомец! ";
-        }
-
         $newsModel = new News();
         $oneNews = $newsModel->getOneNews(1);
 
@@ -35,6 +29,26 @@ class IndexController extends Controller
         echo $this->render('index', [
             'oneBlog' => $oneBlog,
             'oneNews' => $oneNews,
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name'],
         ]);
+    }
+
+    public function actionCabinet()
+    {
+        echo 'привет из кабинета';
+        $userModel = new User();
+        if (($userModel->checkUser())==true) {
+            echo $this->render('cab.index', [
+                'authResult' => 'авторизация пройдена',
+                'auth' => $this->initResult,
+                'name' => $_SESSION['user']['name'],
+            ]);
+        } else {
+            echo $this->render('index', [
+                'authResult' => 'неверный логин или пароль'
+            ]);
+        }
+
     }
 }

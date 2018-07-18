@@ -30,7 +30,7 @@ class Auth
             // получаем данные пользователя по логину
 
             $pdo = Db::getPDO();
-            $statement = $pdo->query("SELECT id, login, pass FROM `users` WHERE `login` = '" . $this->login . "'");
+            $statement = $pdo->query("SELECT id, login, pass, name FROM `users` WHERE `login` = '" . $this->login . "'");
 
             $this->user_db = $statement->fetchAll()[0];
             //print_r ($this->user_db);
@@ -63,11 +63,6 @@ class Auth
             //print_r($_COOKIE);
 
         }
-        //print_r ($_COOKIE);
-        //echo ($_COOKIE['cookie_hash']);
-        //print_r($_SESSION['user']);
-        //print_r($_SESSION['user']);
-        //print_r($_COOKIE);
 
         return $isAuth;
     }
@@ -119,7 +114,7 @@ class Auth
         if (isset($_SESSION['user'])) {
             // получаем данные пользователя по id
             $pdo = Db::getPDO();
-            $statement = $pdo->query("select id, login, pass from users where login = '" . $_SESSION['user']['login'] . "'");
+            $statement = $pdo->query("select id, login, pass, name from users where login = '" . $_SESSION['user']['login'] . "'");
             $this->user_db = $statement->fetchAll()[0];
 
             if (($this->user_db['pass'] !== $_SESSION['user']['pass']) || ($this->user_db['id'] !== $_SESSION['id'])) {
@@ -133,7 +128,7 @@ class Auth
                 session_unset();
             }
         }
-        print_r($_SESSION);
+        //print_r($_SESSION);
         return $this->resultInit;
     }
 }

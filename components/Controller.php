@@ -9,6 +9,7 @@
 namespace components;
 
 use components\Auth;
+use models\User;
 
 
 class Controller
@@ -26,13 +27,20 @@ class Controller
         $this->initResult = $userInit->init();
     }
 
-    protected function render($template , $params = [])
+
+    protected function render($template, $params = [])
     {
+            $params = [
+                'auth' => $this->initResult,
+                'name' => $_SESSION['user']['name']
+            ];
+
+
         $loader = new \Twig_Loader_Filesystem($this->templateFolder);
 
         $twig = new \Twig_Environment($loader);
 
-        $templateInstance = $twig->loadTemplate($template . $this->templateExtension );
+        $templateInstance = $twig->loadTemplate($template . $this->templateExtension);
 
         $content = $templateInstance->render($params);
 

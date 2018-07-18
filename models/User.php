@@ -46,4 +46,6 @@ class User extends Model
         $logout = new Auth();
         return $logout->logOut();
     }
+
+
 }
