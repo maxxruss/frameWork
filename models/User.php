@@ -42,10 +42,20 @@ class User extends Model
         return $check->check();
     }
 
-    public function logOut1() {
-        $logout = new Auth();
-        return $logout->logOut();
+    public function initUser() {
+        $check = new Auth();
+        return $check->init();
     }
 
+    public function logOutUser() {
+        $modelAuth = new Auth();
+        $modelAuth->logOut();
+        return $modelAuth->init();
+    }
+
+    public function regUser() {
+        $logout = new Auth();
+        return $logout->reg();
+    }
 
 }

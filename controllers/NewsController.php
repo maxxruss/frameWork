@@ -25,7 +25,9 @@ class NewsController extends Controller
         $newsModel = new News();
         $newsAll = $newsModel->getNews();
         echo $this->render('news.index', [
-            'newsAll' => $newsAll
+            'newsAll' => $newsAll,
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
         ]);
     }
 
@@ -34,7 +36,9 @@ class NewsController extends Controller
         $newsModel = new News();
         $newsOne = $newsModel->getOneNews(1);
         echo $this->render('news.show', [
-            'newsOne' => $newsOne
+            'newsOne' => $newsOne,
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
         ]);
     }
 
@@ -49,18 +53,22 @@ class NewsController extends Controller
                 $newsModel->createNews($_POST);
                 $newsAdd = 'Новость успешно добавлена!';
                 echo $this->render('news.index', [
-                    'newsAdd' => $newsAdd
+                    'newsAdd' => $newsAdd,
+                    'auth' => $this->initResult,
+                    'name' => $_SESSION['user']['name']
                 ]);
             } else {
                 $newsAdd = 'Вы ничего не вели';
                 echo $this->render('news.index', [
-                    'newsAdd' => $newsAdd
+                    'newsAdd' => $newsAdd,
+                    'auth' => $this->initResult,
+                    'name' => $_SESSION['user']['name']
                 ]);
             }
         } else {
             echo $this->render('news.add', [
-                //'blogsOne' => $blogsOne
-            ]);
+                'auth' => $this->initResult,
+                'name' => $_SESSION['user']['name']            ]);
         }
     }
 
@@ -71,14 +79,18 @@ class NewsController extends Controller
             $newsModel = new News();
             $newsOne = $newsModel->getOneNews($id);
             echo $this->render('news.edit', [
-                'newsOne' => $newsOne
+                'newsOne' => $newsOne,
+                'auth' => $this->initResult,
+                'name' => $_SESSION['user']['name']
             ]);
         } else {
             $newsModel = new News();
             $newsModel->updateNews($_POST);
             $newsEdit = 'Новость успешно изменена!';
             echo $this->render('news.index', [
-                'newsEdit' => $newsEdit
+                'newsEdit' => $newsEdit,
+                'auth' => $this->initResult,
+                'name' => $_SESSION['user']['name']
             ]);
         }
     }
@@ -89,7 +101,9 @@ class NewsController extends Controller
         $newsModel = new News();
         $newsModel->deleteNews($id);
         echo $this->render('news.index', [
-            'newsDelete' => 'Новость успешно удалена'
+            'newsDelete' => 'Новость успешно удалена',
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
         ]);
     }
 }

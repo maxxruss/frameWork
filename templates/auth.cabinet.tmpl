@@ -13,11 +13,21 @@
 
 <br>
 <br>
-cab.index.
+auth.cabinet
+<br>
 
-{{ authResult }}
+авторизация - {{ auth }}
 
 
+{% if auth == 'true' %}
+   Приветствую, {{ name }}!<br>
+    Это твой личный кабинет
+{% else %}
+    Неверный логин или пароль!
+    <a href="/public/auth">Авторизация</a>
+
+    <a href="/public/auth/reg">Регистрация</a>
+{% endif %}
 
 </body>
 </html>

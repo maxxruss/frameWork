@@ -27,15 +27,8 @@ class Controller
         $this->initResult = $userInit->init();
     }
 
-
     protected function render($template, $params = [])
     {
-            $params = [
-                'auth' => $this->initResult,
-                'name' => $_SESSION['user']['name']
-            ];
-
-
         $loader = new \Twig_Loader_Filesystem($this->templateFolder);
 
         $twig = new \Twig_Environment($loader);

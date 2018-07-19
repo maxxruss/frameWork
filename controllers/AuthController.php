@@ -15,90 +15,54 @@ use models\User;
 
 class AuthController extends Controller
 {
-
-
     public function actionIndex()
     {
-        $userModel = new User();
-        if (($userModel->checkUser())==true) {
-            echo $this->render('cab.index', [
-                'authResult' => 'авторизация пройдена'
-            ]);
-        } else {
-            echo $this->render('cab.index', [
-                'authResult' => 'неверный логин или пароль'
-            ]);
-        }
+        echo $this->render('auth.index', [
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
+        ]);
     }
 
     public function actionLogout()
     {
         $userModel = new User();
-        $userModel->logOut1();
-        echo $this->render('cab.logout', [
-            'logout' => 'logout'
+        echo $this->render('auth.index', [
+            'auth' => $userModel->logOutUser(),
         ]);
     }
 
     public function actionAuthorization()
     {
-        echo $this->render('auth.index', [
-            'logout' => 'logout'
-        ]);
-    }
-
-    public function actionAdd()
-    {
-        if (isset($_POST['title'])) {
-            echo('<pre>');
-            //var_dump($_POST);
-            echo('</pre>');
-            if($_POST['title']!==''&&$_POST['content']!=='') {
-                $newsModel = new News();
-                $newsModel->createNews($_POST);
-                $newsAdd = 'Новость успешно добавлена!';
-                echo $this->render('index', [
-                    'newsAdd' => $newsAdd
-                ]);
-            } else {
-                $newsAdd = 'Вы ничего не вели';
-                echo $this->render('index', [
-                    'newsAdd' => $newsAdd
-                ]);
-            }
+        $userModel = new User();
+        $checkUserResult = $userModel->checkUser();
+        if ($checkUserResult == true) {
+            echo $this->render('auth.cabinet', [
+                'auth' => $checkUserResult,
+                'name' => $_SESSION['user']['name']            ]);
         } else {
-            echo $this->render('add', [
-                //'blogsOne' => $blogsOne
+            echo $this->render('auth.index', [
+                'authResult' => 'Неверный логин или пароль!'
             ]);
         }
     }
 
-    public function actionEdit()
+    public function actionReg()
     {
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $newsModel = new News();
-            $newsOne = $newsModel->getOneNews($id);
-            echo $this->render('edit', [
-                'newsOne' => $newsOne
-            ]);
-        } else {
-            $newsModel = new News();
-            $newsModel->updateNews($_POST);
-            $newsEdit = 'Новость успешно изменена!';
-            echo $this->render('index', [
-                'newsEdit' => $newsEdit
-            ]);
-        }
-    }
-
-    public function actionDelete()
-    {
-        $id = $_GET['id'];
-        $newsModel = new News();
-        $newsModel->deleteNews($id);
-        echo $this->render('index', [
-            'newsDelete' => 'Новость успешно удалена'
+        $userModel = new User();
+        $userModel->regUser();
+        echo $this->render('auth.cabinet', [
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
         ]);
     }
+
+    public function actionCabinet()
+    {
+        echo $this->render('auth.cabinet', [
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
+        ]);
+    }
+
+
 }

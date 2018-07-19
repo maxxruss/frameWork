@@ -30,7 +30,7 @@ class IndexController extends Controller
             'oneBlog' => $oneBlog,
             'oneNews' => $oneNews,
             'auth' => $this->initResult,
-            'name' => $_SESSION['user']['name'],
+            'name' => $_SESSION['user']['name']
         ]);
     }
 
@@ -42,11 +42,13 @@ class IndexController extends Controller
             echo $this->render('cab.index', [
                 'authResult' => 'авторизация пройдена',
                 'auth' => $this->initResult,
-                'name' => $_SESSION['user']['name'],
+                'name' => $_SESSION['user']['name']
             ]);
         } else {
             echo $this->render('index', [
-                'authResult' => 'неверный логин или пароль'
+                'authResult' => 'неверный логин или пароль',
+                'auth' => $this->initResult,
+        'name' => $_SESSION['user']['name']
             ]);
         }
 

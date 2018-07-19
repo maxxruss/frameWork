@@ -16,8 +16,8 @@ class BlogController extends Controller
 {
     public function actionIndex()
     {
-        if ($this->initResult==true) {
-            echo ('Привет, '.$_SESSION['user']['login']);
+        if ($this->initResult == true) {
+            echo('Привет, ' . $_SESSION['user']['login']);
         } else {
             echo " Привет незнакомец! ";
         }
@@ -26,7 +26,9 @@ class BlogController extends Controller
         $blogsAll = $blogModel->getBlogs();
 
         echo $this->render('blog.index', [
-            'blogsAll' => $blogsAll
+            'blogsAll' => $blogsAll,
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
         ]);
     }
 
@@ -35,7 +37,9 @@ class BlogController extends Controller
         $blogModel = new Blog();
         $blogsOne = $blogModel->getOneBlogs(1);
         echo $this->render('blog.show', [
-            'blogsOne' => $blogsOne
+            'blogsOne' => $blogsOne,
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
         ]);
     }
 
@@ -45,22 +49,27 @@ class BlogController extends Controller
             echo('<pre>');
             //var_dump($_POST);
             echo('</pre>');
-            if($_POST['title']!==''&&$_POST['content']!=='') {
+            if ($_POST['title'] !== '' && $_POST['content'] !== '') {
                 $blogModel = new Blog();
                 $blogModel->createBlogs($_POST);
                 $blogAdd = 'Блог успешно добавлен!';
                 echo $this->render('blog.index', [
-                    'blogAdd' => $blogAdd
+                    'blogAdd' => $blogAdd,
+                    'auth' => $this->initResult,
+                    'name' => $_SESSION['user']['name']
                 ]);
             } else {
                 $blogAdd = 'Вы ничего не вели';
                 echo $this->render('blog.index', [
-                    'blogAdd' => $blogAdd
+                    'blogAdd' => $blogAdd,
+                    'auth' => $this->initResult,
+                    'name' => $_SESSION['user']['name']
                 ]);
             }
         } else {
             echo $this->render('blog.add', [
-                //'blogsOne' => $blogsOne
+                'auth' => $this->initResult,
+                'name' => $_SESSION['user']['name']
             ]);
         }
     }
@@ -72,25 +81,31 @@ class BlogController extends Controller
             $blogModel = new Blog();
             $blogsOne = $blogModel->getOneBlogs($id);
             echo $this->render('blog.edit', [
-                'blogsOne' => $blogsOne
+                'blogsOne' => $blogsOne,
+                'auth' => $this->initResult,
+                'name' => $_SESSION['user']['name']
             ]);
         } else {
             $blogModel = new Blog();
             $blogModel->updateBlogs($_POST);
             $blogEdit = 'Блог успешно изменен!';
             echo $this->render('blog.index', [
-                'blogEdit' => $blogEdit
+                'blogEdit' => $blogEdit,
+                'auth' => $this->initResult,
+                'name' => $_SESSION['user']['name']
             ]);
         }
     }
 
     public function actionDelete()
     {
-            $id = $_GET['id'];
-            $blogModel = new Blog();
-            $blogModel->deleteBlogs($id);
-            echo $this->render('blog.index', [
-                'blogsDelete' => 'Блог успешно удален'
-            ]);
+        $id = $_GET['id'];
+        $blogModel = new Blog();
+        $blogModel->deleteBlogs($id);
+        echo $this->render('blog.index', [
+            'blogsDelete' => 'Блог успешно удален',
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
+        ]);
     }
 }

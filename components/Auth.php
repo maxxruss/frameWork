@@ -33,17 +33,14 @@ class Auth
             $statement = $pdo->query("SELECT id, login, pass, name FROM `users` WHERE `login` = '" . $this->login . "'");
 
             $this->user_db = $statement->fetchAll()[0];
-            //print_r ($this->user_db);
 
             // проверяем соответствие логина и пароля
             if (!empty($this->user_db)) {
                 if ($this->user_db['login'] == $this->login && $this->user_db['pass'] == md5($this->password)) {
-                    //echo '  верно    ';
                     $isAuth = true;
                 } else {
-                    //echo '   неверно   ';
-                    //setcookie("auto_authorized", "");
-                    //print_r ($_COOKIE);
+                    $isAuth = false;
+
                 }
             }
 
@@ -56,23 +53,17 @@ class Auth
 
             }**/
 
-            // сохраним данные в сессию
+            /** сохраним данные в сессию**/
             $_SESSION['user'] = $this->user_db;
-            print_r($_SESSION) ;
-            //unset( $_COOKIE[ 'cookie_hash1']);
-            //print_r($_COOKIE);
 
         }
-
         return $isAuth;
     }
 
     public function logOut()
     {
-        //setcookie("auto_authorized", "", -1);
         session_unset();
         print_r($_SESSION);
-
     }
 
     /**
@@ -83,9 +74,38 @@ class Auth
      */
 
 
-    private function alreadyLoggedIn()
+    public function reg()
     {
-        return isset($_SESSION['user']);
+        if (isset($_POST['submit'])) {
+            $name = $_POST['name'];
+            $login = $_POST['login'];
+
+            $pdo = Db::getPDO();
+            $statement = $pdo->query("SELECT id, login, pass, name FROM `users` ");
+
+            $this->user_db = $statement->fetchAll()[0];
+
+
+            if (strtolower($login) == 'admin') {
+                exit("Логин админа нельзя зарегистрировать!");
+            }
+
+            foreach ($user as $item) {
+                if ($login == $item['login']) {
+                    exit("Такой уже логин есть!");
+                }
+            }
+
+            if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $email = trim(strip_tags($_POST['email']));
+            }
+            $pass = trim(strip_tags($_POST['pass']));
+
+            newUser($connect, $name, $login, $email, md5($pass));
+
+            $message = "Вы зарегистрированы!";
+
+        }
     }
 
 
