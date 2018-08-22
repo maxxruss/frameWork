@@ -23,9 +23,9 @@ class Auth
         /**
          * авторизация через логин и пароль
          */
-        if (isset($_POST['login']) && isset($_POST['password'])) {
+        if (isset($_POST['login']) && isset($_POST['pass'])) {
             $this->login = $_POST['login'];
-            $this->password = $_POST['password'];
+            $this->password = $_POST['pass'];
 
             // получаем данные пользователя по логину
 
@@ -63,7 +63,6 @@ class Auth
     public function logOut()
     {
         session_unset();
-        print_r($_SESSION);
     }
 
     /**
@@ -83,28 +82,32 @@ class Auth
             $pdo = Db::getPDO();
             $statement = $pdo->query("SELECT id, login, pass, name FROM `users` ");
 
-            $this->user_db = $statement->fetchAll()[0];
-
+            $this->user_db = $statement->fetchAll();
 
             if (strtolower($login) == 'admin') {
-                exit("Логин админа нельзя зарегистрировать!");
+                return "Логин админа нельзя зарегистрировать!";
             }
 
-            foreach ($user as $item) {
+            foreach ($this->user_db as $item) {
                 if ($login == $item['login']) {
-                    exit("Такой уже логин есть!");
+                    return "Такой уже логин есть!";
                 }
             }
 
             if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $email = trim(strip_tags($_POST['email']));
-            }
+            };
             $pass = trim(strip_tags($_POST['pass']));
 
-            newUser($connect, $name, $login, $email, md5($pass));
+            //$date =
 
-            $message = "Вы зарегистрированы!";
+            $statementReg = $pdo->exec("INSERT INTO `users` (login, pass, name, email, date, session_id) VALUES ('".$login."', '". md5($pass)."', '". $name."', '". $email."', '2018-07-17', '')");
 
+            if ($statementReg>0) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 

@@ -46,14 +46,34 @@ class AuthController extends Controller
         }
     }
 
-    public function actionReg()
+    public function actionRegInput()
+    {
+        echo $this->render('auth.reg', [
+        ]);
+    }
+
+
+    public function actionRegCheck()
     {
         $userModel = new User();
-        $userModel->regUser();
-        echo $this->render('auth.cabinet', [
-            'auth' => $this->initResult,
-            'name' => $_SESSION['user']['name']
-        ]);
+        $regUser = $userModel->regUser();
+        $userModel->checkUser();
+        if ($regUser == true) {
+            echo $this->render('auth.cabinet', [
+                'auth' => $regUser,
+                'reg' => $regUser,
+                'name' => $_SESSION['user']['name']
+            ]);
+        } elseif ($regUser == false) {
+            echo $this->render('auth.index', [
+                'authResult' => 'Регистрация не прошла!'
+            ]);
+        } else {
+            echo $this->render('auth.index', [
+                'authResult' => $regUser
+            ]);
+        }
+
     }
 
     public function actionCabinet()
