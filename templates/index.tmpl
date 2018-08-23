@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Главная</title>
 </head>
 <body>
@@ -13,18 +13,51 @@
 <br>
 <br>
 
+{% for item in allGoods %}
+    <div class='goodsWrap'>
+        {% if (item.discount>0) %}
 
+            <div class="sticker"><img class="stickerImg" src="/frameWork/public/css/star.png"><span
+                        class="stickerTextFit">{{ item.discount }}</span></div>
+
+        {% elseif (item.stickerFit==1) %}
+            <div class="sticker"><img class="stickerImg" src="/frameWork/public/css/star.png"><span
+                        class="stickerTextFit">Fit!</span></div>
+
+        {% elseif (item.stickerHit==1) %}
+            <div class="sticker"><img class="stickerImg" src="/frameWork/public/css/star.png"><span
+                        class="stickerTextHit">Hit!</span></div>
+
+        {% endif %}
+
+        <div class="wrapGoodImg">
+            <a href="item.php?photo=<?= $good['bigPhoto'] ?>&id=<?= $good['id'] ?>"><img class='goodImg'
+                                                                                         src="<?= $good['miniPhoto'] ?>"></a>
+        </div>
+        <div class="wrapGoodInfo">
+            <div class='goodsNameFull'><?= $good['nameFull']; ?></div>
+            <div class='goodsPrice'><?= $good['price'] ?><b>&#8381;</b></div>
+            <div class='goodsParam'><span><b>Состав: </b></span><?= $good['param'] ?></div>
+        </div>
+        <div class="btnWrap">
+            <input type='button' class='addToBasket btn' value='Дoбавить в корзину'
+                   onclick="addToBasket(<?= $good['id'] ?>)" data-id='<?= $good[' id'] ?>'>
+            <input type='button' class='deleteToBasket btn' value='Удалить из корзины'
+                   onclick="deleteToBasket(<?= $good['id'] ?>)" data-id='<?= $good[' id'] ?>'>
+        </div>
+    </div>
+{% endfor %}
 
 <ul>
-      <li>{{ oneBlog.id }}</li>
-      <li>{{ oneBlog.title }}</li>
-      <li>{{ oneBlog.content }}</li>
+    <li>{{ oneBasket.id }}</li>
+    <li>{{ oneBasket.price }}</li>
+    <li>{{ oneBasket.param }}</li>
 </ul>
 
 <ul>
-      <li>{{ blog.id }}</li>
-      <li>{{ blog.title }}</li>
-      <li>{{ blog.content }}</li>
+    <li>{{ oneGood.id }}</li>
+    <li>{{ oneGood.price }}</li>
+    <li>{{ oneGood.param }}</li>
 </ul>
 
 </body>

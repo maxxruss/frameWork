@@ -1,16 +1,16 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: alterwalker
- * Date: 21.05.2018
- * Time: 19:53
+ * User: максим
+ * Date: 23.08.2018
+ * Time: 16:23
  */
 
 namespace controllers;
 
 use components\Controller;
 use components\Request;
-use models\Blog;
+use models\basket;
 
 class BlogController extends Controller
 {
@@ -21,20 +21,17 @@ class BlogController extends Controller
         } else {
             echo " Привет незнакомец! ";
         }
-
-        $blogModel = new Blog();
+        $blogModel = new basket();
         $blogsAll = $blogModel->getBlogs();
-
         echo $this->render('blog.index', [
             'blogsAll' => $blogsAll,
             'auth' => $this->initResult,
             'name' => $_SESSION['user']['name']
         ]);
     }
-
     public function actionShow()
     {
-        $blogModel = new Blog();
+        $blogModel = new basket();
         $blogsOne = $blogModel->getOneBlogs(1);
         echo $this->render('blog.show', [
             'blogsOne' => $blogsOne,
@@ -42,7 +39,6 @@ class BlogController extends Controller
             'name' => $_SESSION['user']['name']
         ]);
     }
-
     public function actionAdd()
     {
         if (isset($_POST['title'])) {
@@ -50,7 +46,7 @@ class BlogController extends Controller
             //var_dump($_POST);
             echo('</pre>');
             if ($_POST['title'] !== '' && $_POST['content'] !== '') {
-                $blogModel = new Blog();
+                $blogModel = new basket();
                 $blogModel->createBlogs($_POST);
                 $blogAdd = 'Блог успешно добавлен!';
                 echo $this->render('blog.index', [
@@ -73,12 +69,11 @@ class BlogController extends Controller
             ]);
         }
     }
-
     public function actionEdit()
     {
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $blogModel = new Blog();
+            $blogModel = new basket();
             $blogsOne = $blogModel->getOneBlogs($id);
             echo $this->render('blog.edit', [
                 'blogsOne' => $blogsOne,
@@ -86,7 +81,7 @@ class BlogController extends Controller
                 'name' => $_SESSION['user']['name']
             ]);
         } else {
-            $blogModel = new Blog();
+            $blogModel = new basket();
             $blogModel->updateBlogs($_POST);
             $blogEdit = 'Блог успешно изменен!';
             echo $this->render('blog.index', [
@@ -96,11 +91,10 @@ class BlogController extends Controller
             ]);
         }
     }
-
     public function actionDelete()
     {
         $id = $_GET['id'];
-        $blogModel = new Blog();
+        $blogModel = new basket();
         $blogModel->deleteBlogs($id);
         echo $this->render('blog.index', [
             'blogsDelete' => 'Блог успешно удален',
