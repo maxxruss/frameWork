@@ -1,39 +1,35 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: alterwalker
- * Date: 21.05.2018
- * Time: 19:53
+ * User: максим
+ * Date: 23.08.2018
+ * Time: 16:24
  */
 
 namespace controllers;
 
-
 use components\Auth;
 use components\Controller;
-use models\Blog;
-use models\Menu;
-use models\News;
+use models\Basket;
+use models\ClientInfo;
+use models\Goods;
 use models\User;
 
 class IndexController extends Controller
 {
     public function actionIndex()
     {
-        $newsModel = new News();
-        $oneNews = $newsModel->getOneNews(1);
+        $model = new Goods();
+        $allGoods = $model->getAllGoods();
+        //var_dump($allGoods); exit;
 
-        $blogModel = new Blog();
-        $oneBlog = $blogModel->getOneBlogs(6);
 
         echo $this->render('index', [
-            'oneBlog' => $oneBlog,
-            'oneNews' => $oneNews,
+            'allGoods' => $allGoods,
             'auth' => $this->initResult,
             'name' => $_SESSION['user']['name']
         ]);
     }
-
     public function actionCabinet()
     {
         echo 'привет из кабинета';
@@ -48,9 +44,8 @@ class IndexController extends Controller
             echo $this->render('index', [
                 'authResult' => 'неверный логин или пароль',
                 'auth' => $this->initResult,
-        'name' => $_SESSION['user']['name']
+                'name' => $_SESSION['user']['name']
             ]);
         }
-
     }
 }

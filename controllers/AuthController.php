@@ -1,13 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: alterwalker
- * Date: 21.05.2018
- * Time: 20:48
+ * User: максим
+ * Date: 23.08.2018
+ * Time: 16:22
  */
 
 namespace controllers;
-
 
 use components\Controller;
 use components\Request;
@@ -38,7 +37,7 @@ class AuthController extends Controller
         if ($checkUserResult == true) {
             echo $this->render('auth.cabinet', [
                 'auth' => $checkUserResult,
-                'name' => $_SESSION['user']['name']            ]);
+                'name' => $_SESSION['user']['name']]);
         } else {
             echo $this->render('auth.index', [
                 'authResult' => 'Неверный логин или пароль!'
@@ -51,7 +50,6 @@ class AuthController extends Controller
         echo $this->render('auth.reg', [
         ]);
     }
-
 
     public function actionRegCheck()
     {
@@ -73,7 +71,6 @@ class AuthController extends Controller
                 'authResult' => $regUser
             ]);
         }
-
     }
 
     public function actionCabinet()
@@ -83,6 +80,4 @@ class AuthController extends Controller
             'name' => $_SESSION['user']['name']
         ]);
     }
-
-
 }

@@ -1,12 +1,13 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: alterwalker
- * Date: 21.05.2018
- * Time: 19:48
+ * User: максим
+ * Date: 23.08.2018
+ * Time: 15:34
  */
 
 namespace components;
+use components\Db;
 
 class App
 {
@@ -19,10 +20,12 @@ class App
         $this->request = new Request();
         $this->request->init();
         //Auth::init();
+        exit;
         $this->db = new Db();
-        $this->db::getPDO();
+        $this->db->getPDO();
     }
 
     public function init() {
+
     }
 }

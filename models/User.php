@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: alterwalker
- * Date: 24.05.2018
- * Time: 20:39
+ * User: максим
+ * Date: 23.08.2018
+ * Time: 16:28
  */
 
 namespace models;
@@ -14,7 +14,6 @@ use components\Auth;
 class User extends Model
 {
     protected $table = 'users';
-
     protected $fields = [
         'id',
         'login',
@@ -23,7 +22,6 @@ class User extends Model
         'email',
         'date' ,
     ];
-
     public $rules = [
         'id'     => 'int',
         'login'  => 'string',
@@ -32,30 +30,24 @@ class User extends Model
         'email'  => 'string',
         'date'   => 'string',
     ];
-
-    public function getUsers() {
+    public function getAllUsers() {
         return $this->getAll();
     }
-
     public function checkUser() {
         $check = new Auth();
         return $check->check();
     }
-
     public function initUser() {
         $check = new Auth();
         return $check->init();
     }
-
     public function logOutUser() {
         $modelAuth = new Auth();
         $modelAuth->logOut();
         return $modelAuth->init();
     }
-
     public function regUser() {
         $logout = new Auth();
         return $logout->reg();
     }
-
 }

@@ -2,12 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: максим
- * Date: 13.07.2018
- * Time: 14:49
+ * Date: 23.08.2018
+ * Time: 17:25
  */
 
 namespace components\Interfaces;
-
 interface Query
 {
     public function select($parameters);
