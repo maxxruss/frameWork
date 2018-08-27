@@ -33,7 +33,7 @@ class Request
         $this->inputArr['post'] = $_POST;
 
         $path = explode('/', $url);
-        print_r($path);
+        //print_r($path);
 
 
         if (count($path) == 4) {

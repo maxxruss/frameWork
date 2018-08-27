@@ -1,4 +1,4 @@
-@import "../packages/bootstrap-4.0.0-beta.2/scss/bootstrap.scss";
+/**@import "../packages/bootstrap-4.0.0-beta.2/scss/bootstrap.scss";**/
 body {
     background: lightyellow;
 }
@@ -95,7 +95,7 @@ a:hover {
     font-weight: 900;
     font-size: 30px;
     position:absolute;
-    left: 42px;
+    left: 55px;
     top: 40px;
     color: green;
 }
