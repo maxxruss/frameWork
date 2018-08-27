@@ -17,86 +17,98 @@ class Model //implements Query
     protected $fields = '';
     protected $rules = '';
 
-    public function select($parameters) {
+    public function select($parameters)
+    {
         $parameters = [
             'where' => 'id = 1',
             'orderby' => 'desc',
             'limit ' => ' 1,10 '
         ];
         $pdo = Db::getPDO();
-        $statement = $pdo->query('select * from '. $this->table . ' where ' . $parameters = ['where'].' orderby '.$parameters = ['orderby'].' limit '.$parameters = ['limit']);
+        $statement = $pdo->query('select * from ' . $this->table . ' where ' . $parameters = ['where'] . ' orderby ' . $parameters = ['orderby'] . ' limit ' . $parameters = ['limit']);
         return $statement->fetchAll();
     }
-    public function getAll($orderby = 'id') {
+
+    public function getAll($orderby = 'id')
+    {
         $pdo = Db::getPDO();
-        $statement = $pdo->query('select * from '. $this->table);
+        $statement = $pdo->query('select * from ' . $this->table);
+        //var_dump($statement);exit;
         return $statement->fetchAll();
     }
-    public function getOne($id) {
+
+    public function getOne($id)
+    {
         //echo $id; exit;
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
-        $statement = $pdo->query('select * from '. $this->table .' where id = ' . $id);
+        $statement = $pdo->query('select * from ' . $this->table . ' where id = ' . $id);
         $result = $statement->fetchAll();
         return empty($result[0]) ? null : $result[0];
     }
-    public function update($values) {
+
+    public function update($values)
+    {
         /**if(!$this->validate($values, $this->rules)) {
-        return false;
-        }**/
+         * return false;
+         * }**/
         $pdo = Db::getPDO();
-        $statement = $pdo->query("UPDATE `" . $this->table .
-            "` SET `name` = '" . $values['name'] .
-            "', `description` = '" . $values['description'] . "` SET `src` = '" . $values['src'] . "` SET `small_src` = '" . $values['small_src'] . "` SET `price` = '" . $values['price'] ."' WHERE `id` = '" . $values['id'] . "'");
+        $statement = $pdo->query('UPDATE `' . $this->table . '` SET nameFull = "' . $values['nameFull'] .
+            '", price = ' . $values['price'] . ', param = "' . $values['param'] . '", bigPhoto = "' . $values['bigPhoto'] . '", miniPhoto = "' . $values['miniPhoto'] . '", weight = ' . $values['weight'] . ', stickerFit = "' . $values['stickerFit'] . '", stickerHit = "' . $values['stickerHit'] . '", discount = ' . $values['discount'] . ' WHERE `id` = ' . $values['id']);
         //var_dump($statement);
         //$result = $statement->fetchAll();
         //return empty($result[0]) ? null : $result[0];
         return $statement;
     }
-    public function create($values) {
+
+    public function create($values)
+    {
         /**if(!$this->validate($values, $this->rules)) {
-        echo 'не работает';
-        return false;
-        } **/
+         * echo 'не работает';
+         * return false;
+         * } **/
         $pdo = DB::getPDO();
-        $pdo->query("INSERT INTO ". $this->table. "(name, description, src, small_src, price) VALUES ('" . $values['name'] . "', '" . $values['description'] ."', '". $values['src'] . "', '" . $values['small_src'] ."', '" . $values['price'] ."')");
+        $pdo->query("INSERT INTO " . $this->table . "(name, description, src, small_src, price) VALUES ('" . $values['name'] . "', '" . $values['description'] . "', '" . $values['src'] . "', '" . $values['small_src'] . "', '" . $values['price'] . "')");
         /**INSERT INTO old_links (id,id_user,link) VALUES (1,1,'ya.ru')
-        $query = 'insert into ' . $this->table . ' (';
-        $query .= implode(', ', array_keys($values)) . ') values ( :';
-        $query .= implode(', :',array_keys($values)) . ')';
-        $statement = $pdo->prepare($query);**/
+         * $query = 'insert into ' . $this->table . ' (';
+         * $query .= implode(', ', array_keys($values)) . ') values ( :';
+         * $query .= implode(', :',array_keys($values)) . ')';
+         * $statement = $pdo->prepare($query);**/
         return true;
     }
-    public function delete($id) {
+
+    public function delete($id)
+    {
         $pdo = Db::getPDO();
-        $pdo->query('DELETE from '. $this->table .' where id = ' . $id);
+        $pdo->query('DELETE from ' . $this->table . ' where id = ' . $id);
         return true;
     }
 
     /**function newComment($fio, $email, $text)
+     * {
+     * $pdo = DB::getPDO();
+     * $pdo->query("INSERT INTO ". $this->table. "(name, description, src, small_src, price) VALUES ('" . $values['name'] . "', '" . $values['description'] ."', '". $values['src'] . "', '" . $values['small_src'] ."', '" . $values['price'] ."')");
+     *
+     * return true;
+     * }**/
+
+    public function validate($values, $rules)
     {
-        $pdo = DB::getPDO();
-        $pdo->query("INSERT INTO ". $this->table. "(name, description, src, small_src, price) VALUES ('" . $values['name'] . "', '" . $values['description'] ."', '". $values['src'] . "', '" . $values['small_src'] ."', '" . $values['price'] ."')");
-
-        return true;
-    }**/
-
-    public function validate($values, $rules) {
-        if(!empty(array_diff_key($values, $rules))) {
+        if (!empty(array_diff_key($values, $rules))) {
             return false;
         }
         foreach ($rules as $key => $rule) {
-            if(!isset($values[$key])) {
+            if (!isset($values[$key])) {
                 continue;
             }
-            switch($rule) {
+            switch ($rule) {
                 case 'string':
-                    if(!is_string($values[$key])) {
+                    if (!is_string($values[$key])) {
                         return false;
                     }
                     break;
                 case 'int':
-                    if(!is_numeric($values[$key])) {
+                    if (!is_numeric($values[$key])) {
                         return false;
                     }
                     break;
@@ -140,7 +152,8 @@ class Model //implements Query
         }
     }
 
-    function scanDirLoadFiles () {
+    function scanDirLoadFiles()
+    {
 
         $images = array_slice(scandir('../public/loadFiles'), 2);
 

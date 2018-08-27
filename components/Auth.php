@@ -33,6 +33,8 @@ class Auth
             if (!empty($this->user_db)) {
                 if ($this->user_db['login'] == $this->login && $this->user_db['pass'] == md5($this->password)) {
                     $isAuth = true;
+                    /** сохраним данные в сессию**/
+                    $_SESSION['user'] = $this->user_db;
                 } else {
                     $isAuth = false;
                 }
@@ -44,8 +46,6 @@ class Auth
             setcookie("auto_authorized", "1", time() + 3600 * 24 * 30 * 12);
             //print_r ($_COOKIE);
             }**/
-            /** сохраним данные в сессию**/
-            $_SESSION['user'] = $this->user_db;
         }
         return $isAuth;
     }

@@ -30,6 +30,8 @@ class Request
         $this->inputArr['get']  = $_GET;
         $this->inputArr['post'] = $_POST;
 
+
+
         $path = explode('/',$url);
 
         if(count($path) == 4) {
@@ -42,16 +44,27 @@ class Request
 
         $classController = $this->controllerNamespace . '\\' . ucfirst($this->controller) . 'Controller';
 
+        if (strpos($this->action, '=') !== false) {
+            $actionArr = explode('=', $this->action);
+            //print_r($actionArr[1]);
+            $this->action = $actionArr[0];
+            $get = $actionArr[1];
+            //var_dump($this->action);
+        }
+
         $action = 'action' . ucfirst($this->action);
 
         if(class_exists($classController)) {
             $instanceController = new $classController('../templates/', '.tmpl');
 
-            //echo $classController;
-            //echo $action;
+
+
+            //print_r($instanceController).'<br>';
+            //print_r($action) ;
+            //exit;
 
             if(method_exists($instanceController,$action)) {
-                call_user_func_array([$instanceController,$action],[$this]);
+                call_user_func_array([$instanceController,$action],[$get]);
             } else {
                 throw new \Exception('Метод не существует');
             }
@@ -74,11 +87,11 @@ class Request
 
     public function post($key = null) {
         if(empty($key)) {
-            return $this->inputArr['post'];
+            return $_POST;
         }
 
-        if(isset($this->inpuArr['post'][$key])) {
-            return $this->inputArr['post'][$key];
+        if(isset($_POST[$key])) {
+            return $_POST[$key];
         }
 
         return null;

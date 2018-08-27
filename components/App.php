@@ -20,7 +20,7 @@ class App
         $this->request = new Request();
         $this->request->init();
         //Auth::init();
-        exit;
+        //exit;
         $this->db = new Db();
         $this->db->getPDO();
     }
