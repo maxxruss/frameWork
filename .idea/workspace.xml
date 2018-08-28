@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84384e54-3627-433e-be39-7176a57cebea" name="Default" comment="AjaxController в процессе">
-      <change afterPath="$PROJECT_DIR$/components/Admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/AdminController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin.index.tmpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/menu_block_admin.tmpl" afterDir="false" />
+    <list default="true" id="84384e54-3627-433e-be39-7176a57cebea" name="Default" comment="Админка - кнопки сохранить удалить">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/App.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Request.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth.index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.index.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.tmpl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,10 +19,11 @@
     <session id="843694859">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="3" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -42,7 +34,7 @@
           <entry key="js" value="2" />
           <entry key="json" value="6" />
           <entry key="php" value="131" />
-          <entry key="tmpl" value="28" />
+          <entry key="tmpl" value="30" />
           <entry key="twig" value="1" />
         </counts>
       </usages-collector>
@@ -52,7 +44,7 @@
           <entry key="JavaScript" value="2" />
           <entry key="PHP" value="131" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Twig" value="29" />
+          <entry key="Twig" value="31" />
           <entry key="composer.json" value="6" />
           <entry key="htaccess" value="5" />
         </counts>
@@ -66,8 +58,8 @@
           <entry key="js" value="170" />
           <entry key="json" value="5" />
           <entry key="php" value="1749" />
-          <entry key="tmpl" value="473" />
-          <entry key="txt" value="74" />
+          <entry key="tmpl" value="483" />
+          <entry key="txt" value="115" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -75,8 +67,8 @@
           <entry key="CSS" value="10" />
           <entry key="JavaScript" value="170" />
           <entry key="PHP" value="1749" />
-          <entry key="PLAIN_TEXT" value="128" />
-          <entry key="Twig" value="473" />
+          <entry key="PLAIN_TEXT" value="169" />
+          <entry key="Twig" value="483" />
           <entry key="composer.json" value="5" />
           <entry key="htaccess" value="13" />
         </counts>
@@ -100,74 +92,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/AdminController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="43" column="34" selection-start-line="43" selection-start-column="34" selection-end-line="43" selection-end-column="34" />
-              <folding>
-                <element signature="e#114#135#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/components/Admin.php">
+        <entry file="file://$PROJECT_DIR$/templates/index.tmpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+            <state relative-caret-position="273">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Goods.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="618">
-              <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/Request.php">
+        <entry file="file://$PROJECT_DIR$/templates/menu.tmpl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="525">
-              <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/Model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="57" column="31" lean-forward="true" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
-              <folding>
-                <element signature="e#113#145#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin.index.tmpl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="91" column="16" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/IndexController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-              <folding>
-                <element signature="e#114#134#0#PHP" expanded="true" />
-              </folding>
+              <caret line="25" column="69" lean-forward="true" selection-start-line="25" selection-start-column="69" selection-end-line="25" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -222,7 +160,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/templates/footer.tmpl" />
-        <option value="$PROJECT_DIR$/templates/index.tmpl" />
         <option value="$PROJECT_DIR$/controllers/AjaxController.php" />
         <option value="$PROJECT_DIR$/js/my.js" />
         <option value="$PROJECT_DIR$/templates/auth.index.tmpl" />
@@ -239,6 +176,7 @@
         <option value="$PROJECT_DIR$/components/Config.php" />
         <option value="$PROJECT_DIR$/components/Model.php" />
         <option value="$PROJECT_DIR$/components/Admin.php" />
+        <option value="$PROJECT_DIR$/templates/index.tmpl" />
       </list>
     </option>
   </component>
@@ -271,7 +209,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -298,6 +235,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -357,7 +295,8 @@
       <workItem from="1534931280092" duration="596000" />
       <workItem from="1534952974676" duration="28155000" />
       <workItem from="1535099636136" duration="9990000" />
-      <workItem from="1535356317132" duration="23448000" />
+      <workItem from="1535356317132" duration="23652000" />
+      <workItem from="1535440643042" duration="1366000" />
     </task>
     <task id="LOCAL-00001" summary="begin project">
       <created>1534953408411</created>
@@ -387,11 +326,18 @@
       <option name="project" value="LOCAL" />
       <updated>1535356401545</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Админка - кнопки сохранить удалить">
+      <created>1535382175847</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1535382175847</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180165000" />
+    <option name="totallyTimeSpent" value="181735000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -406,7 +352,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989429" visible="true" weight="0.13154362" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989429" visible="true" weight="0.13355705" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5010571" side_tool="true" weight="0.12885906" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -439,7 +385,8 @@
     <MESSAGE value="begin project" />
     <MESSAGE value="в процессе" />
     <MESSAGE value="AjaxController в процессе" />
-    <option name="LAST_COMMIT_MESSAGE" value="AjaxController в процессе" />
+    <MESSAGE value="Админка - кнопки сохранить удалить" />
+    <option name="LAST_COMMIT_MESSAGE" value="Админка - кнопки сохранить удалить" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Twig-1.35.3/composer.json" />
@@ -524,9 +471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="20" column="16" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-          <folding>
-            <element signature="e#114#140#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -575,9 +519,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-150">
           <caret line="13" column="17" lean-forward="true" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-          <folding>
-            <element signature="e#114#140#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -613,10 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
           <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
-          <folding>
-            <element signature="e#6#88#0#PHP" expanded="true" />
-            <element signature="e#109#127#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -673,9 +610,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="36" column="28" lean-forward="true" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding>
-            <element signature="e#109#130#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -707,30 +641,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/GoodsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding>
-            <element signature="e#114#140#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-          <folding>
-            <element signature="e#114#134#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -745,44 +659,55 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Config.php" />
+    <entry file="file://$PROJECT_DIR$/components/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1218">
+          <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
           <folding>
-            <element signature="e#114#140#0#PHP" expanded="true" />
+            <element signature="e#113#145#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin.index.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
+        <state relative-caret-position="1911">
           <caret line="91" column="16" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/menu.tmpl">
+    <entry file="file://$PROJECT_DIR$/controllers/IndexController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="31" column="63" lean-forward="true" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/Request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+        <state relative-caret-position="273">
+          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+          <folding>
+            <element signature="e#114#134#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/Goods.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
+        <state relative-caret-position="615">
           <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Config.php">
+    <entry file="file://$PROJECT_DIR$/components/Admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="273">
+          <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -796,20 +721,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Model.php">
+    <entry file="file://$PROJECT_DIR$/templates/menu.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="57" column="31" lean-forward="true" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
-          <folding>
-            <element signature="e#113#145#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="525">
+          <caret line="25" column="69" lean-forward="true" selection-start-line="25" selection-start-column="69" selection-end-line="25" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Admin.php">
+    <entry file="file://$PROJECT_DIR$/templates/index.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+        <state relative-caret-position="273">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
