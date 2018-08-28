@@ -12,7 +12,7 @@ use components\Controller;
 use components\Request;
 use models\Goods;
 
-class OrderToManager extends Controller
+class ManagerController extends Controller
 {
     public function actionIndex()
     {

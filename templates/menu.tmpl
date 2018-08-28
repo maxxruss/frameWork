@@ -12,8 +12,8 @@
 <link rel="stylesheet" href="packages/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
       integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-<link rel="stylesheet" href="packages/bootstrap-4.0.0-beta.2/dist/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=El+Messiri" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/public/css/style.css">
 
 
@@ -49,8 +49,13 @@
             </ul>
         </div>
         <!-- Button trigger modal -->
-        <button class="btn btn-outline-success btn-primary basketInfoOut" type="button"
+        <button class="btn btn-outline-success btn-primary basketInfoOut" type="button" onclick="renderBasketModal()"
                 data-toggle="modal" data-target="#bascketModal">
+            {% if countGoodsOrder[0] %}
+			<strong>Корзина</strong><br><strong>{countGoodsOrder[0]}</strong>
+            {% else %}
+            <strong>Корзина</strong><br><strong>товаров нет(</strong>
+            {% endif %}
         </button>
     </nav>
     <!-- Modal -->
@@ -68,7 +73,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Продолжить покупки</button>
-                    <a href="#">
+                    <a href="/frameWork/manager/order">
                         <button type="button" class="btn btn-primary">Оформить заказ</button>
                     </a>
                 </div>

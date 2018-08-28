@@ -44,8 +44,28 @@ class Model //implements Query
         //var_dump($pdo);exit;
         $statement = $pdo->query('select * from ' . $this->table . ' where id = ' . $id);
         $result = $statement->fetchAll();
-        return empty($result[0]) ? null : $result[0];
+        //var_dump($result);exit;
+        return $result;
     }
+
+    public function countPlus($id)
+    {
+        $pdo = Db::getPDO();
+        //var_dump($pdo);exit;
+        $statement = $pdo->query('UPDATE ' . $this->table . ' SET `count`= `count`+1 WHERE id='.$id);
+        //$result = $statement->fetchAll();
+        return true;
+    }
+
+    public function countMinus($id)
+    {
+        $pdo = Db::getPDO();
+        //var_dump($pdo);exit;
+        $statement = $pdo->query('UPDATE ' . $this->table . ' SET `count`= `count`-1 WHERE id='.$id);
+        //$result = $statement->fetchAll();
+        return true;
+    }
+
 
     public function update($values)
     {
@@ -63,17 +83,8 @@ class Model //implements Query
 
     public function create($values)
     {
-        /**if(!$this->validate($values, $this->rules)) {
-         * echo 'не работает';
-         * return false;
-         * } **/
         $pdo = DB::getPDO();
-        $pdo->query("INSERT INTO " . $this->table . "(name, description, src, small_src, price) VALUES ('" . $values['name'] . "', '" . $values['description'] . "', '" . $values['src'] . "', '" . $values['small_src'] . "', '" . $values['price'] . "')");
-        /**INSERT INTO old_links (id,id_user,link) VALUES (1,1,'ya.ru')
-         * $query = 'insert into ' . $this->table . ' (';
-         * $query .= implode(', ', array_keys($values)) . ') values ( :';
-         * $query .= implode(', :',array_keys($values)) . ')';
-         * $statement = $pdo->prepare($query);**/
+        $pdo->query("INSERT INTO " . $this->table . " (nameShort, nameFull, price, param, bigPhoto, miniPhoto, weight, stickerFit, stickerHit, discount) VALUES ('" . $values['nameShort'] . "', '" . $values['nameFull'] . "', '" . $values['price'] . "', '" . $values['param'] . "', '" . $values['bigPhoto'] . "', '" . $values['miniPhoto'] . "', '" . $values['weight'] . "', '" . $values['stickerFit'] . "', '" . $values['stickerHit'] . "', '" . $values['discount'] . "')");
         return true;
     }
 
