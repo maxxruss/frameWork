@@ -10,6 +10,7 @@ namespace components;
 
 use components\Interfaces\Query;
 use components\Db;
+use models\Goods;
 
 class Model //implements Query
 {
@@ -32,7 +33,7 @@ class Model //implements Query
     public function getAll($orderby = 'id')
     {
         $pdo = Db::getPDO();
-        $statement = $pdo->query('select * from ' . $this->table);
+        $statement = $pdo->query('select * from ' . $this->table . ' order by ' . $orderby);
         //var_dump($statement);exit;
         return $statement->fetchAll();
     }
@@ -52,7 +53,7 @@ class Model //implements Query
     {
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
-        $statement = $pdo->query('UPDATE ' . $this->table . ' SET `count`= `count`+1 WHERE id='.$id);
+        $statement = $pdo->query('UPDATE ' . $this->table . ' SET `count`= `count`+1 WHERE id=' . $id);
         //$result = $statement->fetchAll();
         return true;
     }
@@ -61,7 +62,7 @@ class Model //implements Query
     {
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
-        $statement = $pdo->query('UPDATE ' . $this->table . ' SET `count`= `count`-1 WHERE id='.$id);
+        $statement = $pdo->query('UPDATE ' . $this->table . ' SET `count`= `count`-1 WHERE id=' . $id);
         //$result = $statement->fetchAll();
         return true;
     }
@@ -91,8 +92,8 @@ class Model //implements Query
     public function delete($id)
     {
         $pdo = Db::getPDO();
-        $pdo->query('DELETE from ' . $this->table . ' where id = ' . $id);
-        return true;
+        $result = $pdo->exec('DELETE from ' . $this->table . ' where id = ' . $id);
+        return $result;
     }
 
     /**function newComment($fio, $email, $text)
@@ -130,6 +131,66 @@ class Model //implements Query
         return true;
     }
 
+    public function edit()
+    {
+
+        //var_dump('не пустой');exit;
+        $postInput = new Request();
+        $post = $postInput->post();
+
+        if ($post['stickerFit'] == 'on') {
+            $post['stickerFit'] = '1';
+        } else {
+            $post['stickerFit'] = '0';
+        };
+
+        if ($post['stickerHit'] == 'on') {
+            $post['stickerHit'] = '1';
+        } else {
+            $post['stickerHit'] = '0';
+        };
+
+        if (empty($_FILES['userfile']['tmp_name'])) {
+            $model = new Goods();
+            $good = $model->getOneGood($post['id']);
+            $post['bigPhoto'] = $good[0]['bigPhoto'];
+            $post['miniPhoto'] = $good[0]['miniPhoto'];
+            //var_dump($post);exit;
+        } else {
+            $filePath = $_FILES['userfile']['tmp_name'];
+            $fileName = $this->translit($_FILES['userfile']['name']);
+            $post['bigPhoto'] = DIR_BIG . $fileName;
+            $post['miniPhoto'] = DIR_SMALL . $fileName;
+
+
+            $type = $_FILES['userfile']['type'];
+            $size = $_FILES['userfile']['size'];
+            if ($type == 'image/jpeg' || $type == 'image/png' || $type == 'image/gif') {
+                if ($size > 0 and $size < 1000000) {
+                    if (copy($filePath, '../public/' . DIR_BIG . $fileName)) {
+                        $type = explode('/', $_FILES['userfile']['type'])[1];
+                        $this->changeImage(220, 117, '../public/' . DIR_BIG . $fileName, '../public/' . DIR_SMALL . $fileName, $type);
+
+
+                        $message = "<h3>Файл успешно загружен на сервер</h3>";
+                    } else {
+                        $message = "<h3>Ошибка! Не удалось загрузить файл на сервер!</h3>";
+                        exit;
+                    }
+                } else {
+                    $message = "<b>Ошибка - картинка превышает 1 Мб.</b>";
+                }
+            } else {
+                $message = "<b>Картинка не подходит по типу! Картинка должна быть в формате JPEG, PNG или GIF</b>";
+            }
+        }
+
+        //var_dump($post);        exit;
+
+        $goodsModel = new Goods();
+        $goodsModel->update($post);
+    }
+
     public function translit($string)
     {
         $translit = array(
@@ -141,7 +202,7 @@ class Model //implements Query
         return str_replace(' ', '_', strtr(mb_strtolower($string, 'utf-8'), $translit));
     }
 
-    public function changeImage($h, $w, $src, $newsrc, $type)
+    function changeImage($h, $w, $src, $newsrc, $type)
     {
         $newimg = imagecreatetruecolor($h, $w);
         switch ($type) {
@@ -165,7 +226,6 @@ class Model //implements Query
 
     function scanDirLoadFiles()
     {
-
         $images = array_slice(scandir('../public/loadFiles'), 2);
 
         foreach ($images as $image) {
@@ -173,12 +233,22 @@ class Model //implements Query
             $nameFull = explode('.', $nameRecodRu)[0];
             $fileName = $this->translit($nameRecodRu);
             $nameShort = explode('.', $fileName)[0];
-            $arr[] = $fileName;
+            $arr['nameShort'] = $nameShort;
+            $arr['nameFull'] = $nameFull;
+            $arr['price'] = '0';
+            $arr['param'] = '0';
+            $arr['weight'] = '0';
+            $arr['discount'] = '0';
+            $arr['stickerFit'] = '0';
+            $arr['stickerHit'] = '0';
+            $arr['bigPhoto'] = DIR_BIG . $fileName;
+            $arr['miniPhoto'] = DIR_SMALL . $fileName;
+            var_dump($arr);exit;
 
             if (copy('../public/loadFiles/' . $image, '../public/' . DIR_BIG . $fileName)) {
                 $type = explode('.', $fileName)[1];
                 $this->changeImage(220, 117, '../public/' . DIR_BIG . $fileName, '../public/' . DIR_SMALL . $fileName, $type);
-                goods_new($connect, $nameShort, $nameFull, $price, $param, DIR_BIG . $fileName, DIR_SMALL . $fileName);
+                $this->create($arr);
             }
         }
     }

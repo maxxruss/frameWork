@@ -42,4 +42,7 @@ class Goods extends Model
     public function deleteGood($id) {
         return $this->delete($id);
     }
+    public function editGood() {
+        return $this->edit();
+    }
 }

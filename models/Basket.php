@@ -42,10 +42,6 @@ class Basket extends Model
         return $this->select(($parameters));
     }
 
-    public function countSum() {
-
-    }
-
     public function update($values)
     {
         /**if(!$this->validate($values, $this->rules)) {

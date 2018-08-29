@@ -36,8 +36,6 @@ class AdminController extends Controller
 
     public function actionSave()
     {
-
-
         $admin = new Admin();
         $admin->adminSave();
 

@@ -33,7 +33,7 @@ function renderAllGoods() {
 function renderBasketModal() {
     var str = "getBasketGoods=" + '1';
     $.ajax({
-        url: '../controllers/Basket.php', // путь к php-обработчику
+        url: '/controllers/Ajax/renderBasketModal', // путь к php-обработчику
         type: 'POST', // метод передачи данных
         dataType: 'json', // тип ожидаемых данных в ответе
         data: str, // данные, которые передаем на сервер
@@ -41,6 +41,7 @@ function renderBasketModal() {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
+            console.log(dateAnswer);
             var sumGood = 0;
             var table = '<table class="table table-hover"><thead><tr><th scope="col">Наименование</th><th scope="col">Количество</th><th scope="col">Сумма</th></tr></thead><tbody >';
             for (var key in dateAnswer) {
@@ -117,7 +118,7 @@ function deleteToBasket(idGood) {
 function renderAdminAjax() {
     var str = "renderAdminAjax=" + '1';
     $.ajax({
-        url: '../controllers/Admin.php', // путь к php-обработчику
+        url: '../controllers/Ajax/renderAdminAjax', // путь к php-обработчику
         type: 'POST', // метод передачи данных
         dataType: 'json', // тип ожидаемых данных в ответе
         data: str, // данные, которые передаем на сервер
@@ -137,13 +138,13 @@ function renderAdminAjax() {
                 table += '<input type="text" name="weight" class="rowCell weight" value=' + dateAnswer[key].weight + '>';
                 table += '<input type="text" name="discount" class="rowCell discount" value=' + dateAnswer[key].discount + '>';
                 table += '<input class="rowCell loadFile" type="file" id="userfile" name="userfile" class="rowCell  loadFile">';
-                if (dateAnswer[key].stickerFit == 1) {
+                if (dateAnswer[key].stickerFit === 1) {
                     table += '<div class="rowCell stickerAdmin"><input type="checkbox" name="stickerFit" checked ></div>';
                 } else {
                     table += '<div class="rowCell stickerAdmin"><input type="checkbox" name="stickerFit"></div>';
                 }
                 ;
-                if (dateAnswer[key].stickerHit == 1) {
+                if (dateAnswer[key].stickerHit === 1) {
                     table += '<div class="rowCell stickerAdmin"><input type="checkbox" name="stickerHit"  checked></div>';
                 } else {
                     table += '<div class="rowCell stickerAdmin"><input type="checkbox" name="stickerHit"></div>';
@@ -186,7 +187,7 @@ function scanDirLoadFiles() {
     // данные с формы завернем в переменную для ajax
     $.ajax({
         type: 'POST', // тип запроса
-        url: '../controllers/Admin.php', // куда будем отправлять, можно явно указать
+        url: '../controllers/Ajax/scanDirLoadFiles', // куда будем отправлять, можно явно указать
         data: str, // данные, которые передаем
         success: function (data) { // в случае успешного завершения
             console.log("Завершилось успешно"); // выведем в консоли успех
@@ -212,7 +213,7 @@ function editGood(idGood) {
     // данные с формы завернем в переменную для ajax
     $.ajax({
         type: 'POST', // тип запроса
-        url: '../controllers/Admin.php', // куда будем отправлять, можно явно указать
+        url: '../controllers/Ajax/editGood', // куда будем отправлять, можно явно указать
         data: formData, // данные, которые передаем
         cache: false, // кэш и прочие настройки писать именно так (для файлов)
         // (связано это с кодировкой и всякой лабудой)
@@ -234,7 +235,7 @@ function editGood(idGood) {
 function deleteGood(id) {
     var str = "deleteGoodid=" + id;
     $.ajax({
-        url: '../controllers/Admin.php', // путь к php-обработчику
+        url: '../controllers/Ajax/deleteGood', // путь к php-обработчику
         type: 'POST', // метод передачи данных
         dataType: 'json', // тип ожидаемых данных в ответе
         data: str, // данные, которые передаем на сервер
