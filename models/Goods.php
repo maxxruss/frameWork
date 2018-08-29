@@ -45,4 +45,8 @@ class Goods extends Model
     public function editGood() {
         return $this->edit();
     }
+
+    public function load() {
+        return $this->scanDirLoadFiles();
+    }
 }

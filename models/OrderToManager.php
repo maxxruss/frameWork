@@ -24,8 +24,11 @@ class OrderToManager extends Model
         'title'  => 'string',
         'content' => 'string'
     ];
-    public function getAllOrders() {
-        return $this->getAll();
+
+
+
+    public function getInfoOrderToManager() {
+        return $this->getInfoOrder();
     }
     public function getOneOrder($id) {
         return $this->getOne($id);

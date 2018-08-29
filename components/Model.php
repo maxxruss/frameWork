@@ -243,7 +243,7 @@ class Model //implements Query
             $arr['stickerHit'] = '0';
             $arr['bigPhoto'] = DIR_BIG . $fileName;
             $arr['miniPhoto'] = DIR_SMALL . $fileName;
-            var_dump($arr);exit;
+            //var_dump(DIR_BIG);exit;
 
             if (copy('../public/loadFiles/' . $image, '../public/' . DIR_BIG . $fileName)) {
                 $type = explode('.', $fileName)[1];
@@ -251,5 +251,15 @@ class Model //implements Query
                 $this->create($arr);
             }
         }
+    }
+
+    public function getInfoOrder()
+    {
+        $pdo = Db::getPDO();
+        $statement = $pdo->query('select * from orderToManager  
+	inner join clientInfo on orderToManager.idClient = clientInfo.id 
+    inner join goods on orderToManager.idGood = goods.id');
+        //var_dump($statement);exit;
+        return $statement->fetchAll();
     }
 }

@@ -138,13 +138,13 @@ function renderAdminAjax() {
                 table += '<input type="text" name="weight" class="rowCell weight" value=' + dateAnswer[key].weight + '>';
                 table += '<input type="text" name="discount" class="rowCell discount" value=' + dateAnswer[key].discount + '>';
                 table += '<input class="rowCell loadFile" type="file" id="userfile" name="userfile" class="rowCell  loadFile">';
-                if (dateAnswer[key].stickerFit === 1) {
+                if (dateAnswer[key].stickerFit == 1) {
                     table += '<div class="rowCell stickerAdmin"><input type="checkbox" name="stickerFit" checked ></div>';
                 } else {
                     table += '<div class="rowCell stickerAdmin"><input type="checkbox" name="stickerFit"></div>';
                 }
                 ;
-                if (dateAnswer[key].stickerHit === 1) {
+                if (dateAnswer[key].stickerHit == 1) {
                     table += '<div class="rowCell stickerAdmin"><input type="checkbox" name="stickerHit"  checked></div>';
                 } else {
                     table += '<div class="rowCell stickerAdmin"><input type="checkbox" name="stickerHit"></div>';
@@ -167,7 +167,7 @@ function addNewGood() {
     // данные с формы завернем в переменную для ajax
     $.ajax({
         type: 'POST', // тип запроса
-        url: '../controllers/Admin.php', // куда будем отправлять, можно явно указать
+        url: '../controllers/Ajax/addNewGood', // куда будем отправлять, можно явно указать
         data: str, // данные, которые передаем
         success: function (data) { // в случае успешного завершения
             console.log("Завершилось успешно"); // выведем в консоли успех
@@ -194,8 +194,9 @@ function scanDirLoadFiles() {
             console.log(data); // выведем в консоли успех
             renderAdminAjax();
             setTimeout(function () {
+                //alert('ok');
                 $("#scanDirLoadFiles").modal("hide")
-            }, 3000);
+            });
         },
         error: function (data) { // в случае провала
             console.log("Завершилось с ошибкой"); // сообщение об ошибке
@@ -251,7 +252,7 @@ function deleteGood(id) {
 function dbCreateOrder() {
     var str = "dbCreateOrder=" + 1;
     $.ajax({
-        url: '../controllers/Basket.php', // путь к php-обработчику
+        url: '../controllers/Ajax/dbCreateOrder', // путь к php-обработчику
         type: 'POST', // метод передачи данных
         dataType: 'json', // тип ожидаемых данных в ответе
         data: str, // данные, которые передаем на сервер
@@ -457,7 +458,7 @@ function sendOrder() {
 function renderManager() {
     var str = "renderManager=" + '1';
     $.ajax({
-        url: '../controllers/Basket.php', // путь к php-обработчику
+        url: '../controllers/Ajax/renderManager', // путь к php-обработчику
         type: 'POST', // метод передачи данных
         dataType: 'json', // тип ожидаемых данных в ответе
         data: str, // данные, которые передаем на сервер

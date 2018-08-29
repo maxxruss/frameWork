@@ -11,30 +11,21 @@ namespace controllers;
 use components\Controller;
 use components\Request;
 use models\Goods;
+use models\OrderToManager;
 
 class ManagerController extends Controller
 {
     public function actionIndex()
     {
-        if ($this->initResult==true) {
-            echo ('Привет, '.$_SESSION['user']['login']);
-        } else {
-            echo " Привет незнакомец! ";
-        }
-        $newsModel = new Goods();
-        $newsAll = $newsModel->getNews();
-        echo $this->render('news.index', [
-            'newsAll' => $newsAll,
+        echo $this->render('manager.index', [
             'auth' => $this->initResult,
             'name' => $_SESSION['user']['name']
         ]);
     }
-    public function actionShow()
+
+    public function actionOrder()
     {
-        $newsModel = new Goods();
-        $newsOne = $newsModel->getOneNews(1);
-        echo $this->render('news.show', [
-            'newsOne' => $newsOne,
+        echo $this->render('manager.order', [
             'auth' => $this->initResult,
             'name' => $_SESSION['user']['name']
         ]);

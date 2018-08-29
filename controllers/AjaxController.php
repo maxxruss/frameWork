@@ -16,6 +16,7 @@ use components\Db;
 use components\Model;
 use models\Basket;
 use models\Goods;
+use models\OrderToManager;
 
 class AjaxController
 {
@@ -121,14 +122,75 @@ class AjaxController
     {
         $id = $_POST['deleteGoodid'];
         $goodsModel = new Goods();
-        $goodsModel->deleteGood($id);
+        $result = $goodsModel->deleteGood($id);
+        echo json_encode($result);
+        exit;
     }
 
     public function actionScanDirLoadFiles()
     {
-      $model = new Model();
-      $result = $model->scanDirLoadFiles();
+      $model = new Goods();
+      $result = $model->load();
         echo json_encode($result);
         exit;
+    }
+
+    public function actionAddNewGood()
+    {
+        $arr = [];
+        $arr['nameShort'] = '';
+        $arr['nameFull'] = '';
+        $arr['price'] = '0';
+        $arr['param'] = '';
+        $arr['weight'] = '';
+        $arr['discount'] = '0';
+        $arr['stickerFit'] = '0';
+        $arr['stickerHit'] = '0';
+        $arr['bigPhoto'] = '';
+        $arr['miniPhoto'] = '';
+        $model = new Goods();
+        $result = $model->create($arr);
+        echo json_encode($result);
+        exit;
+    }
+
+    public function actionRenderManager()
+    {
+        $model = new OrderToManager();
+        $orderFullInfo = $model->getInfoOrderToManager();
+
+        echo json_encode($orderFullInfo); // возвращаем данные ответом, преобразовав в JSON-строку
+        exit; // останавливаем дальнейшее выполнение скрипта
+    }
+
+    public function actionDbCreateOrder()
+    {
+        $orderInfo = getClientInfo_all();
+
+        $timeOrder = time();
+
+        if (count($orderInfo)==0) {
+            clientInfo_new($connect, $timeOrder, $name, $phone, $discountCard, $persons, $pay, $desiredTime, $money, $address, $comment, $delivery, $desiredTime);
+        } else {
+            clientInfo_edit($connect, $timeOrder, $name, $phone, $discountCard, $persons, $pay, $desiredTime, $money, $address, $comment, $delivery, $desiredTime);
+        };
+
+
+        $orderInfo = getClientInfo_all($connect);
+        $idClient = $orderInfo[0]['id'];
+        $goodsBascket = goodsBasket_all($connect);
+
+        $query = sprintf("TRUNCATE `orderToManager`");
+        $result = mysqli_query($connect, $query);
+
+        foreach ($goodsBascket as $good) {
+            $idGood = $good['id'];
+            $count = $good['count'];
+            newOrderToManager ($connect, $idClient, $idGood, $count);
+        }
+
+        echo json_encode($goodsBascket); // возвращаем данные ответом, преобразовав в JSON-строку
+        exit; // останавливаем дальнейшее выполнение скрипта
+        mysqli_close($connect);
     }
 }
