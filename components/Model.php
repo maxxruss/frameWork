@@ -40,31 +40,27 @@ class Model //implements Query
 
     public function getOne($id)
     {
-        //echo $id; exit;
         $pdo = Db::getPDO();
-        //var_dump($pdo);exit;
         $statement = $pdo->query('select * from ' . $this->table . ' where id = ' . $id);
-        $result = $statement->fetchAll();
-        //var_dump($result);exit;
-        return $result;
+        return $statement->fetch();
     }
 
     public function countPlus($id)
     {
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
-        $statement = $pdo->query('UPDATE ' . $this->table . ' SET `count`= `count`+1 WHERE id=' . $id);
+        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET `count`= `count`+1 WHERE id=' . $id);
         //$result = $statement->fetchAll();
-        return true;
+        return $statement;
     }
 
     public function countMinus($id)
     {
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
-        $statement = $pdo->query('UPDATE ' . $this->table . ' SET `count`= `count`-1 WHERE id=' . $id);
+        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET `count`= `count`-1 WHERE id=' . $id);
         //$result = $statement->fetchAll();
-        return true;
+        return $statement;
     }
 
 
@@ -74,7 +70,7 @@ class Model //implements Query
          * return false;
          * }**/
         $pdo = Db::getPDO();
-        $statement = $pdo->query('UPDATE `' . $this->table . '` SET nameFull = "' . $values['nameFull'] .
+        $statement = $pdo->exec('UPDATE `' . $this->table . '` SET nameFull = "' . $values['nameFull'] .
             '", price = ' . $values['price'] . ', param = "' . $values['param'] . '", bigPhoto = "' . $values['bigPhoto'] . '", miniPhoto = "' . $values['miniPhoto'] . '", weight = ' . $values['weight'] . ', stickerFit = "' . $values['stickerFit'] . '", stickerHit = "' . $values['stickerHit'] . '", discount = ' . $values['discount'] . ' WHERE `id` = ' . $values['id']);
         //var_dump($statement);
         //$result = $statement->fetchAll();
@@ -85,15 +81,15 @@ class Model //implements Query
     public function create($values)
     {
         $pdo = DB::getPDO();
-        $pdo->query("INSERT INTO " . $this->table . " (nameShort, nameFull, price, param, bigPhoto, miniPhoto, weight, stickerFit, stickerHit, discount) VALUES ('" . $values['nameShort'] . "', '" . $values['nameFull'] . "', '" . $values['price'] . "', '" . $values['param'] . "', '" . $values['bigPhoto'] . "', '" . $values['miniPhoto'] . "', '" . $values['weight'] . "', '" . $values['stickerFit'] . "', '" . $values['stickerHit'] . "', '" . $values['discount'] . "')");
-        return true;
+        $statement = $pdo->exec("INSERT INTO " . $this->table . " (nameShort, nameFull, price, param, bigPhoto, miniPhoto, weight, stickerFit, stickerHit, discount) VALUES ('" . $values['nameShort'] . "', '" . $values['nameFull'] . "', '" . $values['price'] . "', '" . $values['param'] . "', '" . $values['bigPhoto'] . "', '" . $values['miniPhoto'] . "', '" . $values['weight'] . "', '" . $values['stickerFit'] . "', '" . $values['stickerHit'] . "', '" . $values['discount'] . "')");
+        return $statement;
     }
 
     public function delete($id)
     {
         $pdo = Db::getPDO();
-        $result = $pdo->exec('DELETE from ' . $this->table . ' where id = ' . $id);
-        return $result;
+        $statement = $pdo->exec('DELETE from ' . $this->table . ' where id = ' . $id);
+        return $statement;
     }
 
     /**function newComment($fio, $email, $text)
@@ -253,13 +249,22 @@ class Model //implements Query
         }
     }
 
-    public function getInfoOrder()
+
+
+    public function truncate()
     {
         $pdo = Db::getPDO();
-        $statement = $pdo->query('select * from orderToManager  
-	inner join clientInfo on orderToManager.idClient = clientInfo.id 
-    inner join goods on orderToManager.idGood = goods.id');
+        $statement = $pdo->exec('TRUNCATE `orderToManager`' . $this->table);
         //var_dump($statement);exit;
-        return $statement->fetchAll();
+        return $statement;
     }
+
+    public function newOrder($idClient, $idGood, $count)
+    {
+        $pdo = Db::getPDO();
+        $statement = $pdo->exec('INSERT INTO ' . $this->table . ' (idClient, idGood, count) VALUES ($idClient, $idGood, $count)');
+        return $statement;
+
+    }
+
 }

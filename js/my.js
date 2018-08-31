@@ -260,6 +260,7 @@ function dbCreateOrder() {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
+            console.log(dateAnswer);
         }
     });
 };
@@ -276,6 +277,7 @@ function renderOrder() {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
+            console.log('ok');
 
             var sumGood = 0;
             var sumGoodDiscount = 0;
@@ -466,6 +468,7 @@ function renderManager() {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
+            console.log(dateAnswer);
             var sumGood = 0;
             var sumGoodDiscount = 0;
             var happyHours;

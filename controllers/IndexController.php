@@ -11,7 +11,7 @@ namespace controllers;
 use components\Auth;
 use components\Controller;
 use models\Basket;
-use models\ClientInfo;
+use models\OrderInfo;
 use models\Goods;
 use models\User;
 

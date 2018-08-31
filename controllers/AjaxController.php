@@ -15,8 +15,9 @@ define("COLS", 3);
 use components\Db;
 use components\Model;
 use models\Basket;
+use models\OrderInfo;
 use models\Goods;
-use models\OrderToManager;
+use models\OrderProducts;
 
 class AjaxController
 {
@@ -34,14 +35,14 @@ class AjaxController
             $good = $modelGood->getOneGood($id);
 
 
-            $modelBasket = new Basket();
-            $basket = $modelBasket->getOneBasket($id);
+            $modelOrderProducts = new OrderProducts();
+            $basket = $modelOrderProducts->getOneBasket($id);
 
             if ($basket) {
-                $modelBasket->countBasketPlus($id);
+                $modelOrderProducts->countBasketPlus($id);
             } else {
-                $good[0]['count'] = '1';
-                $modelBasket->create($good[0]);
+                $good['count'] = '1';
+                $modelOrderProducts->create($good);
             }
 
             $countGoodsOrder = $modelBasket->countBasketSum();
@@ -96,8 +97,8 @@ class AjaxController
 
     public function actionRenderBasketModal()
     {
-        $modelBasket = new Basket();
-        $basket = $modelBasket->getAllBasket();
+        $modelOrderProducts = new OrderProducts();
+        $basket = $modelOrderProducts->getOrderProducts();
 
         echo json_encode($basket);
         exit;
@@ -156,7 +157,7 @@ class AjaxController
 
     public function actionRenderManager()
     {
-        $model = new OrderToManager();
+        $model = new OrderProducts();
         $orderFullInfo = $model->getInfoOrderToManager();
 
         echo json_encode($orderFullInfo); // возвращаем данные ответом, преобразовав в JSON-строку
@@ -165,32 +166,34 @@ class AjaxController
 
     public function actionDbCreateOrder()
     {
-        $orderInfo = getClientInfo_all();
+        $model = new OrderInfo();
+        $orderInfo = $model->getClientInfo_all();
 
-        $timeOrder = time();
+        $model->values['timeOrder'] = time();
+
 
         if (count($orderInfo)==0) {
-            clientInfo_new($connect, $timeOrder, $name, $phone, $discountCard, $persons, $pay, $desiredTime, $money, $address, $comment, $delivery, $desiredTime);
+            $model->clientInfo_new($model->values);
         } else {
-            clientInfo_edit($connect, $timeOrder, $name, $phone, $discountCard, $persons, $pay, $desiredTime, $money, $address, $comment, $delivery, $desiredTime);
+            $model->clientInfo_edit($model->values);
         };
 
-
-        $orderInfo = getClientInfo_all($connect);
+        $orderInfo = $model->getClientInfo_all();
         $idClient = $orderInfo[0]['id'];
-        $goodsBascket = goodsBasket_all($connect);
+        $modelBasket = new Basket();
+        $goodsBasket = $modelBasket->getAllBasket();
 
-        $query = sprintf("TRUNCATE `orderToManager`");
-        $result = mysqli_query($connect, $query);
+        $modelOrder = new OrderProducts();
+        $modelOrder->truncateOrder();
 
-        foreach ($goodsBascket as $good) {
+        foreach ($goodsBasket as $good) {
             $idGood = $good['id'];
             $count = $good['count'];
-            newOrderToManager ($connect, $idClient, $idGood, $count);
+            $modelOrder->newOrderToManager($idClient, $idGood, $count);
         }
 
-        echo json_encode($goodsBascket); // возвращаем данные ответом, преобразовав в JSON-строку
+        echo json_encode($goodsBasket); // возвращаем данные ответом, преобразовав в JSON-строку
         exit; // останавливаем дальнейшее выполнение скрипта
-        mysqli_close($connect);
+
     }
 }

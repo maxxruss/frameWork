@@ -11,7 +11,7 @@ namespace controllers;
 use components\Controller;
 use components\Request;
 use models\Goods;
-use models\OrderToManager;
+use models\OrderProducts;
 
 class ManagerController extends Controller
 {
@@ -23,13 +23,6 @@ class ManagerController extends Controller
         ]);
     }
 
-    public function actionOrder()
-    {
-        echo $this->render('manager.order', [
-            'auth' => $this->initResult,
-            'name' => $_SESSION['user']['name']
-        ]);
-    }
     public function actionAdd()
     {
         if (isset($_POST['title'])) {
