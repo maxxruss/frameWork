@@ -20,13 +20,14 @@ class Controller
     public $templateFolder;
     public $templateExtension;
     public $userInit;
-    public $initResult;
+    public $initResult = false;
 
     public function __construct($templateFolder, $templateExtension)
     {
         $this->templateExtension = $templateExtension;
         $this->templateFolder = $templateFolder;
-
+        $modelUser = new User();
+        $this->initResult = $modelUser->init();
     }
 
     protected function render($template, $params = [])

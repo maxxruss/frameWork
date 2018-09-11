@@ -17,7 +17,7 @@ class User extends Model
     private $user_db;
     private $login;
     private $password;
-    private $resultInit;
+    private $resultAuth;
 
     protected $table = 'users';
     protected $fields = [
@@ -42,7 +42,7 @@ class User extends Model
 
     public function authWithCredentials()
     {
-        $this->resultInit = false;
+        $this->resultAuth = false;
         /**
          * авторизация через логин и пароль
          */
@@ -51,26 +51,25 @@ class User extends Model
             $this->password = $_POST['pass'];
             // получаем данные пользователя по логину
             $pdo = Db::getPDO();
-            $statement = $pdo->query("SELECT id, login, pass, name FROM `" . $this->table . "` WHERE `login` = '" . $this->login . "'");
+            $statement = $pdo->query("SELECT id, login, pass, name, hash FROM `" . $this->table . "` WHERE `login` = '" . $this->login . "'");
             $this->user_db = $statement->fetch();
             // проверяем соответствие логина и пароля
             if (!empty($this->user_db)) {
                 if ($this->user_db['login'] == $this->login && $this->user_db['pass'] == md5($this->password)) {
-                    $this->resultInit = true;
-                    // если стояла галка, то запоминаем пользователя на сутки
+                    $this->resultAuth = true;
+                    // если стояла галка, то запоминаем пользователя на год
                     if (isset($_POST['rememberme']) && $_POST['rememberme'] == 'on') {
-                        setcookie("id", 1, time() + 86400 * 30);
-                    } else {
-                        setcookie("id", 2, time() + 86400);
+                        setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30 * 12, '/');
+                        setcookie("hash", $this->user_db['hash'], time() + 3600 * 24 * 30 * 12, '/');
                     }
                     /** сохраним данные в сессию**/
                     $_SESSION['user'] = $this->user_db;
                 } else {
-                    $this->resultInit = false;
+                    $this->resultAuth = false;
                 }
             }
         }
-        return $this->resultInit;
+        return $this->resultAuth;
     }
 
     public function getUserByCookieId()
@@ -83,7 +82,7 @@ class User extends Model
 
     public function authWithSession()
     {
-        if (isset($_SESSION['user']['login']) && isset($_SESSION['user']['pass'])) {
+        if (!empty($_SESSION['user']['login']) && !empty($_SESSION['user']['pass'])) {
             // получаем данные пользователя по id
             $pdo = Db::getPDO();
             $statement = $pdo->query("select id, login, pass, name from " . $this->table . " where login = '" . $_SESSION['user']['login'] . "'");
@@ -110,8 +109,8 @@ class User extends Model
             $this->user_db = $statement->fetch();
             //var_dump($this->user_db);
             if (($this->user_db['hash'] !== $_COOKIE['hash']) || ($this->user_db['id'] !== $_COOKIE['id'])) {
-                setcookie("id", '', time() - 3600 * 24 * 30 * 12, '/');
-                setcookie("hash", '', time() - 3600 * 24 * 30 * 12, '/');
+                setcookie("id", '', time() - 3600 * 24 * 30, '/');
+                setcookie("hash", '', time() - 3600 * 24 * 30, '/');
                 return false;
             } else {
                 //header("Location: /");
@@ -125,21 +124,23 @@ class User extends Model
 
     public function init()
     {
+        $this->resultAuth = false;
+
         if ($this->authWithSession() == true) {
-            $this->resultInit = true;
+            $this->resultAuth = true;
         } elseif ($this->authWithCookie() == true) {
-            $this->resultInit = false;
+            $this->resultAuth = false;
         } else {
             $hash = $this->hashPassword(rand(1, 10));
             $pdo = Db::getPDO();
             $pdo->exec("INSERT INTO `" . $this->table . "` (`name`, `email`, `login`, `pass`, `hash`) VALUES ('', '', '', '', '" . $hash . "')");
             $this->user_db['id'] = $pdo->lastInsertId();
-            setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30 * 12, '/');
-            setcookie("hash", $hash, time() + 3600 * 24 * 30 * 12, '/');
+            setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30, '/');
+            setcookie("hash", $hash, time() + 3600 * 24 * 30, '/');
             $_SESSION['user'] = ['id' => $this->user_db['id'], 'hash' => $hash];
-            $this->resultInit = false;
+            $this->resultAuth = false;
         }
-        return $this->resultInit;
+        return $this->resultAuth;
     }
 
     public function logOutUser()
@@ -147,7 +148,7 @@ class User extends Model
         session_unset();
         //d($_SESSION);exit;
         //d($_COOKIE);exit;
-        //return $this->init();
+        return $this->init();
     }
 
 

@@ -25,24 +25,22 @@ class AuthController extends Controller
     public function actionLogout()
     {
         $userModel = new User();
+        $this->initResult = $userModel->logOutUser();
+        //d($_COOKIE);
+        //d($_SESSION);exit;
         echo $this->render('auth.index', [
-            'auth' => $userModel->logOutUser(),
+            'auth' => $this->initResult,
         ]);
     }
 
     public function actionAuthorization()
     {
         $userModel = new User();
-        $checkUserResult = $userModel->authWithCredentials();
-        if ($checkUserResult == true) {
-            echo $this->render('auth.cabinet', [
-                'auth' => $checkUserResult,
-                'name' => $_SESSION['user']['name']]);
-        } else {
-            echo $this->render('auth.index', [
-                'authResult' => 'Неверный логин или пароль!'
-            ]);
-        }
+        $resultAuth = $userModel->authWithCredentials();
+        echo $this->render('auth.cabinet', [
+            'auth' => $resultAuth,
+            'name' => $_SESSION['user']['name']]);
+
     }
 
     public function actionRegInput()

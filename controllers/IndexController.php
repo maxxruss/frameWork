@@ -22,14 +22,11 @@ class IndexController extends Controller
     {
         //d(getallheaders());exit;
         $pdo = Db::getPDO();
-        //d($pdo->lastInsertId());exit;
 
-            //setcookie("id_user", '', time() - 3600*24*30*12);
-        d($_COOKIE);
-        d($_SESSION);exit;
+        //d($_COOKIE);
+        //d($_SESSION);exit;
         $model = new Goods();
         $allGoods = $model->getAllGoods();
-        //d($_SESSION);exit;
 
         echo $this->render('index', [
             'allGoods' => $allGoods,
@@ -41,7 +38,7 @@ class IndexController extends Controller
     {
         echo 'привет из кабинета';
         $userModel = new User();
-        if (($userModel->authWithCredentials())==true) {
+        if ($userModel->authWithCredentials()==true) {
             echo $this->render('cab.index', [
                 'authResult' => 'авторизация пройдена',
                 'auth' => $this->initResult,
