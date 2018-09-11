@@ -20,12 +20,11 @@ class IndexController extends Controller
 {
     public function actionIndex()
     {
-
         //d(getallheaders());exit;
         $pdo = Db::getPDO();
         //d($pdo->lastInsertId());exit;
 
-        //setcookie("id_user", '', time() - 3600*24*30*12);
+            //setcookie("id_user", '', time() - 3600*24*30*12);
         d($_COOKIE);
         d($_SESSION);exit;
         $model = new Goods();

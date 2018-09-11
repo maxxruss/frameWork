@@ -92,6 +92,7 @@ class User extends Model
                 if ($this->user_db['login'] == $_SESSION['user']['login'] && $this->user_db['pass'] == $_SESSION['user']['pass']) {
                     return true;
                 } else {
+                    //session_unset();
                     return false;
                 }
             }
@@ -109,11 +110,12 @@ class User extends Model
             $this->user_db = $statement->fetch();
             //var_dump($this->user_db);
             if (($this->user_db['hash'] !== $_COOKIE['hash']) || ($this->user_db['id'] !== $_COOKIE['id'])) {
-                setcookie("id", '', time() - 3600 * 24 * 30 * 12, '/public');
-                setcookie("hash", '', time() - 3600 * 24 * 30 * 12, '/public');
+                setcookie("id", '', time() - 3600 * 24 * 30 * 12, '/');
+                setcookie("hash", '', time() - 3600 * 24 * 30 * 12, '/');
                 return false;
             } else {
-                //$_SESSION['user'] = $this->user_db;
+                //header("Location: /");
+                $_SESSION['user'] = $this->user_db;
                 return true;
             }
         } else {
@@ -124,20 +126,20 @@ class User extends Model
     public function init()
     {
         if ($this->authWithSession() == true) {
-          $this->resultInit = true;
-          } elseif ($this->authWithCookie() == true) {
-          $this->resultInit = false;
-          } else {
-          $hash = $this->hashPassword(rand(1, 10));
-          $pdo = Db::getPDO();
-          $pdo->exec("INSERT INTO `" . $this->table . "` (`name`, `email`, `login`, `pass`, `hash`) VALUES ('', '', '', '', '" . $hash . "')");
-          $this->user_db['id'] = $pdo->lastInsertId();
-            setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30 * 12, '/public');
-            setcookie("hash", $this->user_db['hash'], time() + 3600 * 24 * 30 * 12, '/public');
-          $_SESSION['user'] = ['id' => $this->user_db['id'], 'hash' => $hash];
-          $this->resultInit = false;
-          }
-          return $this->resultInit;
+            $this->resultInit = true;
+        } elseif ($this->authWithCookie() == true) {
+            $this->resultInit = false;
+        } else {
+            $hash = $this->hashPassword(rand(1, 10));
+            $pdo = Db::getPDO();
+            $pdo->exec("INSERT INTO `" . $this->table . "` (`name`, `email`, `login`, `pass`, `hash`) VALUES ('', '', '', '', '" . $hash . "')");
+            $this->user_db['id'] = $pdo->lastInsertId();
+            setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30 * 12, '/');
+            setcookie("hash", $hash, time() + 3600 * 24 * 30 * 12, '/');
+            $_SESSION['user'] = ['id' => $this->user_db['id'], 'hash' => $hash];
+            $this->resultInit = false;
+        }
+        return $this->resultInit;
     }
 
     public function logOutUser()
