@@ -10,6 +10,7 @@ namespace controllers;
 
 use components\Auth;
 use components\Controller;
+use components\Db;
 use models\Basket;
 use models\OrderInfo;
 use models\Goods;
@@ -19,10 +20,17 @@ class IndexController extends Controller
 {
     public function actionIndex()
     {
+
+        //d(getallheaders());exit;
+        $pdo = Db::getPDO();
+        //d($pdo->lastInsertId());exit;
+
+        //setcookie("id_user", '', time() - 3600*24*30*12);
+        d($_COOKIE);
+        d($_SESSION);exit;
         $model = new Goods();
         $allGoods = $model->getAllGoods();
-        //var_dump($allGoods); exit;
-
+        //d($_SESSION);exit;
 
         echo $this->render('index', [
             'allGoods' => $allGoods,
@@ -34,7 +42,7 @@ class IndexController extends Controller
     {
         echo 'привет из кабинета';
         $userModel = new User();
-        if (($userModel->checkUser())==true) {
+        if (($userModel->authWithCredentials())==true) {
             echo $this->render('cab.index', [
                 'authResult' => 'авторизация пройдена',
                 'auth' => $this->initResult,

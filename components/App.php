@@ -8,21 +8,23 @@
 
 namespace components;
 use components\Db;
+use models\User;
 
 class App
 {
     public $request = null;
-    public $auth = null;
+    public $user = null;
     public $db = null;
 
     public function __construct()
     {
-        $this->request = new Request();
-        $this->request->init();
-        //Auth::init();
-        //exit;
         $this->db = new Db();
         $this->db->getPDO();
+        $this->user = new User();
+        //$this->user->checkAuthWithCookie();
+        $this->user->init();
+        $this->request = new Request();
+        $this->request->init();
     }
 
     public function init() {

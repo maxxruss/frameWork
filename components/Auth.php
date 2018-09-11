@@ -17,25 +17,14 @@ class Auth
     private $password;
     private $resultInit;
 
-    public function selectUser()
-    {
 
-    }
-    public function logOut()
-    {
-    }
+
     /**
      * Сверяем введённый пароль и хэш
      * @param $password
      * @param $hash
      * @return bool
      */
-    public function reg()
-    {
 
-    }
-    public function init()
-    {
 
-    }
 }

@@ -26,8 +26,7 @@ class Controller
     {
         $this->templateExtension = $templateExtension;
         $this->templateFolder = $templateFolder;
-        $userInit = new Auth;
-        $this->initResult = $userInit->init();
+
     }
 
     protected function render($template, $params = [])

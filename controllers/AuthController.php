@@ -33,7 +33,7 @@ class AuthController extends Controller
     public function actionAuthorization()
     {
         $userModel = new User();
-        $checkUserResult = $userModel->checkUser();
+        $checkUserResult = $userModel->authWithCredentials();
         if ($checkUserResult == true) {
             echo $this->render('auth.cabinet', [
                 'auth' => $checkUserResult,
@@ -55,7 +55,7 @@ class AuthController extends Controller
     {
         $userModel = new User();
         $regUser = $userModel->regUser();
-        $userModel->checkUser();
+        $userModel->authWithCredentials();
         if ($regUser == true) {
             echo $this->render('auth.cabinet', [
                 'auth' => $regUser,
