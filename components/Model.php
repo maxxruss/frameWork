@@ -204,6 +204,7 @@ class Model //implements Query
         switch ($type) {
             case 'jpeg':
                 $img = imagecreatefromjpeg($src);
+                //echo('ok');exit;
                 imagecopyresampled($newimg, $img, 0, 0, 0, 0, $h, $w, imagesx($img), imagesy($img));
                 imagejpeg($newimg, $newsrc);
                 break;
@@ -222,10 +223,14 @@ class Model //implements Query
 
     function scanDirLoadFiles()
     {
+        //var_dump(copy('../public/img/perm.php', '../public/img1/perm.php'));exit;
+
         $images = array_slice(scandir('../public/loadFiles'), 2);
 
         foreach ($images as $image) {
-            $nameRecodRu = iconv("cp1251", "UTF-8", $image);
+            $nameRecodRu = mb_convert_encoding($image, 'UTF-8');
+            //print_r($nameRecodRu);exit;
+
             $nameFull = explode('.', $nameRecodRu)[0];
             $fileName = $this->translit($nameRecodRu);
             $nameShort = explode('.', $fileName)[0];
@@ -239,9 +244,12 @@ class Model //implements Query
             $arr['stickerHit'] = '0';
             $arr['bigPhoto'] = DIR_BIG . $fileName;
             $arr['miniPhoto'] = DIR_SMALL . $fileName;
-            //var_dump(DIR_BIG);exit;
+            //var_dump('../public/loadFiles/' . $image);exit;
+            //var_dump(copy('../public/loadFiles/' . $image, '../public/' . DIR_BIG . $fileName));exit;
+
 
             if (copy('../public/loadFiles/' . $image, '../public/' . DIR_BIG . $fileName)) {
+                //echo('ok');exit;
                 $type = explode('.', $fileName)[1];
                 $this->changeImage(220, 117, '../public/' . DIR_BIG . $fileName, '../public/' . DIR_SMALL . $fileName, $type);
                 $this->create($arr);

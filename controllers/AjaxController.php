@@ -17,7 +17,7 @@ use components\Model;
 use models\Basket;
 use models\OrderInfo;
 use models\Goods;
-use models\OrderProducts;
+use models\OrderProducts1;
 
 class AjaxController
 {
@@ -25,29 +25,34 @@ class AjaxController
     {
         if (isset($_POST['addBasketid']) || isset($_POST['addToOrderid'])) {
             if (isset($_POST['addBasketid'])) {
-                $id = $_POST['addBasketid'];
+                $good_id = $_POST['addBasketid'];
             };
             if (isset($_POST['addToOrderid'])) {
                 $id = $_POST['addToOrderid'];
             };
 
             $modelGood = new Goods();
-            $good = $modelGood->getOneGood($id);
+            $good = $modelGood->getOneGood($good_id);
 
 
-            $modelOrderProducts = new OrderProducts();
-            $basket = $modelOrderProducts->getOneBasket($id);
+            $modelBasket = new Basket();
+            $goodValue['good_id'] = $good_id;
+            $goodValue['order_id'] = $_SESSION['user']['order_id'];
+            $goodValue['discount'] = '0';
 
-            if ($basket) {
-                $modelOrderProducts->countBasketPlus($id);
+            $basketGood = $modelBasket->checkGoodToBasket($goodValue);
+
+
+            if ($basketGood) {
+                $modelBasket->countBasketPlus($basketGood['id']);
             } else {
-                $good['count'] = '1';
-                $modelOrderProducts->create($good);
+                $goodValue['count'] = '1';
+                $modelBasket->create($goodValue);
             }
 
-            $countGoodsOrder = $modelBasket->countBasketSum();
-            $sumGoodsOrder = $modelBasket->sumGoodsOrder();
-            $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($id);
+            $countGoodsOrder = $modelBasket->countGoodsOrder($goodValue['order_id']);
+            $sumGoodsOrder = $modelBasket->sumGoodsOrder($goodValue['order_id']);
+            $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($basketGood['id']);
             $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($id);
             $orderTotalSum = $modelBasket->orderTotalSum();
             $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount();
@@ -64,20 +69,22 @@ class AjaxController
         if (isset($_POST['deleteToBasketid']) || isset($_POST['deleteToOrderid'])) {
 
             if (isset($_POST['deleteToBasketid'])) {
-                $id = $_POST['deleteToBasketid'];
+                $good_id = $_POST['deleteToBasketid'];
             };
             if (isset($_POST['deleteToOrderid'])) {
                 $id = $_POST['deleteToOrderid'];
             };
 
             $modelBasket = new Basket();
-            $basket = $modelBasket->getOneBasket($id);
+            $goodValue['good_id'] = $good_id;
+            $goodValue['order_id'] = $_SESSION['user']['order_id'];
+            $basketGood = $modelBasket->checkGoodToBasket($goodValue);
 
 
-            if ($basket[0]['count'] > 1) {
-                $modelBasket->countBasketMinus($id);
-            } elseif ($basket[0]['count'] == 1) {
-                $modelBasket->deleteBasket($id);
+            if ($basketGood['count'] > 1) {
+                $modelBasket->countBasketMinus($basketGood['id']);
+            } else {
+                $modelBasket->deleteBasket($basketGood['id']);
             }
 
             $countGoodsOrder = $modelBasket->countBasketSum();
@@ -97,8 +104,8 @@ class AjaxController
 
     public function actionRenderBasketModal()
     {
-        $modelOrderProducts = new OrderProducts();
-        $basket = $modelOrderProducts->getOrderProducts();
+        $modelBasket = new Basket();
+        $basket = $modelBasket->getOrderProducts();
 
         echo json_encode($basket);
         exit;
@@ -157,7 +164,7 @@ class AjaxController
 
     public function actionRenderManager()
     {
-        $model = new OrderProducts();
+        $model = new OrderProducts1();
         $orderFullInfo = $model->getInfoOrderToManager();
 
         echo json_encode($orderFullInfo); // возвращаем данные ответом, преобразовав в JSON-строку
@@ -179,11 +186,11 @@ class AjaxController
         };
 
         $orderInfo = $model->getClientInfo_all();
-        $idClient = $orderInfo[0]['id'];
+        $idClient = $orderInfo['id'];
         $modelBasket = new Basket();
         $goodsBasket = $modelBasket->getAllBasket();
 
-        $modelOrder = new OrderProducts();
+        $modelOrder = new OrderProducts1();
         $modelOrder->truncateOrder();
 
         foreach ($goodsBasket as $good) {

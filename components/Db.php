@@ -18,8 +18,8 @@ class Db
     public $host = 'localhost';
     public $username = 'root';
     public $database = 'catalog';
-    public $password = '';
-    public $port = '3308';
+    public $password = '1';
+    public $port = '3306';
     public $charset = 'utf8';
     //public $opt;
     //public $dsn;

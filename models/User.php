@@ -26,6 +26,7 @@ class User extends Model
         'login',
         'pass',
         'session_id',
+        'hash',
     ];
     public $rules = [
         'name' => 'int',
@@ -33,6 +34,7 @@ class User extends Model
         'login' => 'string',
         'pass' => 'string',
         'session_id' => 'string',
+        'hash' => 'string',
     ];
 
     public function getAllUsers()
@@ -139,8 +141,27 @@ class User extends Model
             setcookie("hash", $hash, time() + 3600 * 24 * 30, '/');
             $_SESSION['user'] = ['id' => $this->user_db['id'], 'hash' => $hash];
             $this->resultAuth = false;
-        }
+        };
+        $this->initUserOrder();
         return $this->resultAuth;
+    }
+
+    public function initUserOrder()
+    {
+        if (!empty($_SESSION['user'])) {
+            $pdo = Db::getPDO();
+            $statement = $pdo->query("select * from orderInfo where user_id = '" . $_SESSION['user']['id'] . "'");
+            $orderInfo = $statement->fetch();
+            if ($orderInfo) {
+                $_SESSION['user']['order_id'] = $orderInfo['id'];
+            } else {
+                $model = new OrderInfo();
+                $model->values['timeOrder'] = time();
+                $model->values['user_id'] = $_SESSION['user']['id'];
+                $model->clientInfo_new($model->values);
+                $_SESSION['user']['order_id'] = $pdo->lastInsertId();
+            }
+        }
     }
 
     public function logOutUser()

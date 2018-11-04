@@ -15,15 +15,11 @@ use components\Model;
 class Basket extends Model
 {
     protected $table = 'basket';
+    protected $innerJoin = 'inner join orderInfo on basket.order_id = orderInfo.id inner join goods on basket.good_id = goods.id';
     protected $fields = [
         'id',
-        'nameShort',
-        'nameFull',
-        'price',
-        'param',
-        'weight',
-        'bigPhoto',
-        'miniPhoto',
+        'order_id',
+        'good_id',
         'count',
         'discount',
     ];
@@ -42,6 +38,23 @@ class Basket extends Model
         return $this->select(($parameters));
     }
 
+    public function checkGoodToBasket($goodValue) {
+        $pdo = Db::getPDO();
+        $statement = $pdo->query('select * from ' . $this->table . ' WHERE order_id=' . $goodValue['order_id'] . ' AND good_id=' . $goodValue['good_id']);
+        return $statement->fetch();
+    }
+
+    public function getOrderProducts()
+    {
+        $pdo = Db::getPDO();
+        $statement = $pdo->query('select * from ' .$this->table. ' ' . $this->innerJoin );
+        //var_dump($statement);exit;
+        return $statement->fetchAll();
+    }
+
+
+
+
     public function update($values)
     {
         /**if(!$this->validate($values, $this->rules)) {
@@ -56,16 +69,17 @@ class Basket extends Model
         return $statement;
     }
 
-    public function create($values)
+    public function create($goodValue)
     {
         $pdo = DB::getPDO();
-        $pdo->query("INSERT INTO " . $this->table . "(id, nameShort, nameFull, price, param, weight, bigPhoto, miniPhoto, count, discount) VALUES ('" . $values['id'] . "','" . $values['nameShort'] . "', '" . $values['nameFull'] . "', '" . $values['price'] . "', '" . $values['param'] . "', '" . $values['weight'] . "', '" . $values['bigPhoto'] . "', '" . $values['miniPhoto'] . "', '" . $values['count'] . "', '" . $values['discount'] . "')");
+        $pdo->query("INSERT INTO " . $this->table . "(order_id, good_id, count, discount) VALUES ('" . $goodValue['order_id'] . "','" . $goodValue['good_id'] . "','" . $goodValue['count'] . "','" . $goodValue['discount'] . "')");
         return true;
     }
 
     public function deleteBasket($id) {
         return $this->delete($id);
     }
+
     public function countBasketPlus($id) {
         return $this->countPlus($id);
     }
@@ -74,11 +88,11 @@ class Basket extends Model
         return $this->countMinus($id);
     }
 
-    public function countBasketSum()
+    public function countGoodsOrder($order_id)
     {
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
-        $statement = $pdo->query('SELECT sum(`count`) AS count FROM '. $this->table );
+        $statement = $pdo->query('SELECT sum(`count`) AS count FROM '. $this->table . ' ' . $this->innerJoin . ' WHERE order_id=' . $order_id);
         $result = $statement->fetchAll();
         return $result[0]['count'];
     }
@@ -91,19 +105,19 @@ class Basket extends Model
         return true;
     }
 
-    public function countGoodsOrder()
+    /**public function countGoodsOrder()
     {
         $pdo = Db::getPDO();
         $statement = $pdo->query("SELECT sum(`count`) AS count FROM ". $this->table);
         $result = $statement->fetchAll();
         return $result[0]['count'];
-    }
+    }*/
 
-    public function sumGoodsOrder()
+    public function sumGoodsOrder($order_id)
     {
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
-        $statement = $pdo->query('SELECT sum(`count`*`price`) AS sum FROM ' . $this->table);
+        $statement = $pdo->query('SELECT sum(`count`*`price`) AS sum FROM ' . $this->table. ' ' . $this->innerJoin . ' WHERE order_id=' . $order_id);
         $result = $statement->fetchAll();
         return $result[0]['sum'];
 
@@ -120,7 +134,7 @@ class Basket extends Model
     function countOneGoodsOrder($id)
     {
         $pdo = Db::getPDO();
-        $statement = $pdo->query("SELECT `count`  FROM `". $this->table."` WHERE id=".(int)$id);
+        $statement = $pdo->query('SELECT `count`  FROM '. $this->table.' ' . $this->innerJoin . ' WHERE id='.$id);
         $result = $statement->fetch();
         return $result['count'];
     }

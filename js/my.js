@@ -23,7 +23,7 @@ function renderAllGoods() {
             }
             table += $('</table>');
             var modal = $('.modal-body');
-            $('.modal-body').empty();
+            modal.empty();
             modal.append(table);
         }
     });

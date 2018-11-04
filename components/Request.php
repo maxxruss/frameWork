@@ -22,6 +22,7 @@ class Request
     public function init()
     {
         $url =  $_SERVER['REQUEST_URI'];
+        //var_dump($url);exit;
 
         if (strpos($url, '?') !== false) {
             $url = $cleanUrl = stristr($url, '?', true);
@@ -33,6 +34,7 @@ class Request
 
 
         $path = explode('/',$url);
+        //var_dump($path);exit;
 
         if(count($path) == 4) {
             $this->controller = $path[2];
@@ -46,6 +48,7 @@ class Request
 
         if (strpos($this->action, '=') !== false) {
             $actionArr = explode('=', $this->action);
+
             //print_r($actionArr[1]);
             $this->action = $actionArr[0];
             $get = $actionArr[1];

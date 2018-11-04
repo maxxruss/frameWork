@@ -12,20 +12,20 @@ use components\Db;
 use components\Model;
 
 
-class OrderProducts extends Model
+class OrderProducts1 extends Model
 {
     protected $table = 'order_Products';
-    protected $innerJoin = 'inner join orderInfo on order_Products.id_order = orderInfo.id 
-    inner join goods on order_Products.id_goods = goods.id';
+    protected $innerJoin = 'inner join orderInfo on id_order.id_order = orderInfo.id 
+    inner join id_good on order_Products.id_goods = goods.id';
     protected $fields = [
         'id',
-        'title',
-        'content'
+        'id_order',
+        'id_good'
     ];
     public $rules = [
         'id'     => 'int',
-        'title'  => 'string',
-        'content' => 'string'
+        'id_order'  => 'int',
+        'id_good' => 'int'
     ];
 
 
@@ -57,13 +57,7 @@ class OrderProducts extends Model
         return $this->newOrder($idClient, $idGood, $count);
     }
 
-    public function getOrderProducts()
-    {
-        $pdo = Db::getPDO();
-        $statement = $pdo->query('select * from ' .$this->table. ' ' . $this->innerJoin );
-        //var_dump($statement);exit;
-        return $statement->fetchAll();
-    }
+
 
     public function getAllBasket() {
         $pdo = Db::getPDO();
@@ -110,14 +104,7 @@ class OrderProducts extends Model
     public function deleteBasket($id) {
         return $this->delete($id);
     }
-    public function countBasketPlus($id)
-    {
-        $pdo = Db::getPDO();
-        //var_dump($pdo);exit;
-        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET `count`= `count`+1 WHERE id_goods=' . $id);
-        //$result = $statement->fetchAll();
-        return $statement;
-    }
+
 
     public function countBasketMinus($id) {
         return $this->countMinus($id);

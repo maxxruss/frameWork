@@ -11,7 +11,7 @@ namespace controllers;
 use components\Controller;
 use components\Request;
 use models\Goods;
-use models\OrderProducts;
+use models\OrderProducts1;
 
 class ManagerController extends Controller
 {
