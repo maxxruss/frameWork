@@ -506,7 +506,7 @@ function renderManager() {
             var totalCoast = Math.floor(sumGoodDiscount - happyHours - delivery);
 
             var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">#</th><th scope="col">Заказ</th><th scope="col">Сумма к оплате</th><th scope="col">Время заказа</th><th scope="col">Сдача с купюры</th><th scope="col">Способ оплаты</th><th scope="col">Доставка/самовывоз</th><th scope="col">Заказ на время</th><th scope="col">Телефон</th><th scope="col">Дисконтная карта</th><th scope="col">Персон</th><th scope="col">Адрес</th><th scope="col">Комментарий</th></tr></thead><tbody>';
-            table += '<tr><th scope="row">' + dateAnswer[0].idClient + '</th>';
+            table += '<tr><th scope="row">' + dateAnswer[0].order_id + '</th>';
             table += '<td><button type="button" onclick="renderManagerModalOrder()" class="btn btn-primary" data-toggle="modal" data-target="#orderModal">Детали заказа</button></td>';
             table += '<td>' + totalCoast + '</td>';
             table += '<td>' + formattedTime + '</td>';

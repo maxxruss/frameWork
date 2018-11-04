@@ -53,9 +53,9 @@ class AjaxController
             $countGoodsOrder = $modelBasket->countGoodsOrder($goodValue['order_id']);
             $sumGoodsOrder = $modelBasket->sumGoodsOrder($goodValue['order_id']);
             $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($basketGood['id']);
-            $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($id);
-            $orderTotalSum = $modelBasket->orderTotalSum();
-            $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount();
+            $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($basketGood['id']);
+            $orderTotalSum = $modelBasket->sumGoodsOrder($goodValue['order_id']);
+            $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount($goodValue['order_id']);
 
             $req = [$countGoodsOrder, $sumGoodsOrder, $countOneGoodsOrder, $sumOneGoodsOrder, $orderTotalSum, $sumGoodsOrderDiscount]; // присваиваем переменной нужные данные
             echo json_encode($req);
@@ -87,12 +87,12 @@ class AjaxController
                 $modelBasket->deleteBasket($basketGood['id']);
             }
 
-            $countGoodsOrder = $modelBasket->countBasketSum();
-            $sumGoodsOrder = $modelBasket->sumGoodsOrder();
-            $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($id);
-            $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($id);
-            $orderTotalSum = $modelBasket->orderTotalSum();
-            $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount();
+            $countGoodsOrder = $modelBasket->countGoodsOrder($goodValue['order_id']);
+            $sumGoodsOrder = $modelBasket->sumGoodsOrder($goodValue['order_id']);
+            $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($basketGood['id']);
+            $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($basketGood['id']);
+            $orderTotalSum = $modelBasket->sumGoodsOrder($goodValue['order_id']);
+            $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount($goodValue['order_id']);
 
 
             $req = [$countGoodsOrder, $sumGoodsOrder, $countOneGoodsOrder, $sumOneGoodsOrder, $orderTotalSum, $sumGoodsOrderDiscount]; // присваиваем переменной нужные данные
@@ -164,10 +164,10 @@ class AjaxController
 
     public function actionRenderManager()
     {
-        $model = new OrderProducts1();
-        $orderFullInfo = $model->getInfoOrderToManager();
+        $modelBasket = new Basket();
+        $infoOrder = $modelBasket->getOrderProducts();
 
-        echo json_encode($orderFullInfo); // возвращаем данные ответом, преобразовав в JSON-строку
+        echo json_encode($infoOrder); // возвращаем данные ответом, преобразовав в JSON-строку
         exit; // останавливаем дальнейшее выполнение скрипта
     }
 

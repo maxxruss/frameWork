@@ -21,7 +21,6 @@ class Basket extends Model
         'order_id',
         'good_id',
         'count',
-        'discount',
     ];
     public $rules = [
         'id'     => 'int',
@@ -72,7 +71,7 @@ class Basket extends Model
     public function create($goodValue)
     {
         $pdo = DB::getPDO();
-        $pdo->query("INSERT INTO " . $this->table . "(order_id, good_id, count, discount) VALUES ('" . $goodValue['order_id'] . "','" . $goodValue['good_id'] . "','" . $goodValue['count'] . "','" . $goodValue['discount'] . "')");
+        $pdo->query("INSERT INTO " . $this->table . "(order_id, good_id, count) VALUES ('" . $goodValue['order_id'] . "','" . $goodValue['good_id'] . "','" . $goodValue['count'] . "')");
         return true;
     }
 
@@ -123,10 +122,10 @@ class Basket extends Model
 
     }
 
-    public function sumGoodsOrderDiscount()
+    public function sumGoodsOrderDiscount($order_id)
     {
         $pdo = Db::getPDO();
-        $statement = $pdo->query("SELECT sum(`count`*`price`*(100-`discount`)/100) AS sumDiscount FROM ". $this->table);
+        $statement = $pdo->query("SELECT sum(`count`*`price`*(`discount`)/100) AS sumDiscount FROM ". $this->table. ' ' . $this->innerJoin . ' WHERE order_id=' . $order_id);
         $result = $statement->fetchAll();
         return floor($result[0]['sumDiscount']);
     }
@@ -134,7 +133,7 @@ class Basket extends Model
     function countOneGoodsOrder($id)
     {
         $pdo = Db::getPDO();
-        $statement = $pdo->query('SELECT `count`  FROM '. $this->table.' ' . $this->innerJoin . ' WHERE id='.$id);
+        $statement = $pdo->query('SELECT `count`  FROM ' . $this->table . ' ' . $this->innerJoin . ' WHERE basket.id='.$id);
         $result = $statement->fetch();
         return $result['count'];
     }
@@ -142,7 +141,7 @@ class Basket extends Model
     public function sumOneGoodsOrder($id)
     {
         $pdo = Db::getPDO();
-        $statement = $pdo->query("SELECT sum(`count`*`price`) AS sum FROM `". $this->table."` WHERE id=".(int)$id);
+        $statement = $pdo->query('SELECT sum(`count`*`price`) AS sum FROM '. $this->table.' ' . $this->innerJoin . ' WHERE basket.id='. $id);
         $result = $statement->fetch();
         return $result['sum'];
     }

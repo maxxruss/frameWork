@@ -15,6 +15,8 @@ use components\Model;
 class OrderInfo extends Model
 {
     protected $table = 'orderInfo';
+    protected $innerJoin = 'inner join basket on orderInfo.id = basket.order_id';
+
     protected $fields = [
         'user_id',
         'id',
@@ -58,12 +60,12 @@ class OrderInfo extends Model
 
     ];
 
-    function getClientInfo_all()
+    function getInfoOrder()
     {
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
-        $statement = $pdo->query('SELECT * FROM ' . $this->table);
-        $result = $statement->fetch();
+        $statement = $pdo->query('SELECT * FROM ' . $this->table. ' ' . $this->innerJoin);
+        $result = $statement->fetchAll();
         return $result;
 
     }
