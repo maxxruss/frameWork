@@ -173,10 +173,25 @@ class AjaxController
 
     public function actionOrderDetails()
     {
-        $modelOrderInfo = new OrderInfo();
-        $infoOrder = $modelOrderInfo->getInfoOrder();
 
-        echo json_encode($infoOrder); // возвращаем данные ответом, преобразовав в JSON-строку
+        $modelBasket = new Basket();
+        $orderDetails = $modelBasket->getOrderDetails($_POST['orderDetails']);
+
+        echo json_encode($orderDetails); // возвращаем данные ответом, преобразовав в JSON-строку
+        exit; // останавливаем дальнейшее выполнение скрипта
+    }
+
+    public function actionRenderOrder()
+    {
+        $modelBasket = new Basket();
+        $basketDetails = $modelBasket->getOrderDetails($_SESSION['user']['order_id']);
+
+        $modelOrderInfo = new OrderInfo();
+        $orderDetails = $modelOrderInfo->getOrderInfoById($_SESSION['user']['order_id']);
+
+        $result = [$basketDetails, $orderDetails];
+
+        echo json_encode($result); // возвращаем данные ответом, преобразовав в JSON-строку
         exit; // останавливаем дальнейшее выполнение скрипта
     }
 

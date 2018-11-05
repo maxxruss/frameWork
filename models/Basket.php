@@ -51,6 +51,16 @@ class Basket extends Model
         return $statement->fetchAll();
     }
 
+    function getOrderDetails($order_id)
+    {
+        $pdo = Db::getPDO();
+        //var_dump($pdo);exit;
+        $statement = $pdo->query('SELECT * FROM ' . $this->table . ' ' . $this->innerJoin . ' WHERE order_id=' . $order_id);
+        $result = $statement->fetchAll();
+        return $result;
+
+    }
+
 
 
 

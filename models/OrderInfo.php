@@ -80,6 +80,16 @@ class OrderInfo extends Model
 
     }
 
+    function getOrderInfoById($order_id)
+    {
+        $pdo = Db::getPDO();
+        //var_dump($pdo);exit;
+        $statement = $pdo->query('SELECT * FROM ' . $this->table . ' WHERE id=' . $order_id);
+        $result = $statement->fetchAll();
+        return $result;
+
+    }
+
 
     public function clientInfo_new($values)
     {
