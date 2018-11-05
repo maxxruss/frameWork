@@ -64,11 +64,22 @@ class OrderInfo extends Model
     {
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
-        $statement = $pdo->query('SELECT * FROM ' . $this->table. ' ' . $this->innerJoin);
+        $statement = $pdo->query('SELECT * FROM ' . $this->table);
         $result = $statement->fetchAll();
         return $result;
 
     }
+
+    function getOrderId()
+    {
+        $pdo = Db::getPDO();
+        //var_dump($pdo);exit;
+        $statement = $pdo->query('SELECT order_id FROM ' . $this->table);
+        $result = $statement->fetchAll();
+        return $result;
+
+    }
+
 
     public function clientInfo_new($values)
     {

@@ -473,63 +473,40 @@ function renderManager() {
             var sumGoodDiscount = 0;
             var happyHours;
             var delivery;
+            var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">#</th><th scope="col">Заказ</th><th scope="col">Время заказа</th><th scope="col">Сдача с купюры</th><th scope="col">Способ оплаты</th><th scope="col">Доставка/самовывоз</th><th scope="col">Заказ на время</th><th scope="col">Телефон</th><th scope="col">Дисконтная карта</th><th scope="col">Персон</th><th scope="col">Адрес</th><th scope="col">Комментарий</th></tr></thead><tbody>';
+
             for (var key in dateAnswer) {
-                sumGood += dateAnswer[key].count * dateAnswer[key].price;
-                if (dateAnswer[key].discount > 0) {
-                    sumGoodDiscount += dateAnswer[key].count * dateAnswer[key].price * ((100 - dateAnswer[key].discount) / 100);
+
+                var date = new Date(dateAnswer[key].timeOrder * 1000);// Hours part from the timestamp
+                var hours = date.getHours();// Minutes part from the timestamp
+                var minutes = "0" + date.getMinutes();// Seconds part from the timestamp
+                var formattedTime = hours + ':' + minutes.substr(-2);// Will display time in 10:30:23 format
+
+                table += '<tr><th scope="row">' + dateAnswer[key].id + '</th>';
+                table += '<td><button type="button" onclick="renderManagerModalOrder()" class="btn btn-primary" data-toggle="modal" data-target="#orderModal">Детали заказа</button></td>';
+                table += '<td>' + formattedTime + '</td>';
+                table += '<td>' + dateAnswer[key].money + '</td>';
+                if (dateAnswer[key].pay == 1) {
+                    table += '<td>Безнал</td>';
                 } else {
-                    sumGoodDiscount += dateAnswer[key].count * dateAnswer[key].price;
+                    table += '<td>Нал</td>';
                 }
                 ;
+                if (dateAnswer[key].delivery == 1) {
+                    table += '<td>Доставка</td>';
+                } else {
+                    table += '<td>Самовывоз</td>';
+                }
+                ;
+                table += '<td>' + dateAnswer[key].desiredTime + '</td>';
+                table += '<td>' + dateAnswer[key].phone + '</td>';
+                table += '<td>' + dateAnswer[key].discountCard + '</td>';
+                table += '<td>' + dateAnswer[key].persons + '</td>';
+                table += '<td>' + dateAnswer[key].address + '</td>';
+                table += '<td>' + dateAnswer[key].comment + '</td></tr>';
             }
-            ;
 
-            var date = new Date(dateAnswer[0].timeOrder * 1000);// Hours part from the timestamp
-            var hours = date.getHours();// Minutes part from the timestamp
-            var minutes = "0" + date.getMinutes();// Seconds part from the timestamp
-            var formattedTime = hours + ':' + minutes.substr(-2);// Will display time in 10:30:23 format
-
-            if (hours >= 0 && hours <= 7) {
-                happyHours = sumGoodDiscount * 7 / 100;
-            } else {
-                happyHours = 0;
-            }
-            ;
-
-            if (dateAnswer[key].delivery == 0) {
-                delivery = 0;
-            } else {
-                delivery = sumGoodDiscount * 10 / 100;
-            }
-            ;
-
-            var totalCoast = Math.floor(sumGoodDiscount - happyHours - delivery);
-
-            var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">#</th><th scope="col">Заказ</th><th scope="col">Сумма к оплате</th><th scope="col">Время заказа</th><th scope="col">Сдача с купюры</th><th scope="col">Способ оплаты</th><th scope="col">Доставка/самовывоз</th><th scope="col">Заказ на время</th><th scope="col">Телефон</th><th scope="col">Дисконтная карта</th><th scope="col">Персон</th><th scope="col">Адрес</th><th scope="col">Комментарий</th></tr></thead><tbody>';
-            table += '<tr><th scope="row">' + dateAnswer[0].order_id + '</th>';
-            table += '<td><button type="button" onclick="renderManagerModalOrder()" class="btn btn-primary" data-toggle="modal" data-target="#orderModal">Детали заказа</button></td>';
-            table += '<td>' + totalCoast + '</td>';
-            table += '<td>' + formattedTime + '</td>';
-            table += '<td>' + dateAnswer[0].money + '</td>';
-            if (dateAnswer[0].pay == 1) {
-                table += '<td>Безнал</td>';
-            } else {
-                table += '<td>Нал</td>';
-            }
-            ;
-            if (dateAnswer[0].delivery == 1) {
-                table += '<td>Доставка</td>';
-            } else {
-                table += '<td>Самовывоз</td>';
-            }
-            ;
-            table += '<td>' + dateAnswer[0].desiredTime + '</td>';
-            table += '<td>' + dateAnswer[0].phone + '</td>';
-            table += '<td>' + dateAnswer[0].discountCard + '</td>';
-            table += '<td>' + dateAnswer[0].persons + '</td>';
-            table += '<td>' + dateAnswer[0].address + '</td>';
-            table += '<td>' + dateAnswer[0].comment + '</td></tr><tbody>';
-            table += ('</table>');
+            table += ('</tbody></table>');
             var mainTableManager = $('.mainTableManager');
             mainTableManager.empty();
             mainTableManager.append(table);
@@ -538,7 +515,7 @@ function renderManager() {
 };
 
 function renderManagerModalOrder() {
-    var str = "renderManager=" + '1';
+    var str = "orderDetails=" + '1';
     $.ajax({
         url: '../controllers/Basket.php', // путь к php-обработчику
         type: 'POST', // метод передачи данных

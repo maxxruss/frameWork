@@ -137,8 +137,8 @@ class AjaxController
 
     public function actionScanDirLoadFiles()
     {
-      $model = new Goods();
-      $result = $model->load();
+        $model = new Goods();
+        $result = $model->load();
         echo json_encode($result);
         exit;
     }
@@ -164,8 +164,17 @@ class AjaxController
 
     public function actionRenderManager()
     {
-        $modelBasket = new Basket();
-        $infoOrder = $modelBasket->getOrderProducts();
+        $modelOrderInfo = new OrderInfo();
+        $infoOrder = $modelOrderInfo->getInfoOrder();
+
+        echo json_encode($infoOrder); // возвращаем данные ответом, преобразовав в JSON-строку
+        exit; // останавливаем дальнейшее выполнение скрипта
+    }
+
+    public function actionOrderDetails()
+    {
+        $modelOrderInfo = new OrderInfo();
+        $infoOrder = $modelOrderInfo->getInfoOrder();
 
         echo json_encode($infoOrder); // возвращаем данные ответом, преобразовав в JSON-строку
         exit; // останавливаем дальнейшее выполнение скрипта
@@ -179,7 +188,7 @@ class AjaxController
         $model->values['timeOrder'] = time();
 
 
-        if (count($orderInfo)==0) {
+        if (count($orderInfo) == 0) {
             $model->clientInfo_new($model->values);
         } else {
             $model->clientInfo_edit($model->values);
