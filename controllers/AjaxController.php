@@ -129,10 +129,12 @@ class AjaxController
 
     public function actionOrderEnd()
     {
-        $modelOrderInfo = new OrderInfo();
+        $modelBasket = new Basket();
+        $basketDetails = $modelBasket->getOrderDetails($_SESSION['user']['order_id']);
 
-        echo json_encode($modelOrderInfo->orderEditDelivery($_POST['deliveryCheck']));
-        exit;
+
+        echo json_encode($basketDetails); // возвращаем данные ответом, преобразовав в JSON-строку
+        exit; // останавливаем дальнейшее выполнение скрипта
     }
 
     public function actionRenderAdminAjax()

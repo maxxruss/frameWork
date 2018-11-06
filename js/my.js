@@ -449,7 +449,7 @@ function deliveryCheck(mark) {
     });
 }
 
-function sendOrder() {
+/**function sendOrder() {
     var formData = $('.formOrder').serialize();
     console.log(formData);
     $.ajax({
@@ -469,7 +469,7 @@ function sendOrder() {
             $(location).attr('href', 'orderEnd.php');
         }
     });
-};
+};*/
 
 
 function renderManager() {
@@ -622,10 +622,13 @@ function renderOrderEnd() {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
+
             var sumGood = 0;
             var sumGoodDiscount = 0;
             var happyHours;
             var delivery;
+
+
             for (var key in dateAnswer) {
                 sumGood += dateAnswer[key].count * dateAnswer[key].price;
                 if (dateAnswer[key].discount > 0) {
@@ -649,7 +652,7 @@ function renderOrderEnd() {
             }
             ;
 
-            if (dateAnswer[key].delivery == 0) {
+            if (dateAnswer[0].delivery == 0) {
                 delivery = 0;
             } else {
                 delivery = sumGoodDiscount * 10 / 100;

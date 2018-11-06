@@ -17,7 +17,7 @@ class OrderInfo extends Model
     protected $table = 'orderInfo';
     protected $innerJoin = 'inner join basket on orderInfo.id = basket.order_id';
 
-    protected $fields = [
+    /*protected $fields = [
         'user_id',
         'id',
         'phone',
@@ -30,7 +30,7 @@ class OrderInfo extends Model
         'delivery',
         'desiredTime',
         'timeOrder',
-    ];
+    ];*/
     public $rules = [
         'user_id' => 'int',
         'phone' => 'string',
@@ -102,7 +102,7 @@ class OrderInfo extends Model
     public function clientInfo_edit($values)
     {
         $pdo = DB::getPDO();
-        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET user_name = ' . $values['user_name'] . ', phone = ' . $values['phone'] . ', discountCard = ' . $values['discountCard'] . ', persons = ' . $values['persons'] . ', pay = ' . $values['pay'] . ', money = ' . $values['money'] . ', address = ' . $values['address'] . ', comment = ' . $values['comment'] . ', delivery = ' . $values['delivery'] . ', desiredTime = ' . $values['desiredTime'] . ', timeOrder = ' . $values['timeOrder'] . ' WHERE `id` = ' . $values['id']);
+        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET phone = "' . $values['phone'] . '", discountCard = "' . $values['discountCard'] . '", persons = "' . $values['persons'] . '", pay = ' . $values['pay'] . ', money = "' . $values['money'] . '", address = "' . $values['address'] . '", comment = "' . $values['comment'] . '", delivery = ' . $values['delivery'] . ', desiredTime = "' . $values['desiredTime'] . '", timeOrder = ' . time() . ' WHERE `id` = ' . $_SESSION['user']['order_id']);
         return $statement;
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -24,10 +24,10 @@
         </div>
     </div>
     <div class="formClientInfo">
-        <form class="formOrder" id="formOrder" action="/public/orderEnd.php"  method="POST">
-            <label for="delivery" class="">Способ доставки</label>
-            <input type="radio" name="delivery" value="1" onchange="deliveryCheck(1)">Самовывоз</option>
-            <input type="radio" name="delivery" value="0" onchange="deliveryCheck(0)">Доставка</option>
+        <form class="formOrder" id="formOrder" action="/public/end"  method="POST">
+            <label for="inputDelivery" class="">Способ доставки</label>
+            <input type="radio" id="inputDelivery" name="delivery" value="1" onchange="deliveryCheck(1)">Самовывоз<br>
+            <input type="radio" id="inputDelivery" name="delivery" value="0" onchange="deliveryCheck(0)">Доставка<br>
             <label for="inputName" class="">Имя</label>
             <input type="text" name="name" id="inputName" placeholder="Введите имя">
             <label for="inputPhone" class="">Телефон</label>
@@ -46,11 +46,11 @@
             <label for="inputMoney" class="">Сдача</label>
             <input type="text" name="money" id="inputMoney" placeholder="С какой купюры приготовить сдачу">
             <label for="inputAddress" class="">Адрес</label>
-            <textarea type="text" name="address" id="inputAddress" placeholder="Адрес доставки"></textarea>
+            <textarea name="address" id="inputAddress" placeholder="Адрес доставки"></textarea>
             <label for="inputComment" class="">Комментарий</label>
-            <textarea type="text" name="comment" id="inputComment" placeholder="Комментарий к заказу"></textarea>
+            <textarea name="comment" id="inputComment" placeholder="Комментарий к заказу"></textarea>
             <input type="hidden"  name="totalCoast" value="123456!">
-            <input type="button" class="btn btn-primary" onclick="sendOrder()" value="Заказать!">
+            <input type="submit" class="btn btn-primary" value="Заказать!">
         </form>
     </div>
 </div>

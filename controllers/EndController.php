@@ -12,11 +12,13 @@ use components\Controller;
 use models\Goods;
 use models\OrderInfo;
 
-class OrderController extends Controller
+class EndController extends Controller
 {
     public function actionIndex()
     {
-        echo $this->render('order', [
+        $modelOrderInfo = new OrderInfo();
+        $modelOrderInfo->clientInfo_edit($_POST);
+        echo $this->render('order_end', [
             'auth' => $this->initResult,
             'name' => $_SESSION['user']['name']
         ]);
