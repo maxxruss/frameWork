@@ -101,26 +101,16 @@ class OrderInfo extends Model
 
     public function clientInfo_edit($values)
     {
-        //var_dump($values['id']);exit;
         $pdo = DB::getPDO();
         $statement = $pdo->exec('UPDATE ' . $this->table . ' SET user_name = ' . $values['user_name'] . ', phone = ' . $values['phone'] . ', discountCard = ' . $values['discountCard'] . ', persons = ' . $values['persons'] . ', pay = ' . $values['pay'] . ', money = ' . $values['money'] . ', address = ' . $values['address'] . ', comment = ' . $values['comment'] . ', delivery = ' . $values['delivery'] . ', desiredTime = ' . $values['desiredTime'] . ', timeOrder = ' . $values['timeOrder'] . ' WHERE `id` = ' . $values['id']);
         return $statement;
     }
 
-    function clientInfo_editDelivery($delivery)
+    function orderEditDelivery($mark)
     {
-
-        $sql = "UPDATE clientInfo SET delivery='%s'";
-
-        $query = sprintf($sql, mysqli_real_escape_string($connect, $delivery));
-
-
-        $result = mysqli_query($connect, $query);
-
-        if (!$result)
-            die(mysqli_error($connect));
-
-        return mysqli_affected_rows($connect);
+        $pdo = DB::getPDO();
+        $statement = $pdo->exec('UPDATE ' . $this->table . '  SET delivery=' . $mark . ' WHERE id=' . $_SESSION['user']['order_id']);
+        return $statement;
     }
 
 

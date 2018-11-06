@@ -21,19 +21,21 @@ use models\OrderProducts1;
 
 class AjaxController
 {
+    public function actionRenderBasket()
+    {
+        $modelBasket = new Basket();
+        $countGoodsOrder = $modelBasket->countGoodsOrder($_SESSION['user']['order_id']);
+        echo json_encode($countGoodsOrder);
+        exit;
+
+    }
+
     public function actionAddToBasket()
     {
-        if (isset($_POST['addBasketid']) || isset($_POST['addToOrderid'])) {
+        if (isset($_POST['addBasketid'])) {
             if (isset($_POST['addBasketid'])) {
                 $good_id = $_POST['addBasketid'];
             };
-            if (isset($_POST['addToOrderid'])) {
-                $id = $_POST['addToOrderid'];
-            };
-
-            $modelGood = new Goods();
-            $good = $modelGood->getOneGood($good_id);
-
 
             $modelBasket = new Basket();
             $goodValue['good_id'] = $good_id;
@@ -105,7 +107,7 @@ class AjaxController
     public function actionRenderBasketModal()
     {
         $modelBasket = new Basket();
-        $basket = $modelBasket->getOrderProducts();
+        $basket = $modelBasket->getOrderDetails($_SESSION['user']['order_id']);
 
         echo json_encode($basket);
         exit;
@@ -115,6 +117,22 @@ class AjaxController
     {
         $modelGood = new Goods();
         $modelGood->editGood();
+    }
+
+    public function actionDeliveryCheck()
+    {
+        $modelOrderInfo = new OrderInfo();
+
+        echo json_encode($modelOrderInfo->orderEditDelivery($_POST['deliveryCheck']));
+        exit;
+    }
+
+    public function actionOrderEnd()
+    {
+        $modelOrderInfo = new OrderInfo();
+
+        echo json_encode($modelOrderInfo->orderEditDelivery($_POST['deliveryCheck']));
+        exit;
     }
 
     public function actionRenderAdminAjax()

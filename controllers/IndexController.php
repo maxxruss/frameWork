@@ -20,11 +20,6 @@ class IndexController extends Controller
 {
     public function actionIndex()
     {
-        //d(getallheaders());exit;
-        $pdo = Db::getPDO();
-
-        //d($_COOKIE);
-        //d($_SESSION);exit;
         $model = new Goods();
         $allGoods = $model->getAllGoods();
 
@@ -36,8 +31,8 @@ class IndexController extends Controller
     }
     public function actionCabinet()
     {
-        echo 'привет из кабинета';
         $userModel = new User();
+
         if ($userModel->authWithCredentials()==true) {
             echo $this->render('cab.index', [
                 'authResult' => 'авторизация пройдена',

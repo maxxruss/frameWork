@@ -49,11 +49,15 @@
         <!-- Button trigger modal -->
         <button class="btn btn-outline-success btn-primary basketInfoOut" type="button" onclick="renderBasketModal()"
                 data-toggle="modal" data-target="#bascketModal">
-            {% if countGoodsOrder[0] %}
-			<strong>Корзина</strong><br><strong>{countGoodsOrder[0]}</strong>
-            {% else %}
-            <strong>Корзина</strong><br><strong>товаров нет(</strong>
-            {% endif %}
+            <div class="showCountGoods">
+                <script>
+                    $(document).ready(function() {
+                        renderBasket();
+                    });
+                </script>
+            </div>
+
+
         </button>
     </nav>
     <!-- Modal -->

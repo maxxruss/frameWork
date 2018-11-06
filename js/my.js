@@ -29,6 +29,33 @@ function renderAllGoods() {
     });
 };
 
+function renderBasket() {
+    var str = "getAllGoods=" + '1';
+    $.ajax({
+        url: '../controllers/Ajax/renderBasket', // путь к php-обработчику
+        type: 'POST', // метод передачи данных
+        dataType: 'json', // тип ожидаемых данных в ответе
+        data: str, // данные, которые передаем на сервер
+        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+            alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
+        },
+        success: function (dateAnswer) {
+            console.log(dateAnswer);
+            var basketInfo = '<strong>Корзина</strong><br>';
+            if (dateAnswer) {
+                basketInfo += '<strong>' + dateAnswer + '</strong>';
+            } else {
+                basketInfo += '<strong>товаров нет(</strong>';
+
+            }
+
+            var showCountGoods = $('.showCountGoods');
+            showCountGoods.empty();
+            showCountGoods.append(basketInfo);
+        }
+    });
+};
+
 
 function renderBasketModal() {
     var str = "getBasketGoods=" + '1';
@@ -82,6 +109,7 @@ function addToBasket(idGood) {
                 $('.basketOneCount' + idGood).html(dateAnswer[2]);
                 $('.basketOneSum' + idGood).html(dateAnswer[3]);
                 $('.bascketTotalSum').html(dateAnswer[4]);
+                renderBasket();
             }
         }
     });
@@ -111,6 +139,7 @@ function deleteToBasket(idGood) {
             } else {
                 renderBasketModal();
             }
+            renderBasket();
         }
     });
 };
@@ -370,9 +399,9 @@ function renderOrder() {
 };
 
 function addToOrder(idGood) {
-    var str = "addToOrderid=" + idGood;
+    var str = "addBasketid=" + idGood;
     $.ajax({
-        url: '../controllers/Basket.php', // путь к php-обработчику
+        url: '/controllers/Ajax/addToBasket', // путь к php-обработчику
         type: 'POST', // метод передачи данных
         dataType: 'json', // тип ожидаемых данных в ответе
         data: str, // данные, которые передаем на сервер
@@ -380,20 +409,16 @@ function addToOrder(idGood) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
-            console.log(dateAnswer);
-            if (dateAnswer) {
-                console.log(dateAnswer);
-                $('.basketInfoOut').html('<strong>Корзина</strong>' + '<br>' + '<strong>' + dateAnswer[0] + '</strong>');
                 renderOrder();
-            }
+                renderBasket();
         }
     });
-};
+}
 
 function deleteToOrder(idGood) {
-    var str = "deleteToOrderid=" + idGood;
+    var str = "deleteToBasketid=" + idGood;
     $.ajax({
-        url: '../controllers/Basket.php', // путь к php-обработчику
+        url: '/controllers/Ajax/deleteToBasket', // путь к php-обработчику
         type: 'POST', // метод передачи данных
         dataType: 'json', // тип ожидаемых данных в ответе
         data: str, // данные, которые передаем на сервер
@@ -401,26 +426,17 @@ function deleteToOrder(idGood) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
-            console.log(dateAnswer);
-            if (dateAnswer[2] > 0) {
-                $('.basketInfoOut').html('<strong>Корзина</strong>' + '<br>' + '<strong>' + dateAnswer[0] + '</strong>');
-                renderOrder();
-            } else if (dateAnswer[2] == null) {
-                $('.basketInfoOut').html('Корзина' + '<br>' + 'товаров нет(');
-                $('.orderTable').empty;
-                renderOrder();
-            } else {
-                renderOrder();
-            }
+            renderOrder();
+            renderBasket();
         }
     });
-};
+}
 
 
-function deliveryCheck(x) {
-    var str = "deliveryCheck=" + x;
+function deliveryCheck(mark) {
+    var str = "deliveryCheck=" + mark;
     $.ajax({
-        url: '../controllers/Basket.php', // путь к php-обработчику
+        url: '../controllers/Ajax/deliveryCheck', // путь к php-обработчику
         type: 'POST', // метод передачи данных
         dataType: 'json', // тип ожидаемых данных в ответе
         data: str, // данные, которые передаем на сервер
@@ -596,9 +612,9 @@ function orderDetails(orderId) {
 };
 
 function renderOrderEnd() {
-    var str = "renderManager=" + '1';
+    var str = "orderEnd=" + '1';
     $.ajax({
-        url: '../controllers/Basket.php', // путь к php-обработчику
+        url: '../controllers/Ajax/orderEnd', // путь к php-обработчику
         type: 'POST', // метод передачи данных
         dataType: 'json', // тип ожидаемых данных в ответе
         data: str, // данные, которые передаем на сервер

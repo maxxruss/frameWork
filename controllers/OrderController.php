@@ -21,5 +21,12 @@ class OrderController extends Controller
         ]);
     }
 
+    public function actionFinish()
+    {
+        echo $this->render('order', [
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
+        ]);
+    }
 
 }
