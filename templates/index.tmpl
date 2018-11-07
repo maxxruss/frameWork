@@ -12,8 +12,6 @@
 {% include 'menu.tmpl' %}
 
 
-
-
 <div class='goodsTable'>
     {% for item in allGoods %}
         <div class='goodsWrap'>
@@ -31,7 +29,36 @@
             {% endif %}
 
             <div class="wrapGoodImg">
-                <a href="#"><img class='goodImg' src="{{ item.miniPhoto }}"></a>
+                <!-- Button trigger modal -->
+                <a class="openItemGood" onclick="renderItemModal({{ item.id }})"
+                        data-toggle="modal" data-target="#goodItem">
+                    <img class='goodImg' src="{{ item.miniPhoto }}">
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="goodItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body item_modal">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Продолжить покупки</button>
+                                <div class="btnWrap">
+                                    <input type='button' class='addToBasket btn' value='Дoбавить в корзину'
+                                           onclick="addToBasket({{ item.id }})" data-id='{{ item.id }}'>
+                                    <input type='button' class='deleteToBasket btn' value='Удалить из корзины'
+                                           onclick="deleteToBasket({{ item.id }})" data-id='{{ item.id }}'>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="wrapGoodInfo">
                 <div class='goodsNameFull'>{{ item.nameFull }}</div>

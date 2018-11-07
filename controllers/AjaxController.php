@@ -30,6 +30,14 @@ class AjaxController
 
     }
 
+    public function actionRenderItemModal()
+    {
+        $modelGood = new Goods();
+        $oneGood = $modelGood->getOneGood($_POST['renderItemModal']);
+        echo json_encode($oneGood);
+        exit;
+    }
+
     public function actionAddToBasket()
     {
         if (isset($_POST['addBasketid'])) {
@@ -206,12 +214,9 @@ class AjaxController
         $modelBasket = new Basket();
         $basketDetails = $modelBasket->getOrderDetails($_SESSION['user']['order_id']);
 
-        $modelOrderInfo = new OrderInfo();
-        $orderDetails = $modelOrderInfo->getOrderInfoById($_SESSION['user']['order_id']);
 
-        $result = [$basketDetails, $orderDetails];
 
-        echo json_encode($result); // возвращаем данные ответом, преобразовав в JSON-строку
+        echo json_encode($basketDetails); // возвращаем данные ответом, преобразовав в JSON-строку
         exit; // останавливаем дальнейшее выполнение скрипта
     }
 

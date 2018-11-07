@@ -92,6 +92,55 @@ function renderBasketModal() {
     });
 };
 
+function renderItemModal(idGood) {
+    var str = "renderItemModal=" + idGood;
+    $.ajax({
+        url: '/controllers/Ajax/renderItemModal', // путь к php-обработчику
+        type: 'POST', // метод передачи данных
+        dataType: 'json', // тип ожидаемых данных в ответе
+        data: str, // данные, которые передаем на сервер
+        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+            alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
+        },
+        success: function (dateAnswer) {
+            var table = '<div class="goodsWrapItem">';
+            table += '<div class="wrapGoodImgItem">';
+            table += '<img class="goodImg" src=' + dateAnswer.bigPhoto + '>';
+            table += '</div>';
+            table += '<div class="wrapGoodInfo">';
+            table += '<div class="goodsNameFull">' + dateAnswer.nameFull + '</div>';
+            table += '<div class="goodsPriceItem">' + dateAnswer.price + '<b>&#8381;</b></div>';
+            table += '<div class="goodsParam"><span><b>Состав: </b></span>' + dateAnswer.param + '</div>';
+            table += '<div class="goodsWeightItem"><span><b>Вес: </b></span>' + dateAnswer.weight + 'гр./порцию</div>';
+
+            if (dateAnswer.discount > 0) {
+                table += '<div class="stickerItem"><img class="stickerImgItem" src="/public/css/star.png"><span class="stickerTextItem">' + dateAnswer.discount + '%</span><div class="explain">блюдо со скидкой дня' + dateAnswer.discount + '%</div></div>';
+            }
+
+            if (dateAnswer.stickerFit === 1) {
+                table += '<div class="stickerItem"><img class="stickerImgItem" src="/public/css/star.png"><span class="stickerTextItem">Fit!</span><div class="explain">блюдо с низкой калорийностью</div></div></div>';
+            }
+
+            if (dateAnswer.stickerHit === 1) {
+                table += '<div class="stickerItem"><img class="stickerImgItem" src="/public/css/star.png"><span class="stickerTextItem">Hit!</span><div class="explain">популярное блюдо</div></div></div>';
+            }
+
+            table += '<div class="btnWrapItem"></div></div>';
+
+            table += '</table>';
+            var modal = $('.item_modal');
+            modal.empty();
+            modal.append(table);
+        }
+});
+}
+
+
+
+
+
+
+
 function addToBasket(idGood) {
     var str = "addBasketid=" + idGood;
     $.ajax({
@@ -306,81 +355,67 @@ function renderOrder() {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
-            console.log(dateAnswer);
-
             var sumGood = 0;
             var sumGoodDiscount = 0;
-            var happyHours;
+            var happyHoursDiscount;
             var delivery;
-            var dateAnswerBasket = dateAnswer[0];
-            var dateAnswerClient = dateAnswer[1];
-            console.log(dateAnswerBasket);
-            console.log(dateAnswerClient);
 
-            for (var key in dateAnswerBasket) {
-                sumGood += dateAnswerBasket[key].count * dateAnswerBasket[key].price;
-                if (dateAnswerBasket[key].discount > 0) {
-                    sumGoodDiscount += dateAnswerBasket[key].count * dateAnswerBasket[key].price * ((100 - dateAnswerBasket[key].discount) / 100);
+
+            for (var key in dateAnswer) {
+                sumGood += dateAnswer[key].count * dateAnswer[key].price;
+                if (dateAnswer[key].discount > 0) {
+                    sumGoodDiscount += dateAnswer[key].count * dateAnswer[key].price * ((100 - dateAnswer[key].discount) / 100);
                 } else {
-                    sumGoodDiscount += dateAnswerBasket[key].count * dateAnswerBasket[key].price;
+                    sumGoodDiscount += dateAnswer[key].count * dateAnswer[key].price;
                 }
             }
 
-            if (dateAnswerClient[0] != null) {
-                var date = new Date(dateAnswerClient[0].timeOrder * 1000);// Hours part from the timestamp
+                var date = new Date(dateAnswer[0].timeOrder * 1000);// Hours part from the timestamp
                 var hours = date.getHours();// Minutes part from the timestamp
                 var minutes = "0" + date.getMinutes();// Seconds part from the timestamp
                 var formattedTime = hours + ':' + minutes.substr(-2);// Will display time in 10:30:23 format
 
                 if (hours >= 0 && hours <= 7) {
-                    happyHours = sumGoodDiscount * 7 / 100;
+                    happyHoursDiscount = sumGoodDiscount * 7 / 100;
                 } else {
-                    happyHours = 0;
+                    happyHoursDiscount = 0;
                 }
-                ;
-            }
-            ;
 
-            if (dateAnswerClient[0] != null) {
-                if (dateAnswerClient[0].delivery == 0) {
+
+
+                if (dateAnswer[0].delivery == 0) {
                     delivery = 0;
                 } else {
                     delivery = sumGoodDiscount * 10 / 100;
                 }
-                ;
-            }
-            ;
 
-            var totalCoast = Math.floor(sumGoodDiscount - happyHours - delivery);
+            var totalCoast = Math.floor(sumGoodDiscount - happyHoursDiscount - delivery);
+
             var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">Наименование</th><th scope="col">Количество</th><th scope="col">Цена</th><th scope="col">Сумма</th><th scope="col">Скидка</th><th scope="col">Сумма c учетом скидки</th></tr></thead><tbody >';
-            for (var key in dateAnswerBasket) {
-                table += '<tr class="rowGoods' + dateAnswerBasket[key].id + '">';
-                table += '<td>' + dateAnswerBasket[key].nameFull + '</td>';
-                table += '<td><div class="countModal"><div class="simbolModal"><i class="fas fa-plus" onclick="addToOrder(' + dateAnswerBasket[key].id + ')" data-id=' + dateAnswerBasket[key].id + '></i></div>';
-                table += '<div class="basketOneCount' + dateAnswerBasket[key].id + '">' + dateAnswerBasket[key].count + '</div>';
-                table += '<div class="simbolModal"><i class="fas fa-minus" onclick="deleteToOrder(' + dateAnswerBasket[key].id + ')" data-id=' + dateAnswerBasket[key].id + '></i></div></div></td>';
-                table += '<td>' + dateAnswerBasket[key].price + '</td>';
-                table += '<td>' + dateAnswerBasket[key].count * dateAnswerBasket[key].price + '</td>';
-                table += '<td>' + dateAnswerBasket[key].discount + ' %</td>';
+            for (var key in dateAnswer) {
+                table += '<tr class="rowGoods' + dateAnswer[key].id + '">';
+                table += '<td>' + dateAnswer[key].nameFull + '</td>';
+                table += '<td><div class="countModal"><div class="simbolModal"><i class="fas fa-plus" onclick="addToOrder(' + dateAnswer[key].id + ')" data-id=' + dateAnswer[key].id + '></i></div>';
+                table += '<div class="basketOneCount' + dateAnswer[key].id + '">' + dateAnswer[key].count + '</div>';
+                table += '<div class="simbolModal"><i class="fas fa-minus" onclick="deleteToOrder(' + dateAnswer[key].id + ')" data-id=' + dateAnswer[key].id + '></i></div></div></td>';
+                table += '<td>' + dateAnswer[key].price + '</td>';
+                table += '<td>' + dateAnswer[key].count * dateAnswer[key].price + '</td>';
+                table += '<td>' + dateAnswer[key].discount + ' %</td>';
 
-                if (dateAnswerBasket[key].discount > 0) {
-                    var goodDiscount = dateAnswerBasket[key].count * dateAnswerBasket[key].price * ((100 - dateAnswerBasket[key].discount) / 100);
+                if (dateAnswer[key].discount > 0) {
+                    var goodDiscount = dateAnswer[key].count * dateAnswer[key].price * ((100 - dateAnswer[key].discount) / 100);
                 } else {
-                    var goodDiscount = dateAnswerBasket[key].count * dateAnswerBasket[key].price;
+                    var goodDiscount = dateAnswer[key].count * dateAnswer[key].price;
                 }
-                ;
+
                 table += '<td>' + Math.floor(goodDiscount) + '</td></tr>';
             }
-            ;
 
-            table += '<tr><th>Итого</th><th>-</th><th>-</th>';
-            table += '<th>' + Math.floor(sumGood) + '</th><th>-</th>';
-            table += '<th>' + Math.floor(sumGoodDiscount) + '</th></tr>';
-            table += '<tr><th colspan="5">Скидка "Счастливый час (-7% за заказ с 00:00 до 08:00)"</th>';
-            table += '<th>-' + Math.floor(happyHours) + '</th></tr>';
-            table += '<tr><th colspan="5">Скидка за самовывоз (10%)</th>';
-            table += '<th>-' + Math.floor(delivery) + '</th></tr>';
-            table += '<tr><th colspan="5">Сумма к оплате</th>';
+
+
+
+
+            table += '<tr><th colspan="5">Итого</th>';
             table += '<th>' + totalCoast + '</th></tr>';
             table += ('</table>');
 
@@ -389,7 +424,7 @@ function renderOrder() {
             modal.append(table);
             var orderTable = $('.orderTable');
             orderTable.empty();
-            if (dateAnswerBasket.length == 0) {
+            if (dateAnswer.length == 0) {
                 $(orderTable).text('В корзине пусто!');
             } else {
                 orderTable.append(table);
@@ -485,9 +520,12 @@ function renderManager() {
         success: function (dateAnswer) {
             //console.log(dateAnswer);
 
-            var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">#</th><th scope="col">Заказ</th><th scope="col">Время заказа</th><th scope="col">Сдача с купюры</th><th scope="col">Способ оплаты</th><th scope="col">Доставка/самовывоз</th><th scope="col">Заказ на время</th><th scope="col">Телефон</th><th scope="col">Дисконтная карта</th><th scope="col">Персон</th><th scope="col">Адрес</th><th scope="col">Комментарий</th></tr></thead><tbody>';
+            var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">#</th><th scope="col">Заказ</th><th scope="col">Время заказа</th><th scope="col">Сдача с купюры</th><th scope="col">Способ оплаты</th><th scope="col">Доставка/самовывоз</th><th scope="col">Заказ на время</th><th scope="col">Телефон</th><th scope="col">Дисконтная карта</th><th scope="col">Персон</th><th scope="col">Адрес</th><th scope="col">Комментарий</th><th scope="col">Закрыть заказ</th></tr></thead><tbody>';
 
             for (var key in dateAnswer) {
+                if (dateAnswer[key].inWork == 1) {
+
+
                 var date = new Date(dateAnswer[key].timeOrder * 1000);// Hours part from the timestamp
                 var hours = date.getHours();// Minutes part from the timestamp
                 var minutes = "0" + date.getMinutes();// Seconds part from the timestamp
@@ -515,7 +553,9 @@ function renderManager() {
                 table += '<td>' + dateAnswer[key].discountCard + '</td>';
                 table += '<td>' + dateAnswer[key].persons + '</td>';
                 table += '<td>' + dateAnswer[key].address + '</td>';
-                table += '<td>' + dateAnswer[key].comment + '</td></tr>';
+                table += '<td>' + dateAnswer[key].comment + '</td>';
+                table += '<td><button type="button" onclick="completeOrder(' + dateAnswer[key].id+ ')" class="btn btn-primary" data-toggle="modal" data-target="#completeOrder">Выполнено!</button></td></tr>';
+                }
             }
 
             table += ('</tbody></table>');
@@ -541,7 +581,7 @@ function orderDetails(orderId) {
 
             var sumGood = 0;
             var sumGoodDiscount = 0;
-            var happyHours;
+            var happyHoursDiscount;
             var delivery;
             for (var key in dateAnswer) {
                 sumGood += dateAnswer[key].count * dateAnswer[key].price;
@@ -560,9 +600,9 @@ function orderDetails(orderId) {
             var formattedTime = hours + ':' + minutes.substr(-2);// Will display time in 10:30:23 format
 
             if (hours >= 0 && hours <= 7) {
-                happyHours = sumGoodDiscount * 7 / 100;
+                happyHoursDiscount = sumGoodDiscount * 7 / 100;
             } else {
-                happyHours = 0;
+                happyHoursDiscount = 0;
             }
             ;
 
@@ -573,7 +613,7 @@ function orderDetails(orderId) {
             }
             ;
 
-            var totalCoast = Math.floor(sumGoodDiscount - happyHours - delivery);
+            var totalCoast = Math.floor(sumGoodDiscount - happyHoursDiscount - delivery);
 
             var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">Наименование</th><th scope="col">Количество</th><th scope="col">Цена</th><th scope="col">Сумма</th><th scope="col">Скидка</th><th scope="col">Сумма c учетом скидки</th></tr></thead><tbody >';
             for (var key in dateAnswer) {
@@ -598,7 +638,7 @@ function orderDetails(orderId) {
             table += '<th>' + Math.floor(sumGood) + '</th><th>-</th>';
             table += '<th>' + Math.floor(sumGoodDiscount) + '</th></tr>';
             table += '<tr><th colspan="5">Скидка "Счастливый час (-7% за заказ с 00:00 до 08:00)"</th>';
-            table += '<th>-' + Math.floor(happyHours) + '</th></tr>';
+            table += '<th>-' + Math.floor(happyHoursDiscount) + '</th></tr>';
             table += '<tr><th colspan="5">Скидка за самовывоз (10%)</th>';
             table += '<th>-' + Math.floor(delivery) + '</th></tr>';
             table += '<tr><th colspan="5">Сумма к оплате</th>';
@@ -625,7 +665,7 @@ function renderOrderEnd() {
 
             var sumGood = 0;
             var sumGoodDiscount = 0;
-            var happyHours;
+            var happyHoursDiscount;
             var delivery;
 
 
@@ -636,9 +676,8 @@ function renderOrderEnd() {
                 } else {
                     sumGoodDiscount += dateAnswer[key].count * dateAnswer[key].price;
                 }
-                ;
             }
-            ;
+
 
             var date = new Date(dateAnswer[0].timeOrder * 1000);// Hours part from the timestamp
             var hours = date.getHours();// Minutes part from the timestamp
@@ -646,9 +685,9 @@ function renderOrderEnd() {
             var formattedTime = hours + ':' + minutes.substr(-2);// Will display time in 10:30:23 format
 
             if (hours >= 0 && hours <= 7) {
-                happyHours = sumGoodDiscount * 7 / 100;
+                happyHoursDiscount = sumGoodDiscount * 7 / 100;
             } else {
-                happyHours = 0;
+                happyHoursDiscount = 0;
             }
             ;
 
@@ -659,27 +698,50 @@ function renderOrderEnd() {
             }
             ;
 
-            var totalCoast = Math.floor(sumGoodDiscount - happyHours - delivery);
+            var totalCoast = Math.floor(sumGoodDiscount - happyHoursDiscount - delivery);
 
-            var table = '<table class="table "><thead><tr><th scope="col">Наименование</th><th scope="col">Количество</th></tr></thead><tbody >';
+            var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">Наименование</th><th scope="col">Цена</th><th scope="col">Сумма</th><th scope="col">Скидка</th><th scope="col">Сумма c учетом скидки</th></tr></thead><tbody >';
             for (var key in dateAnswer) {
+                table += '<tr class="rowGoods' + dateAnswer[key].id + '">';
                 table += '<tr><td>' + dateAnswer[key].nameFull + '</td>';
-                table += '<td>' + dateAnswer[key].count + '</td>';
-            }
-            ;
-            table += '<tr><th colspan="1">Сумма к оплате с учетом всех скидок</th>';
-            table += '<th>' + totalCoast + ' &#8381;</th></tr>';
+                table += '<td>' + dateAnswer[key].price + '</td>';
+                table += '<td>' + dateAnswer[key].count * dateAnswer[key].price + '</td>';
+                table += '<td>' + dateAnswer[key].discount + ' %</td>';
 
-            table += '<tr><th colspan="1">Доставка</th>';
+                if (dateAnswer[key].discount > 0) {
+                    var goodDiscount = dateAnswer[key].count * dateAnswer[key].price * ((100 - dateAnswer[key].discount) / 100);
+                } else {
+                    var goodDiscount = dateAnswer[key].count * dateAnswer[key].price;
+                }
 
-            if (dateAnswer[key].delivery == 0) {
-                table += '<th>Доставка по адресу заказчика</th></tr>';
-            } else {
-                table += '<th>Самовывоз</th></tr>';
+                table += '<td>' + Math.floor(goodDiscount) + '</td></tr>';
+
             }
-            ;
+
+
+            table += '<tr><th  colspan="4">Итого</th>';
+            table += '<th>' + Math.floor(sumGoodDiscount) + '</th></tr>';
+            table += '<tr><th colspan="4">Скидка "Счастливый час" (Заказ был сделан в ' + formattedTime + ')</th>';
+            table += '<th>-' + Math.floor(happyHoursDiscount) + '</th></tr>';
+            table += '<tr><th colspan="4">Скидка за самовывоз</th>';
+            table += '<th>-' + Math.floor(delivery) + '</th></tr>';
+            table += '<tr><th colspan="4">Сумма к оплате</th>';
+            table += '<th>' + totalCoast + '</th></tr>';
             table += ('</table>');
-            table += '<div class="thanks">Ваш заказ поступил в обработку!<br> В ближайшее время с Вами свяжется менеджер для подтверждения и уточнения заказа.<br> Спасибо что выбрали нас!</div>';
+
+            // table += '<tr><th colspan="1">Сумма к оплате с учетом всех скидок</th>';
+            // table += '<th>' + totalCoast + ' &#8381;</th></tr>';
+            //
+            // table += '<tr><th colspan="1">Доставка</th>';
+            //
+            // if (dateAnswer[key].delivery == 0) {
+            //     table += '<th>Доставка по адресу заказчика</th></tr>';
+            // } else {
+            //     table += '<th>Самовывоз</th></tr>';
+            // }
+            // ;
+            // table += ('</table>');
+            table += '<div class="thanks">Ваша экономия - ' + Math.floor(sumGood-totalCoast) + '&#8381;<br>Ваш заказ поступил в обработку!<br> В ближайшее время с Вами свяжется менеджер для подтверждения и уточнения заказа.<br> Спасибо что выбрали нас!</div>';
 
             var orderTableEnd = $('.orderTableEnd');
             orderTableEnd.empty();

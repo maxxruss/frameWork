@@ -18,6 +18,7 @@ class EndController extends Controller
     {
         $modelOrderInfo = new OrderInfo();
         $modelOrderInfo->clientInfo_edit($_POST);
+        $_SESSION['user']['order_id'] = '';
         echo $this->render('order_end', [
             'auth' => $this->initResult,
             'name' => $_SESSION['user']['name']
