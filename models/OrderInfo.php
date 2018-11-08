@@ -70,6 +70,15 @@ class OrderInfo extends Model
 
     }
 
+    function completeOrder($order_id)
+    {
+        $pdo = Db::getPDO();
+        //var_dump($pdo);exit;
+        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET order_status = 2 WHERE id = ' . $order_id);
+        return $statement;
+
+    }
+
     function getOrderId()
     {
         $pdo = Db::getPDO();
@@ -102,7 +111,7 @@ class OrderInfo extends Model
     public function clientInfo_edit($values)
     {
         $pdo = DB::getPDO();
-        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET phone = "' . $values['phone'] . '", discountCard = "' . $values['discountCard'] . '", persons = "' . $values['persons'] . '", pay = ' . $values['pay'] . ', money = "' . $values['money'] . '", address = "' . $values['address'] . '", comment = "' . $values['comment'] . '", delivery = ' . $values['delivery'] . ', desiredTime = "' . $values['desiredTime'] . '", timeOrder = ' . time() . ', inWork =  1 , user_id_old = user_id, user_id = 0 WHERE `id` = ' . $_SESSION['user']['order_id']);
+        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET phone = "' . $values['phone'] . '", discountCard = "' . $values['discountCard'] . '", persons = "' . $values['persons'] . '", pay = ' . $values['pay'] . ', money = "' . $values['money'] . '", address = "' . $values['address'] . '", comment = "' . $values['comment'] . '", delivery = ' . $values['delivery'] . ', desiredTime = "' . $values['desiredTime'] . '", timeOrder = ' . time() . ', order_status =  1 , user_id_old = user_id, user_id = 0 WHERE `id` = ' . $_SESSION['user']['order_id']);
         return $statement;
     }
 

@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84384e54-3627-433e-be39-7176a57cebea" name="Default" comment="+отправка формы заказа, финальный ордер">
+    <list default="true" id="84384e54-3627-433e-be39-7176a57cebea" name="Default" comment="+доработка окна менеджера, окно продукта при нажатии на фото, оформление заказаб закрытие заказа">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/EndController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/EndController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/my.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/my.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/OrderInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/OrderInfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.tmpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/manager.index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/manager.index.tmpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/menu.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/order.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/order.tmpl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +100,7 @@
     <session id="-1851003147">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="18" />
+          <entry key="project.closed" value="19" />
           <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="5" />
@@ -112,12 +108,13 @@
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.15" value="2" />
+          <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.7" value="3" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="22" />
+          <entry key="project.opened" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -130,7 +127,7 @@
           <entry key="lock" value="1" />
           <entry key="php" value="143" />
           <entry key="test" value="1" />
-          <entry key="tmpl" value="36" />
+          <entry key="tmpl" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -141,7 +138,7 @@
           <entry key="JavaScript" value="6" />
           <entry key="PHP" value="143" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Twig" value="33" />
+          <entry key="Twig" value="34" />
           <entry key="htaccess" value="11" />
         </counts>
       </usages-collector>
@@ -150,20 +147,20 @@
           <entry key="css" value="24" />
           <entry key="dummy" value="1" />
           <entry key="htaccess" value="111" />
-          <entry key="js" value="991" />
-          <entry key="php" value="2368" />
-          <entry key="tmpl" value="516" />
-          <entry key="txt" value="211" />
+          <entry key="js" value="1138" />
+          <entry key="php" value="2476" />
+          <entry key="tmpl" value="555" />
+          <entry key="txt" value="309" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="24" />
-          <entry key="HTML" value="1" />
-          <entry key="JavaScript" value="990" />
-          <entry key="PHP" value="2368" />
-          <entry key="PLAIN_TEXT" value="212" />
-          <entry key="Twig" value="516" />
+          <entry key="HTML" value="2" />
+          <entry key="JavaScript" value="1136" />
+          <entry key="PHP" value="2476" />
+          <entry key="PLAIN_TEXT" value="310" />
+          <entry key="Twig" value="555" />
           <entry key="htaccess" value="111" />
         </counts>
       </usages-collector>
@@ -198,47 +195,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/my.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="96" column="12" lean-forward="true" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="12" />
+            <state relative-caret-position="288">
+              <caret line="562" column="58" lean-forward="true" selection-start-line="562" selection-start-column="58" selection-end-line="562" selection-end-column="58" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/User.php">
+        <entry file="file://$PROJECT_DIR$/templates/index.tmpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="155" column="45" selection-start-line="155" selection-start-column="16" selection-end-line="155" selection-end-column="45" />
+            <state relative-caret-position="342">
+              <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/EndController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/ManagerController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1062">
-              <caret line="67" column="43" lean-forward="true" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/manager.index.tmpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="698">
-              <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+            <state relative-caret-position="430">
+              <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -246,8 +225,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/menu.tmpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="738">
-              <caret line="83" column="10" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="83" selection-end-column="10" />
+            <state relative-caret-position="666">
+              <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
             </state>
           </provider>
         </entry>
@@ -255,8 +234,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/OrderInfo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
+            <state relative-caret-position="311">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
             </state>
           </provider>
         </entry>
@@ -264,26 +243,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/AjaxController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="217" lean-forward="true" selection-start-line="217" selection-end-line="217" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Goods.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/Model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+            <state relative-caret-position="522">
+              <caret line="142" selection-start-line="142" selection-end-line="142" />
             </state>
           </provider>
         </entry>
@@ -350,14 +311,14 @@
         <option value="$PROJECT_DIR$/templates/footer.tmpl" />
         <option value="$PROJECT_DIR$/templates/order_end.tmpl" />
         <option value="$PROJECT_DIR$/controllers/OrderController.php" />
-        <option value="$PROJECT_DIR$/templates/menu.tmpl" />
         <option value="$PROJECT_DIR$/templates/good_item_modal.tmpl" />
-        <option value="$PROJECT_DIR$/controllers/AjaxController.php" />
         <option value="$PROJECT_DIR$/templates/order.tmpl" />
         <option value="$PROJECT_DIR$/templates/index.tmpl" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
-        <option value="$PROJECT_DIR$/models/OrderInfo.php" />
         <option value="$PROJECT_DIR$/controllers/EndController.php" />
+        <option value="$PROJECT_DIR$/templates/menu.tmpl" />
+        <option value="$PROJECT_DIR$/models/OrderInfo.php" />
+        <option value="$PROJECT_DIR$/controllers/AjaxController.php" />
         <option value="$PROJECT_DIR$/js/my.js" />
         <option value="$PROJECT_DIR$/templates/manager.index.tmpl" />
       </list>
@@ -536,7 +497,8 @@
       <workItem from="1541409190393" duration="8189000" />
       <workItem from="1541434244345" duration="6120000" />
       <workItem from="1541494088260" duration="23225000" />
-      <workItem from="1541575910957" duration="24711000" />
+      <workItem from="1541575910957" duration="24817000" />
+      <workItem from="1541662756903" duration="10155000" />
     </task>
     <task id="LOCAL-00001" summary="begin project">
       <created>1534953408411</created>
@@ -692,11 +654,18 @@
       <option name="project" value="LOCAL" />
       <updated>1541519446459</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="+доработка окна менеджера, окно продукта при нажатии на фото, оформление заказаб закрытие заказа">
+      <created>1541610752099</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1541610752099</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="480759000" />
+    <option name="totallyTimeSpent" value="491020000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -711,13 +680,13 @@
     <frame x="0" y="-1" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989429" visible="true" weight="0.1430096" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989429" visible="true" weight="0.14461046" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5010571" side_tool="true" weight="0.12885906" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286638" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3286638" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49839914" weight="0.23060344" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49839914" visible="true" weight="0.23060344" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32905984" />
@@ -762,7 +731,39 @@
     <MESSAGE value="+order details&#10;+order client" />
     <MESSAGE value="+other" />
     <MESSAGE value="+отправка формы заказа, финальный ордер" />
-    <option name="LAST_COMMIT_MESSAGE" value="+отправка формы заказа, финальный ордер" />
+    <MESSAGE value="+доработка окна менеджера, окно продукта при нажатии на фото, оформление заказаб закрытие заказа" />
+    <option name="LAST_COMMIT_MESSAGE" value="+доработка окна менеджера, окно продукта при нажатии на фото, оформление заказаб закрытие заказа" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/controllers/AjaxController.php</url>
+          <line>139</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/controllers/AjaxController.php</url>
+          <line>141</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/models/OrderInfo.php</url>
+          <line>74</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/models/OrderInfo.php</url>
+          <line>76</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/models/OrderInfo.php</url>
+          <line>77</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/perm.php">
@@ -973,23 +974,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/img/alyaska.jpeg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/good_item_modal.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/good_item_modal.tmpl" />
     <entry file="file:///media/max/MEDIA/domains/PHP17/my_shop/public/item.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1021,6 +1009,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2664">
+          <caret line="155" column="45" selection-start-line="155" selection-start-column="16" selection-end-line="155" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/menu.tmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/Goods.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1028,66 +1030,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/User.php">
+    <entry file="file://$PROJECT_DIR$/components/Model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="155" column="45" selection-start-line="155" selection-start-column="16" selection-end-line="155" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="32" column="38" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/OrderInfo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="102" column="5" lean-forward="true" selection-start-line="102" selection-start-column="5" selection-end-line="102" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/AjaxController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="217" lean-forward="true" selection-start-line="217" selection-end-line="217" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/EndController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        <state relative-caret-position="18">
+          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/ManagerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1062">
-          <caret line="67" column="43" lean-forward="true" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+        <state relative-caret-position="628">
+          <caret line="67" column="43" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/menu.tmpl">
+    <entry file="file://$PROJECT_DIR$/controllers/EndController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="83" column="10" lean-forward="true" selection-start-line="62" selection-start-column="4" selection-end-line="83" selection-end-column="10" />
+        <state relative-caret-position="216">
+          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/manager.index.tmpl">
+    <entry file="file://$PROJECT_DIR$/templates/index.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="698">
-          <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+        <state relative-caret-position="342">
+          <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/OrderInfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AjaxController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="142" selection-start-line="142" selection-end-line="142" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/my.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="96" column="12" lean-forward="true" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="12" />
+        <state relative-caret-position="288">
+          <caret line="562" column="58" lean-forward="true" selection-start-line="562" selection-start-column="58" selection-end-line="562" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/manager.index.tmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
         </state>
       </provider>
     </entry>

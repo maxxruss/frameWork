@@ -135,6 +135,14 @@ class AjaxController
         exit;
     }
 
+    public function actionCompleteOrder()
+    {
+        $modelOrderInfo = new OrderInfo();
+
+        echo json_encode($modelOrderInfo->completeOrder($_POST['completeOrder']));
+        exit;
+    }
+
     public function actionOrderEnd()
     {
         $modelBasket = new Basket();

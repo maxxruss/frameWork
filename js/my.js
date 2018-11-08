@@ -523,7 +523,7 @@ function renderManager() {
             var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">#</th><th scope="col">Заказ</th><th scope="col">Время заказа</th><th scope="col">Сдача с купюры</th><th scope="col">Способ оплаты</th><th scope="col">Доставка/самовывоз</th><th scope="col">Заказ на время</th><th scope="col">Телефон</th><th scope="col">Дисконтная карта</th><th scope="col">Персон</th><th scope="col">Адрес</th><th scope="col">Комментарий</th><th scope="col">Закрыть заказ</th></tr></thead><tbody>';
 
             for (var key in dateAnswer) {
-                if (dateAnswer[key].inWork == 1) {
+                if (dateAnswer[key].order_status == 1) {
 
 
                 var date = new Date(dateAnswer[key].timeOrder * 1000);// Hours part from the timestamp
@@ -554,7 +554,8 @@ function renderManager() {
                 table += '<td>' + dateAnswer[key].persons + '</td>';
                 table += '<td>' + dateAnswer[key].address + '</td>';
                 table += '<td>' + dateAnswer[key].comment + '</td>';
-                table += '<td><button type="button" onclick="completeOrder(' + dateAnswer[key].id+ ')" class="btn btn-primary" data-toggle="modal" data-target="#completeOrder">Выполнено!</button></td></tr>';
+                table += '<td><button type="button" onclick="if(confirm(\'Изменить статус заказа на выполнено?\'))completeOrder(' + dateAnswer[key].id+ ');else return false;" >Выполнено!</button></td></tr>';
+
                 }
             }
 
@@ -562,6 +563,23 @@ function renderManager() {
             var mainTableManager = $('.mainTableManager');
             mainTableManager.empty();
             mainTableManager.append(table);
+        }
+    });
+}
+
+function completeOrder(order_id) {
+    var str = "completeOrder=" + order_id;
+    $.ajax({
+        url: '../controllers/Ajax/completeOrder', // путь к php-обработчику
+        type: 'POST', // метод передачи данных
+        dataType: 'json', // тип ожидаемых данных в ответе
+        data: str, // данные, которые передаем на сервер
+        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+            alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
+        },
+        success: function (dateAnswer) {
+            console.log(dateAnswer);
+            renderManager();
         }
     });
 }
