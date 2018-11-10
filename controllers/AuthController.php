@@ -16,6 +16,8 @@ class AuthController extends Controller
 {
     public function actionIndex()
     {
+        $userModel = new User();
+        $this->initResult = $userModel->authWithCookie();
         echo $this->render('auth.index', [
             'auth' => $this->initResult,
             'name' => $_SESSION['user']['name']

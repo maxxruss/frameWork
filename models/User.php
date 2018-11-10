@@ -93,7 +93,6 @@ class User extends Model
                 if ($this->user_db['login'] == $_SESSION['user']['login'] && $this->user_db['pass'] == $_SESSION['user']['pass']) {
                     return true;
                 } else {
-                    //session_unset();
                     return false;
                 }
             }
@@ -104,15 +103,14 @@ class User extends Model
 
     function authWithCookie()
     {
-        if (isset($_COOKIE['id']) && isset($_COOKIE['hash'])) {
+        if (isset($_COOKIE['token'])) {
             // получаем данные пользователя по id
             $pdo = Db::getPDO();
-            $statement = $pdo->query("select id, name, login, pass, hash from " . $this->table . " where id = '" . $_COOKIE['id'] . "'");
+            $statement = $pdo->query("select id, name, login, pass, token from " . $this->table . " where token = '" . $_COOKIE['token'] . "'");
             $this->user_db = $statement->fetch();
-            //var_dump($this->user_db);
-            if (($this->user_db['hash'] !== $_COOKIE['hash']) || ($this->user_db['id'] !== $_COOKIE['id'])) {
-                setcookie("id", '', time() - 3600 * 24 * 30, '/');
-                setcookie("hash", '', time() - 3600 * 24 * 30, '/');
+            if (($this->user_db['token'] !== $_COOKIE['token'])) {
+                setcookie("token", '', time() - 3600 * 24 * 30, '/');
+                echo 'Что то пошло не так, попробуйте снова';
                 return false;
             } else {
                 //header("Location: /");
@@ -124,45 +122,42 @@ class User extends Model
         }
     }
 
+    public function authAnonymous()
+    {
+        if (!isset($_SESSION['user']['token'])&&!isset($_COOKIE['token'])) {
+
+                $token = md5(time());
+                $_SESSION['user']['token'] = $token;
+                setcookie("token", $token, time() - 3600 * 24 * 30, '/');
+            } else {
+                $_SESSION['user']['token'] = $_COOKIE['token'];
+            }
+    }
+
     public function init()
     {
-        $this->resultAuth = false;
-
         if ($this->authWithSession() == true) {
             $this->resultAuth = true;
-        } elseif ($this->authWithCookie() == true) {
-            $this->resultAuth = false;
         } else {
-            $hash = $this->hashPassword(rand(1, 10));
-            $pdo = Db::getPDO();
-            $pdo->exec("INSERT INTO `" . $this->table . "` (`name`, `email`, `login`, `pass`, `hash`) VALUES ('', '', '', '', '" . $hash . "')");
-            $this->user_db['id'] = $pdo->lastInsertId();
-            setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30, '/');
-            setcookie("hash", $hash, time() + 3600 * 24 * 30, '/');
-            $_SESSION['user'] = ['id' => $this->user_db['id'], 'hash' => $hash];
+            $this->authAnonymous();
             $this->resultAuth = false;
         };
-        $this->initUserOrder();
+
         return $this->resultAuth;
     }
 
-    public function initUserOrder()
-    {
-        if (!empty($_SESSION['user'])) {
-            $pdo = Db::getPDO();
-            $statement = $pdo->query("select * from orderInfo where user_id = '" . $_SESSION['user']['id'] . "'");
-            $orderInfo = $statement->fetch();
-            if ($orderInfo) {
-                $_SESSION['user']['order_id'] = $orderInfo['id'];
-            } else {
-                $model = new OrderInfo();
-                $model->values['timeOrder'] = time();
-                $model->values['user_id'] = $_SESSION['user']['id'];
-                $model->clientInfo_new($model->values);
-                $_SESSION['user']['order_id'] = $pdo->lastInsertId();
-            }
-        }
-    }
+//    public function createNewUser()
+//    {
+//        $hash = $this->hashPassword();
+//        $pdo = Db::getPDO();
+//        $pdo->exec("INSERT INTO `" . $this->table . "` (`name`, `email`, `login`, `pass`, `hash`) VALUES ('', '', '', '', '" . $hash . "')");
+//        $this->user_db['id'] = $pdo->lastInsertId();
+//        setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30, '/');
+//        setcookie("hash", $hash, time() + 3600 * 24 * 30, '/');
+//        $_SESSION['user'] = ['id' => $this->user_db['id'], 'hash' => $hash];
+//        $this->resultAuth = false;
+//    }
+
 
     public function logOutUser()
     {
@@ -173,44 +168,43 @@ class User extends Model
     }
 
 
-    public function hashPassword($password)
+    public function hashPassword()
     {
-        return md5($password);
+        return md5(rand(1, 10));
     }
 
-    /**
-     * Сверяем введённый пароль и хэш
-     * @param $password
-     * @param $hash
-     * @return bool
-     */
 
     public function regUser()
     {
         if (isset($_POST['submit'])) {
             $name = $_POST['name'];
             $login = $_POST['login'];
-            /**$statement = $pdo->query("SELECT id, login, pass, name FROM `" . $this->table . "` ");
-             * $this->user_db = $statement->fetchAll();**/
-            if (strtolower($login) == 'admin') {
+
+            $pdo = Db::getPDO();
+            $statement = $pdo->query("SELECT id, login, pass, name FROM " . $this->table);
+            $this->user_db = $statement->fetchAll();
+
+            if (strtolower($login) == $this->user_db['admin']) {
                 return "Логин админа нельзя зарегистрировать!";
             }
+
             foreach ($this->user_db as $item) {
                 if ($login == $item['login']) {
                     return "Такой уже логин есть!";
                 }
             }
+
             if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $email = trim(strip_tags($_POST['email']));
             };
+
             $hash = $this->hashPassword(rand(1, 10));
             $pass = trim(strip_tags($_POST['pass']));
-            //$date =
-            $pdo = Db::getPDO();
+
             $statementReg = $pdo->exec("INSERT INTO `" . $this->table . "` (login, pass, name, email, hash) VALUES ('" . $login . "', '" . md5($pass) . "', '" . $name . "', '" . $email . "', '" . $hash . "')");
             $lastId = $pdo->lastInsertId();
 
-            if ($statementReg > 0) {
+            if ($statementReg) {
                 $statement = $pdo->query("select id, name, login, pass, hash from " . $this->table . " where id = '" . $lastId . "'");
                 $_SESSION['user'] = $statement->fetch();
                 //$this->init();

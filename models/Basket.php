@@ -140,18 +140,18 @@ class Basket extends Model
         return floor($result[0]['sumDiscount']);
     }
 
-    function countOneGoodsOrder($id)
+    function countOneGoodsOrder($goodValue)
     {
         $pdo = Db::getPDO();
-        $statement = $pdo->query('SELECT `count`  FROM ' . $this->table . ' ' . $this->innerJoin . ' WHERE basket.id='.$id);
+        $statement = $pdo->query('SELECT `count`  FROM ' . $this->table . ' ' . $this->innerJoin . ' WHERE order_id=' . $goodValue['order_id'] . ' AND good_id=' . $goodValue['good_id']);
         $result = $statement->fetch();
         return $result['count'];
     }
 
-    public function sumOneGoodsOrder($id)
+    public function sumOneGoodsOrder($goodValue)
     {
         $pdo = Db::getPDO();
-        $statement = $pdo->query('SELECT sum(`count`*`price`) AS sum FROM '. $this->table.' ' . $this->innerJoin . ' WHERE basket.id='. $id);
+        $statement = $pdo->query('SELECT sum(`count`*`price`) AS sum FROM '. $this->table.' ' . $this->innerJoin . ' WHERE order_id=' . $goodValue['order_id'] . ' AND good_id=' . $goodValue['good_id']);
         $result = $statement->fetch();
         return $result['sum'];
     }

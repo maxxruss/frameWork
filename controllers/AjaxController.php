@@ -40,10 +40,13 @@ class AjaxController
 
     public function actionAddToBasket()
     {
+        $orderInfo = new OrderInfo();
+        $orderInfo->initUserOrder();
+
+
         if (isset($_POST['addBasketid'])) {
-            if (isset($_POST['addBasketid'])) {
-                $good_id = $_POST['addBasketid'];
-            };
+
+            $good_id = $_POST['addBasketid'];
 
             $modelBasket = new Basket();
             $goodValue['good_id'] = $good_id;
@@ -54,21 +57,21 @@ class AjaxController
 
 
             if ($basketGood) {
-                $modelBasket->countBasketPlus($basketGood['id']);
+                $modelBasket->countPlus($basketGood['id']);
             } else {
                 $goodValue['count'] = '1';
                 $modelBasket->create($goodValue);
             }
-
-            $countGoodsOrder = $modelBasket->countGoodsOrder($goodValue['order_id']);
-            $sumGoodsOrder = $modelBasket->sumGoodsOrder($goodValue['order_id']);
-            $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($basketGood['id']);
-            $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($basketGood['id']);
-            $orderTotalSum = $modelBasket->sumGoodsOrder($goodValue['order_id']);
-            $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount($goodValue['order_id']);
-
-            $req = [$countGoodsOrder, $sumGoodsOrder, $countOneGoodsOrder, $sumOneGoodsOrder, $orderTotalSum, $sumGoodsOrderDiscount]; // присваиваем переменной нужные данные
-            echo json_encode($req);
+//
+//            $countGoodsOrder = $modelBasket->countGoodsOrder($goodValue['order_id']); //количество всех товаров в заказе
+//            $sumGoodsOrder = $modelBasket->sumGoodsOrder($goodValue['order_id']); // Итого стоимость всех товаров в заказе (количество * цена - складывается по всем товарам)
+//            $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($goodValue); // Количество одного товара в заказе по id товара
+//            $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($goodValue); // Стоимость товара в заказе по id товара (количество * цена)
+////            $orderTotalSum = $modelBasket->sumGoodsOrder($goodValue['order_id']);
+//            $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount($goodValue['order_id']);  // Итого стоимость всех товаров в заказе с учетом скидки
+//
+//            $req = [$countGoodsOrder, $sumGoodsOrder, $countOneGoodsOrder, $sumOneGoodsOrder, $sumGoodsOrderDiscount]; // присваиваем переменной нужные данные
+//            echo json_encode($req);
             exit;
         }
 
@@ -93,21 +96,21 @@ class AjaxController
 
             if ($basketGood['count'] > 1) {
                 $modelBasket->countBasketMinus($basketGood['id']);
-            } else {
+            } elseif ($basketGood['count']==1) {
                 $modelBasket->deleteBasket($basketGood['id']);
             }
 
-            $countGoodsOrder = $modelBasket->countGoodsOrder($goodValue['order_id']);
-            $sumGoodsOrder = $modelBasket->sumGoodsOrder($goodValue['order_id']);
-            $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($basketGood['id']);
-            $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($basketGood['id']);
-            $orderTotalSum = $modelBasket->sumGoodsOrder($goodValue['order_id']);
-            $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount($goodValue['order_id']);
+//            $countGoodsOrder = $modelBasket->countGoodsOrder($goodValue['order_id']);
+//            $sumGoodsOrder = $modelBasket->sumGoodsOrder($goodValue['order_id']);
+//            $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($basketGood['id']);
+//            $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($basketGood['id']);
+//            $orderTotalSum = $modelBasket->sumGoodsOrder($goodValue['order_id']);
+//            $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount($goodValue['order_id']);
 
 
-            $req = [$countGoodsOrder, $sumGoodsOrder, $countOneGoodsOrder, $sumOneGoodsOrder, $orderTotalSum, $sumGoodsOrderDiscount]; // присваиваем переменной нужные данные
+//            $req = [$countGoodsOrder, $sumGoodsOrder, $countOneGoodsOrder, $sumOneGoodsOrder, $orderTotalSum, $sumGoodsOrderDiscount]; // присваиваем переменной нужные данные
 
-            echo json_encode($req);
+//            echo json_encode();
             exit;
         }
     }
