@@ -17,11 +17,16 @@ class AuthController extends Controller
     public function actionIndex()
     {
         $userModel = new User();
-        $this->initResult = $userModel->authWithCookie();
-        echo $this->render('auth.index', [
-            'auth' => $this->initResult,
-            'name' => $_SESSION['user']['name']
-        ]);
+        $this->initResult = $userModel->authWithToken();
+        if (!$this->initResult) {
+            echo $this->render('auth.index', [
+                'auth' => $this->initResult,
+//                'name' => $_SESSION['user']['name']
+            ]);
+        } else {
+            $this->actionCabinet();
+        }
+
     }
 
     public function actionLogout()
@@ -35,14 +40,18 @@ class AuthController extends Controller
         ]);
     }
 
-    public function actionAuthorization()
+    public function actionAuthWithCredentials()
     {
         $userModel = new User();
-        $resultAuth = $userModel->authWithCredentials();
-        echo $this->render('auth.cabinet', [
-            'auth' => $resultAuth,
-            'name' => $_SESSION['user']['name']]);
+        $this->initResult = $userModel->authWithCredentials();
 
+        if ($this->initResult) {
+        $this->actionCabinet();
+        } else {
+            echo $this->render('auth.reg', [
+                'massage'=> 'Пользователь не найден, пройдите регистрацию'
+            ]);
+        }
     }
 
     public function actionRegInput()

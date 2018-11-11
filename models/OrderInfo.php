@@ -62,18 +62,16 @@ class OrderInfo extends Model
 
     public function initUserOrder()
     {
-        $user_id = $_SESSION['user']['id'];
-        if (isset($user_id)) {
+        $user_id = $_SESSION['user']['token'];
+        $pdo = Db::getPDO();
+        $statement = $pdo->query('select * from ' . $this->table . ' where user_id = "' . $user_id . '" AND order_status >= 0');
+        $orderInfo = $statement->fetch();
+        if ($orderInfo) {
+            $_SESSION['user']['order_id'] = $orderInfo['id'];
+        } else {
+            $this->createOrder($user_id);
             $pdo = Db::getPDO();
-            $statement = $pdo->query('select * from ' .$this->table . ' where user_id = "' . $user_id . '" AND order_status >= 0');
-            $orderInfo = $statement->fetch();
-            if ($orderInfo) {
-                $_SESSION['user']['order_id'] = $orderInfo['id'];
-            } else  {
-                $this->createOrder($user_id);
-                $pdo = Db::getPDO();
-                $_SESSION['user']['order_id'] = $pdo->lastInsertId();
-            }
+            $_SESSION['user']['order_id'] = $pdo->lastInsertId();
         }
     }
 
@@ -120,7 +118,7 @@ class OrderInfo extends Model
     public function createOrder($user_id)
     {
         $pdo = DB::getPDO();
-        $result = $pdo->exec('INSERT INTO ' . $this->table . ' (user_id) VALUES (' . $user_id . ')');
+        $result = $pdo->exec('INSERT INTO ' . $this->table . ' (user_id) VALUES ("' . $user_id . '")');
         return $result;
     }
 

@@ -37,10 +37,10 @@ function renderBasket() {
         dataType: 'json', // тип ожидаемых данных в ответе
         data: str, // данные, которые передаем на сервер
         error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
-            alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
+            alert('Хьюстон, У нас проблемы! c рендер баскет ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
-            console.log(dateAnswer);
+
             var basketInfo = '<strong>Корзина</strong><br>';
             if (dateAnswer) {
                 basketInfo += '<strong>' + dateAnswer + '</strong>';
@@ -172,6 +172,7 @@ function addToBasketModal(idGood) {
         },
         success: function (dateAnswer) {
             renderBasketModal();
+            renderBasket();
 
             console.log(dateAnswer);
             // if (dateAnswer) {
@@ -227,6 +228,7 @@ function deleteToBasketModal(idGood) {
         },
         success: function () {
             renderBasketModal();
+            renderBasket();
 
             // console.log(dateAnswer);
             // if (dateAnswer[2] > 0) {

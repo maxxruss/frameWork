@@ -36,11 +36,18 @@ class Request
         $path = explode('/',$url);
         //var_dump($path);exit;
 
-        if(count($path) == 4) {
+//        if(count($path) == 4) {
+//            $this->controller = $path[2];
+//            $this->action = $path[3];
+//        } elseif (count($path) == 3 && !empty($path[2])) {
+//            $this->controller = $path[2];
+//        }
+
+        if (count($path) == 3 && !empty($path[2])) {
             $this->controller = $path[2];
-            $this->action = $path[3];
-        } elseif (count($path) == 3 && !empty($path[2])) {
-            $this->controller = $path[2];
+        } else  {
+            $this->controller = $path[count($path)-2];
+            $this->action = $path[count($path)-1];
         }
 
 
@@ -60,11 +67,6 @@ class Request
         if(class_exists($classController)) {
             $instanceController = new $classController('../templates/', '.tmpl');
 
-
-
-            //print_r($instanceController).'<br>';
-            //print_r($action) ;
-            //exit;
 
             if(method_exists($instanceController,$action)) {
                 call_user_func_array([$instanceController,$action],[$get]);

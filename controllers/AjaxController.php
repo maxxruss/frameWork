@@ -24,7 +24,12 @@ class AjaxController
     public function actionRenderBasket()
     {
         $modelBasket = new Basket();
-        $countGoodsOrder = $modelBasket->countGoodsOrder($_SESSION['user']['order_id']);
+
+        if ($_SESSION['user']['order_id']) {
+            $countGoodsOrder = $modelBasket->countGoodsOrder($_SESSION['user']['order_id']);
+        } else {
+            $countGoodsOrder = false;
+        }
         echo json_encode($countGoodsOrder);
         exit;
 

@@ -53,17 +53,17 @@ class User extends Model
             $this->password = $_POST['pass'];
             // получаем данные пользователя по логину
             $pdo = Db::getPDO();
-            $statement = $pdo->query("SELECT id, login, pass, name, hash FROM `" . $this->table . "` WHERE `login` = '" . $this->login . "'");
+            $statement = $pdo->query("SELECT id, login, pass, name, token FROM `" . $this->table . "` WHERE `login` = '" . $this->login . "'");
             $this->user_db = $statement->fetch();
             // проверяем соответствие логина и пароля
-            if (!empty($this->user_db)) {
+            if ($this->user_db) {
                 if ($this->user_db['login'] == $this->login && $this->user_db['pass'] == md5($this->password)) {
                     $this->resultAuth = true;
                     // если стояла галка, то запоминаем пользователя на год
-                    if (isset($_POST['rememberme']) && $_POST['rememberme'] == 'on') {
-                        setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30 * 12, '/');
-                        setcookie("hash", $this->user_db['hash'], time() + 3600 * 24 * 30 * 12, '/');
-                    }
+//                    if (isset($_POST['rememberme']) && $_POST['rememberme'] == 'on') {
+////                        setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30 * 12, '/');
+////                        setcookie("hash", $this->user_db['hash'], time() + 3600 * 24 * 30 * 12, '/');
+//                    }
                     /** сохраним данные в сессию**/
                     $_SESSION['user'] = $this->user_db;
                 } else {
@@ -101,50 +101,64 @@ class User extends Model
         }
     }
 
-    function authWithCookie()
+    function authWithToken()
     {
-        if (isset($_COOKIE['token'])) {
+        $token = $_SESSION['user']['token'];
+        if (isset($token)) {
             // получаем данные пользователя по id
             $pdo = Db::getPDO();
-            $statement = $pdo->query("select id, name, login, pass, token from " . $this->table . " where token = '" . $_COOKIE['token'] . "'");
+            $statement = $pdo->query("select id, name, login, pass, token from " . $this->table . " where token = '" . $token . "'");
             $this->user_db = $statement->fetch();
-            if (($this->user_db['token'] !== $_COOKIE['token'])) {
-                setcookie("token", '', time() - 3600 * 24 * 30, '/');
-                echo 'Что то пошло не так, попробуйте снова';
-                return false;
-            } else {
+            if (($this->user_db)) {
                 //header("Location: /");
                 $_SESSION['user'] = $this->user_db;
                 return true;
+            } else {
+                return false;
             }
         } else {
             return false;
         }
     }
 
-    public function authAnonymous()
-    {
-        if (!isset($_SESSION['user']['token'])&&!isset($_COOKIE['token'])) {
+    public function initToken()
+    {//
+//        $tokenCookie = $_COOKIE['token'];
+//        $tokenSession = $_SESSION['user']['token'];
 
-                $token = md5(time());
-                $_SESSION['user']['token'] = $token;
-                setcookie("token", $token, time() - 3600 * 24 * 30, '/');
-            } else {
+        if (isset($_COOKIE['token']) && isset($_SESSION['user']['token'])) {
+            if ($_COOKIE['token'] != $_SESSION['user']['token']) {
                 $_SESSION['user']['token'] = $_COOKIE['token'];
             }
+        }
+
+        if (!isset($_COOKIE['token']) && !isset($_SESSION['user']['token'])) {
+            $token = md5(time());
+            $_SESSION['user']['token'] = $token;
+            setcookie("token", $token, time() - 3600 * 24 * 30, '/');
+        }
+
+        if (!isset($_SESSION['user']['token'])) {
+            $_SESSION['user']['token'] = $_COOKIE['token'];
+        }
+
+        if (!isset($_COOKIE['token'])) {
+            setcookie("token", $_SESSION['user']['token'], time() + 3600 * 24 * 30, '/');
+        }
     }
 
     public function init()
     {
-        if ($this->authWithSession() == true) {
+        if ($this->authWithSession()) {
             $this->resultAuth = true;
         } else {
-            $this->authAnonymous();
+            $this->initToken();
             $this->resultAuth = false;
         };
 
         return $this->resultAuth;
     }
+
 
 //    public function createNewUser()
 //    {
@@ -165,12 +179,6 @@ class User extends Model
         //d($_SESSION);exit;
         //d($_COOKIE);exit;
         return $this->init();
-    }
-
-
-    public function hashPassword()
-    {
-        return md5(rand(1, 10));
     }
 
 
