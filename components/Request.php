@@ -35,17 +35,17 @@ class Request
 
         $path = explode('/',$url);
         //var_dump($path);exit;
-
+//
 //        if(count($path) == 4) {
 //            $this->controller = $path[2];
 //            $this->action = $path[3];
 //        } elseif (count($path) == 3 && !empty($path[2])) {
 //            $this->controller = $path[2];
 //        }
-
+//
         if (count($path) == 3 && !empty($path[2])) {
             $this->controller = $path[2];
-        } else  {
+        } elseif (count($path) > 3)  {
             $this->controller = $path[count($path)-2];
             $this->action = $path[count($path)-1];
         }

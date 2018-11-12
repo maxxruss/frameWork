@@ -58,14 +58,17 @@ class User extends Model
             // проверяем соответствие логина и пароля
             if ($this->user_db) {
                 if ($this->user_db['login'] == $this->login && $this->user_db['pass'] == md5($this->password)) {
-                    $this->resultAuth = true;
                     // если стояла галка, то запоминаем пользователя на год
 //                    if (isset($_POST['rememberme']) && $_POST['rememberme'] == 'on') {
 ////                        setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30 * 12, '/');
 ////                        setcookie("hash", $this->user_db['hash'], time() + 3600 * 24 * 30 * 12, '/');
 //                    }
-                    /** сохраним данные в сессию**/
+                    /** сохраним данные в сессию и куки**/
+
                     $_SESSION['user'] = $this->user_db;
+                    setcookie("token", $this->user_db['token'], time() + 3600 * 24 * 30 * 12, '/');
+                    $this->resultAuth = true;
+
                 } else {
                     $this->resultAuth = false;
                 }
@@ -122,7 +125,7 @@ class User extends Model
     }
 
     public function initToken()
-    {//
+    {
 //        $tokenCookie = $_COOKIE['token'];
 //        $tokenSession = $_SESSION['user']['token'];
 
@@ -133,7 +136,7 @@ class User extends Model
         }
 
         if (!isset($_COOKIE['token']) && !isset($_SESSION['user']['token'])) {
-            $token = md5(time());
+            $token = $this->createToken();
             $_SESSION['user']['token'] = $token;
             setcookie("token", $token, time() - 3600 * 24 * 30, '/');
         }
@@ -145,6 +148,10 @@ class User extends Model
         if (!isset($_COOKIE['token'])) {
             setcookie("token", $_SESSION['user']['token'], time() + 3600 * 24 * 30, '/');
         }
+    }
+
+    public function createToken() {
+        return md5(time());
     }
 
     public function init()
@@ -206,14 +213,14 @@ class User extends Model
                 $email = trim(strip_tags($_POST['email']));
             };
 
-            $hash = $this->hashPassword(rand(1, 10));
+            $token = $_SESSION['user']['token'];
             $pass = trim(strip_tags($_POST['pass']));
 
-            $statementReg = $pdo->exec("INSERT INTO `" . $this->table . "` (login, pass, name, email, hash) VALUES ('" . $login . "', '" . md5($pass) . "', '" . $name . "', '" . $email . "', '" . $hash . "')");
+            $statementReg = $pdo->exec("INSERT INTO `" . $this->table . "` (login, pass, name, email, token) VALUES ('" . $login . "', '" . md5($pass) . "', '" . $name . "', '" . $email . "', '" . $token . "')");
             $lastId = $pdo->lastInsertId();
 
             if ($statementReg) {
-                $statement = $pdo->query("select id, name, login, pass, hash from " . $this->table . " where id = '" . $lastId . "'");
+                $statement = $pdo->query("select id, name, login, pass, token from " . $this->table . " where id = '" . $lastId . "'");
                 $_SESSION['user'] = $statement->fetch();
                 //$this->init();
                 return true;
