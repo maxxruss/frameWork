@@ -26,7 +26,7 @@ class App
         $this->request = new Request();
         $this->request->init();
 //        $modelUser = new User();
-//        $modelUser->initToken();
+//        $modelUser->init();
 
     }
 

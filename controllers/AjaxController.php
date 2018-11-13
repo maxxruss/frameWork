@@ -45,10 +45,6 @@ class AjaxController
 
     public function actionAddToBasket()
     {
-        $orderInfo = new OrderInfo();
-        $orderInfo->initUserOrder();
-
-
         if (isset($_POST['addBasketid'])) {
 
             $good_id = $_POST['addBasketid'];
@@ -236,36 +232,36 @@ class AjaxController
         exit; // останавливаем дальнейшее выполнение скрипта
     }
 
-    public function actionDbCreateOrder()
-    {
-        $model = new OrderInfo();
-        $orderInfo = $model->getClientInfo_all();
-
-        $model->values['timeOrder'] = time();
-
-
-        if (count($orderInfo) == 0) {
-            $model->clientInfo_new($model->values);
-        } else {
-            $model->clientInfo_edit($model->values);
-        };
-
-        $orderInfo = $model->getClientInfo_all();
-        $idClient = $orderInfo['id'];
-        $modelBasket = new Basket();
-        $goodsBasket = $modelBasket->getAllBasket();
-
-        $modelOrder = new OrderProducts1();
-        $modelOrder->truncateOrder();
-
-        foreach ($goodsBasket as $good) {
-            $idGood = $good['id'];
-            $count = $good['count'];
-            $modelOrder->newOrderToManager($idClient, $idGood, $count);
-        }
-
-        echo json_encode($goodsBasket); // возвращаем данные ответом, преобразовав в JSON-строку
-        exit; // останавливаем дальнейшее выполнение скрипта
-
-    }
+//    public function actionDbCreateOrder()
+//    {
+//        $model = new OrderInfo();
+//        $orderInfo = $model->getClientInfo_all();
+//
+//        $model->values['timeOrder'] = time();
+//
+//
+//        if (count($orderInfo) == 0) {
+//            $model->clientInfo_new($model->values);
+//        } else {
+//            $model->clientInfo_edit($model->values);
+//        };
+//
+//        $orderInfo = $model->getClientInfo_all();
+//        $idClient = $orderInfo['id'];
+//        $modelBasket = new Basket();
+//        $goodsBasket = $modelBasket->getAllBasket();
+//
+//        $modelOrder = new OrderProducts1();
+//        $modelOrder->truncateOrder();
+//
+//        foreach ($goodsBasket as $good) {
+//            $idGood = $good['id'];
+//            $count = $good['count'];
+//            $modelOrder->newOrderToManager($idClient, $idGood, $count);
+//        }
+//
+//        echo json_encode($goodsBasket); // возвращаем данные ответом, преобразовав в JSON-строку
+//        exit; // останавливаем дальнейшее выполнение скрипта
+//
+//    }
 }

@@ -64,16 +64,19 @@ class OrderInfo extends Model
     {
         $user_id = $_SESSION['user']['token'];
         $pdo = Db::getPDO();
-        $statement = $pdo->query('select * from ' . $this->table . ' where user_id = "' . $user_id . '" AND order_status >= 0');
+        $statement = $pdo->query('select * from ' . $this->table . ' where user_id = "' . $user_id . '" AND order_status = 0');
         $orderInfo = $statement->fetch();
+
         if ($orderInfo) {
             $_SESSION['user']['order_id'] = $orderInfo['id'];
+            return true;
         } else {
-            $this->createOrder($user_id);
-            $pdo = Db::getPDO();
-            $_SESSION['user']['order_id'] = $pdo->lastInsertId();
+            $this->createOrder($_SESSION['user']['token']);
+            return false;
         }
     }
+
+//    public function
 
     function getInfoOrder()
     {
@@ -119,6 +122,11 @@ class OrderInfo extends Model
     {
         $pdo = DB::getPDO();
         $result = $pdo->exec('INSERT INTO ' . $this->table . ' (user_id) VALUES ("' . $user_id . '")');
+
+        if ($result) {
+            $_SESSION['user']['order_id'] = $pdo->lastInsertId();
+        };
+
         return $result;
     }
 
@@ -126,7 +134,7 @@ class OrderInfo extends Model
     public function clientInfo_edit($values)
     {
         $pdo = DB::getPDO();
-        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET phone = "' . $values['phone'] . '", discountCard = "' . $values['discountCard'] . '", persons = "' . $values['persons'] . '", pay = ' . $values['pay'] . ', money = "' . $values['money'] . '", address = "' . $values['address'] . '", comment = "' . $values['comment'] . '", delivery = ' . $values['delivery'] . ', desiredTime = "' . $values['desiredTime'] . '", timeOrder = ' . time() . ', order_status =  1 , user_id_old = user_id, user_id = 0 WHERE `id` = ' . $_SESSION['user']['order_id']);
+        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET phone = "' . $values['phone'] . '", discountCard = "' . $values['discountCard'] . '", persons = "' . $values['persons'] . '", pay = ' . $values['pay'] . ', money = "' . $values['money'] . '", address = "' . $values['address'] . '", comment = "' . $values['comment'] . '", delivery = ' . $values['delivery'] . ', desiredTime = "' . $values['desiredTime'] . '", timeOrder = ' . time() . ', order_status =  1  WHERE `id` = ' . $_SESSION['user']['order_id']);
         return $statement;
     }
 

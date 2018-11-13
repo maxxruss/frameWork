@@ -41,7 +41,8 @@
                 {% else %}
                     {% include 'menu_block_auth_false.tmpl' %}
                 {% endif %}
-                {% if name == 'admin' %}
+
+                {% if name == 'admin'%}
                 {% include 'menu_block_admin.tmpl' %}
                 {% endif %}
             </ul>

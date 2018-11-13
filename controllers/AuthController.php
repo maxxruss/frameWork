@@ -64,20 +64,16 @@ class AuthController extends Controller
     {
         $userModel = new User();
         $regUser = $userModel->regUser();
-        $userModel->authWithCredentials();
-        if ($regUser == true) {
+//        $userModel->authWithCredentials();
+        if ($regUser === true) {
             echo $this->render('auth.cabinet', [
                 'auth' => $regUser,
-                'reg' => $regUser,
+//                'reg' => $regUser,
                 'name' => $_SESSION['user']['name']
             ]);
-        } elseif ($regUser == false) {
-            echo $this->render('auth.index', [
-                'authResult' => 'Регистрация не прошла!'
-            ]);
         } else {
-            echo $this->render('auth.index', [
-                'authResult' => $regUser
+            echo $this->render('auth.reg', [
+                'massage' => $regUser
             ]);
         }
     }

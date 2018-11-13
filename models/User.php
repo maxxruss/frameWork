@@ -67,6 +67,8 @@ class User extends Model
 
                     $_SESSION['user'] = $this->user_db;
                     setcookie("token", $this->user_db['token'], time() + 3600 * 24 * 30 * 12, '/');
+                    $orderInfo = new OrderInfo();
+                    $orderInfo->initUserOrder();
                     $this->resultAuth = true;
 
                 } else {
@@ -77,12 +79,12 @@ class User extends Model
         return $this->resultAuth;
     }
 
-    public function getUserByCookieId()
-    {
-        $pdo = Db::getPDO();
-        $statement = $pdo->query("select id, name, login, pass, session_id from " . $this->table . " where session_id = '" . $_COOKIE['id_user'] . "'");
-        return $statement->fetch();
-    }
+//    public function getUserByCookieId()
+//    {
+//        $pdo = Db::getPDO();
+//        $statement = $pdo->query("select id, name, login, pass, session_id from " . $this->table . " where session_id = '" . $_COOKIE['id_user'] . "'");
+//        return $statement->fetch();
+//    }
 
 
     public function authWithSession()
@@ -104,6 +106,11 @@ class User extends Model
         }
     }
 
+    public function initOrder() {
+        $orderInfo = new OrderInfo();
+        $orderInfo->initUserOrder();
+    }
+
     function authWithToken()
     {
         $token = $_SESSION['user']['token'];
@@ -115,6 +122,7 @@ class User extends Model
             if (($this->user_db)) {
                 //header("Location: /");
                 $_SESSION['user'] = $this->user_db;
+                $this->initOrder();
                 return true;
             } else {
                 return false;
@@ -163,6 +171,8 @@ class User extends Model
             $this->resultAuth = false;
         };
 
+        $this->initOrder();
+
         return $this->resultAuth;
     }
 
@@ -194,12 +204,14 @@ class User extends Model
         if (isset($_POST['submit'])) {
             $name = $_POST['name'];
             $login = $_POST['login'];
+            $token = $_SESSION['user']['token'];
+            $pass = trim(strip_tags($_POST['pass']));
 
             $pdo = Db::getPDO();
-            $statement = $pdo->query("SELECT id, login, pass, name FROM " . $this->table);
+            $statement = $pdo->query("SELECT id, name, login, pass, token  FROM " . $this->table);
             $this->user_db = $statement->fetchAll();
 
-            if (strtolower($login) == $this->user_db['admin']) {
+            if (strtolower($login) == 'admin') {
                 return "Логин админа нельзя зарегистрировать!";
             }
 
@@ -207,14 +219,15 @@ class User extends Model
                 if ($login == $item['login']) {
                     return "Такой уже логин есть!";
                 }
+
+//                if ($token == $item['token']) {
+//                    return "Вы уже проходили регистрацию, вспоминайте логин и пароль))!";
+//                }
             }
 
             if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $email = trim(strip_tags($_POST['email']));
             };
-
-            $token = $_SESSION['user']['token'];
-            $pass = trim(strip_tags($_POST['pass']));
 
             $statementReg = $pdo->exec("INSERT INTO `" . $this->table . "` (login, pass, name, email, token) VALUES ('" . $login . "', '" . md5($pass) . "', '" . $name . "', '" . $email . "', '" . $token . "')");
             $lastId = $pdo->lastInsertId();
@@ -222,6 +235,7 @@ class User extends Model
             if ($statementReg) {
                 $statement = $pdo->query("select id, name, login, pass, token from " . $this->table . " where id = '" . $lastId . "'");
                 $_SESSION['user'] = $statement->fetch();
+                $this->initOrder();
                 //$this->init();
                 return true;
             } else {
