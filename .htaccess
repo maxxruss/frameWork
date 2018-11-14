@@ -1,25 +1,14 @@
-Options All -ExecCGI +Indexes -Includes +FollowSymLinks
-
-DirectoryIndex index.php
+DirectoryIndex public/index.php
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteCond %{REQUEST_FILENAME} !favicon.ico
 RewriteRule ^(.*)$ public/index.php?route=$1 [L,QSA]
 </IfModule>
 
-
-#AddHandler application/x-httpd-php .html
-#AddHandler cgi-script .pl .py .jsp .asp .htm .shtml .sh .cgi
-#AddType application/x-javascript .js
-#AddType text/css .css
-#AddType text/xml .xml
-#AddType application/octet-stream .doc .mov .avi .pdf .xls
-
-
+Options All -ExecCGI -Indexes -Includes +FollowSymLinks
 
 
 

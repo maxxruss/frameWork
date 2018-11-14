@@ -61,7 +61,11 @@ class Basket extends Model
 
     }
 
-
+public function removeCompleteOrder($order_id)
+{
+    $pdo = Db::getPDO();
+    return $pdo->exec('DELETE FROM ' . $this->table . ' WHERE order_id="' . $order_id . '"');
+}
 
 
     public function update($values)

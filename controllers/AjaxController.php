@@ -143,18 +143,29 @@ class AjaxController
     {
         $modelOrderInfo = new OrderInfo();
 
-        echo json_encode($modelOrderInfo->completeOrder($_POST['completeOrder']));
+        if ($modelOrderInfo->completeOrder($_POST['completeOrder'])) {
+            $modelBasket = new Basket();
+            $modelBasket->removeCompleteOrder($_POST['completeOrder']);
+            echo json_encode(true);
+        } else {
+            echo json_encode(false);
+        }
+
         exit;
     }
 
     public function actionOrderEnd()
     {
-        $modelBasket = new Basket();
-        $basketDetails = $modelBasket->getOrderDetails($_SESSION['user']['order_id']);
+        if ($_SESSION['user']['accepted_order_id']) {
+
+            $modelBasket = new Basket();
+            $basketDetails = $modelBasket->getOrderDetails($_SESSION['user']['accepted_order_id']);
 
 
-        echo json_encode($basketDetails); // возвращаем данные ответом, преобразовав в JSON-строку
-        exit; // останавливаем дальнейшее выполнение скрипта
+            echo json_encode($basketDetails); // возвращаем данные ответом, преобразовав в JSON-строку
+            exit; // останавливаем дальнейшее выполнение скрипта
+        }
+
     }
 
     public function actionRenderAdminAjax()

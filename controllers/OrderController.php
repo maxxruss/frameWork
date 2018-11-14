@@ -22,11 +22,17 @@ class OrderController extends Controller
         ]);
     }
 
-    public function actionEnd()
+    public function actionMakeAnOrder()
     {
+        $_SESSION['user']['accepted_order_id'] = $_SESSION['user']['order_id'];
         $modelOrderInfo = new OrderInfo();
         $modelOrderInfo->clientInfo_edit($_POST);
-        $_SESSION['user']['order_id'] = '';
+header('location: /order/end');
+
+    }
+
+    public function actionEnd()
+    {
         echo $this->render('order_end', [
             'auth' => $this->initResult,
             'name' => $_SESSION['user']['name']

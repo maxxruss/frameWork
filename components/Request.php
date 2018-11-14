@@ -43,9 +43,9 @@ class Request
 //            $this->controller = $path[2];
 //        }
 //
-        if (count($path) == 3 && !empty($path[2])) {
-            $this->controller = $path[2];
-        } elseif (count($path) > 3)  {
+        if (count($path) == 2 && !empty($path[1])) {
+            $this->controller = $path[1];
+        } elseif (count($path) > 2)  {
             $this->controller = $path[count($path)-2];
             $this->action = $path[count($path)-1];
         }

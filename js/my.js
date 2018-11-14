@@ -105,7 +105,7 @@ function renderItemModal(idGood) {
         success: function (dateAnswer) {
             var table = '<div class="goodsWrapItem">';
             table += '<div class="wrapGoodImgItem">';
-            table += '<img class="goodImg" src=' + dateAnswer.bigPhoto + '>';
+            table += '<img class="goodImg" src=/public/' + dateAnswer.bigPhoto + '>';
             table += '</div>';
             table += '<div class="wrapGoodInfo">';
             table += '<div class="goodsNameFull">' + dateAnswer.nameFull + '</div>';
