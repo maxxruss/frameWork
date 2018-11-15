@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <title>Акции</title>
+</head>
+<body>
+{% include 'menu.tmpl' %}
+
+<main>
+    <div class="promoHeader">Акции</div>
+    <div id="container">
+        <div class="content">
+            <div class="promoWrap">
+                <i class="fas fa-truck fa-7x"></i>
+                <div class="promoText">
+                    <span>Самовывоз</span><br>
+                    <span>Скидка 10% если забираете заказ самостоятельно в филиале компании</span>
+                </div>
+            </div>
+            <div class="promoWrap">
+                <i class="far fa-clock fa-9x"></i>
+                <div class="promoText">
+                    <span>Акция "Счастливый час!</span><br>
+                    <span>Скидка 7% при заказе от 0ч 00м до 8ч 00м</span>
+                </div>
+            </div>
+            <div class="promoWrap">
+                <i class="far fa-smile fa-9x"></i>
+                <div class="promoText">
+                    <span>Скидка дня!</span><br>
+                    <span>Скидки до 10% на отдельные роллы и суши. Следите за акциями компании. Новые скидки каждый день!</span>
+                </div>
+            </div>
+
+        </div>
+        <footer>
+            <? include "../templates/footer.php"; ?>
+        </footer>
+    </div>
+</main>
+
+{% include 'footer.tmpl' %}
+</body>
+</html>

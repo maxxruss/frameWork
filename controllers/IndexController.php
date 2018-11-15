@@ -8,11 +8,7 @@
 
 namespace controllers;
 
-use components\Auth;
 use components\Controller;
-use components\Db;
-use models\Basket;
-use models\OrderInfo;
 use models\Goods;
 use models\User;
 
@@ -29,11 +25,12 @@ class IndexController extends Controller
             'name' => $_SESSION['user']['name']
         ]);
     }
+
     public function actionCabinet()
     {
         $userModel = new User();
 
-        if ($userModel->authWithCredentials()==true) {
+        if ($userModel->authWithCredentials() == true) {
             echo $this->render('cab.index', [
                 'authResult' => 'авторизация пройдена',
                 'auth' => $this->initResult,
@@ -46,5 +43,25 @@ class IndexController extends Controller
                 'name' => $_SESSION['user']['name']
             ]);
         }
+    }
+
+    public function actionAdmin()
+    {
+        $model = new Goods();
+        $dateAnswer = $model->getAllGoods();
+
+        echo $this->render('admin.index', [
+            'dateAnswer' => $dateAnswer,
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
+        ]);
+    }
+
+    public function actionManager()
+    {
+        echo $this->render('manager.index', [
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
+        ]);
     }
 }

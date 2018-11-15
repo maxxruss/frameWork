@@ -30,15 +30,7 @@ class Goods extends Model
     public function getOneGood($id) {
         return $this->getOne($id);
     }
-    public function selectGood($parameters) {
-        return $this->select($parameters);
-    }
-    public function createGood($values) {
-        return $this->create($values);
-    }
-    public function updateGood($values) {
-        return $this->update($values);
-    }
+
     public function deleteGood($id) {
         return $this->delete($id);
     }

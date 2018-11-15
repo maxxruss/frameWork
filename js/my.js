@@ -1,34 +1,3 @@
-// function renderAllGoods() {
-//     var str = "getAllGoods=" + '1';
-//     $.ajax({
-//         url: '../controllers/Admin.php', // путь к php-обработчику
-//         type: 'POST', // метод передачи данных
-//         dataType: 'json', // тип ожидаемых данных в ответе
-//         data: str, // данные, которые передаем на сервер
-//         error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
-//             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
-//         },
-//         success: function (dateAnswer) {
-//             console.log(dateAnswer);
-//             var table = '<table class="table table-hover"><thead><tr><th scope="col">Наименование</th><th scope="col">Количество</th><th scope="col">Сумма</th></tr></thead><tbody >';
-//             var i = 0;
-//             for (var key in dateAnswer) {
-//                 table += '<tr class="rowGoods' + dateAnswer[key].id + '">';
-//                 table += '<th>' + dateAnswer[key].nameFull + '</th>';
-//                 table += '<td><i class="fas fa-plus addToBasket" onclick="addToBasket(' + dateAnswer[key].id + ')" data-id=' + dateAnswer[key].id + '></i>';
-//                 table += '<div class="basketOneCount' + dateAnswer[key].id + '">' + dateAnswer[key].count + '</div>';
-//                 table += '<i class="fas fa-minus deleteToBasket" onclick="deleteToBasket(' + dateAnswer[key].id + ')" data-id=' + dateAnswer[key].id + '></i></td>';
-//                 table += '<td><div class="basketOneSum' + dateAnswer[key].id + '">' + dateAnswer[key].count * dateAnswer[key].price + '</div></td></tr>';
-//                 i++;
-//             }
-//             table += $('</table>');
-//             var modal = $('.modal-body');
-//             modal.empty();
-//             modal.append(table);
-//         }
-//     });
-// };
-
 function renderBasket() {
     var str = "getAllGoods=" + '1';
     $.ajax({
@@ -40,13 +9,11 @@ function renderBasket() {
             alert('Хьюстон, У нас проблемы! c рендер баскет ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
-
             var basketInfo = '<strong>Корзина</strong><br>';
             if (dateAnswer) {
                 basketInfo += '<strong>' + dateAnswer + '</strong>';
             } else {
                 basketInfo += '<strong>товаров нет(</strong>';
-
             }
 
             var showCountGoods = $('.showCountGoods');
@@ -54,17 +21,16 @@ function renderBasket() {
             showCountGoods.append(basketInfo);
         }
     });
-};
-
+}
 
 function renderBasketModal() {
     var str = "getBasketGoods=" + '1';
     $.ajax({
-        url: '/controllers/Ajax/renderBasketModal', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '/controllers/Ajax/renderBasketModal',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
@@ -80,7 +46,6 @@ function renderBasketModal() {
                 table += '<div class="simbolModal"><i class="fas fa-minus" onclick="deleteToBasketModal(' + dateAnswer[key].id + ')" data-id=' + dateAnswer[key].id + '></i></div></div></td>';
                 table += '<td><div class="basketOneSum' + dateAnswer[key].id + '">' + dateAnswer[key].count * dateAnswer[key].price + '</div></td></tr>';
             }
-            ;
             table += '<tr class="">';
             table += '<td></td><th>Сумма заказа</th>';
             table += '<td><div class="bascketTotalSum">' + sumGood + '</div></td></tr>';
@@ -90,16 +55,16 @@ function renderBasketModal() {
             modal.append(table);
         }
     });
-};
+}
 
 function renderItemModal(idGood) {
     var str = "renderItemModal=" + idGood;
     $.ajax({
-        url: '/controllers/Ajax/renderItemModal', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '/controllers/Ajax/renderItemModal',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
@@ -141,134 +106,84 @@ function renderItemModal(idGood) {
 
             modalFooter.empty();
             modalFooter.append(footer);
-
-
-
-
         }
-});
+    });
 }
 
 function addToBasket(idGood) {
     var str = "addBasketid=" + idGood;
     $.ajax({
-        url: '/controllers/Ajax/addToBasket', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: '', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '/controllers/Ajax/addToBasket',
+        type: 'POST',
+        dataType: '',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
             renderBasket();
-
-            console.log(dateAnswer);
-            // if (dateAnswer) {
-            //     console.log(dateAnswer);
-            //     // $('.basketInfoOut').html('<strong>Корзина</strong>' + '<br>' + '<strong>' + dateAnswer[0] + '</strong>');
-            //     // $('.basketOneCount' + idGood).html(dateAnswer[2]);
-            //     // $('.basketOneSum' + idGood).html(dateAnswer[3]);
-            //     // $('.bascketTotalSum').html(dateAnswer[4]);
-            // }
         }
     });
-};
+}
 
 function addToBasketModal(idGood) {
     var str = "addBasketid=" + idGood;
     $.ajax({
-        url: '/controllers/Ajax/addToBasket', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: '', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '/controllers/Ajax/addToBasket',
+        type: 'POST',
+        dataType: '',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
             renderBasketModal();
             renderBasket();
-
-            console.log(dateAnswer);
-            // if (dateAnswer) {
-            //     console.log(dateAnswer);
-            //     // $('.basketInfoOut').html('<strong>Корзина</strong>' + '<br>' + '<strong>' + dateAnswer[0] + '</strong>');
-            //     // $('.basketOneCount' + idGood).html(dateAnswer[2]);
-            //     // $('.basketOneSum' + idGood).html(dateAnswer[3]);
-            //     // $('.bascketTotalSum').html(dateAnswer[4]);
-            // }
         }
     });
-};
+}
 
 function deleteToBasket(idGood) {
     var str = "deleteToBasketid=" + idGood;
     $.ajax({
-        url: '/controllers/Ajax/deleteToBasket', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: '', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '/controllers/Ajax/deleteToBasket',
+        type: 'POST',
+        dataType: '',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function () {
             renderBasket();
-
-            // console.log(dateAnswer);
-            // if (dateAnswer[2] > 0) {
-            //     $('.basketInfoOut').html('<strong>Корзина</strong>' + '<br>' + '<strong>' + dateAnswer[0] + '</strong>');
-            //     $('.basketOneCount' + idGood).html(dateAnswer[2]);
-            //     $('.basketOneSum' + idGood).html(dateAnswer[3]);
-            //     $('.bascketTotalSum').html(dateAnswer[4]);
-            // } else if (dateAnswer[0] == null) {
-            //     console.log(dateAnswer[0]);
-            //     $('.basketInfoOut').html('<strong>Корзина</strong>' + '<br>' + '<strong>товаров нет(</strong>');
-            //     renderBasketModal();
-            // } else {
-            //     renderBasketModal();
-            // }
         }
     });
-};
+}
 
 function deleteToBasketModal(idGood) {
     var str = "deleteToBasketid=" + idGood;
     $.ajax({
-        url: '/controllers/Ajax/deleteToBasket', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: '', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '/controllers/Ajax/deleteToBasket',
+        type: 'POST',
+        dataType: '',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function () {
             renderBasketModal();
             renderBasket();
-
-            // console.log(dateAnswer);
-            // if (dateAnswer[2] > 0) {
-            //     $('.basketInfoOut').html('<strong>Корзина</strong>' + '<br>' + '<strong>' + dateAnswer[0] + '</strong>');
-            //     $('.basketOneCount' + idGood).html(dateAnswer[2]);
-            //     $('.basketOneSum' + idGood).html(dateAnswer[3]);
-            //     $('.bascketTotalSum').html(dateAnswer[4]);
-            // } else if (dateAnswer[0] == null) {
-            //     console.log(dateAnswer[0]);
-            //     $('.basketInfoOut').html('<strong>Корзина</strong>' + '<br>' + '<strong>товаров нет(</strong>');
-            //     renderBasketModal();
-            // } else {
-            //     renderBasketModal();
-            // }
         }
     });
-};
+}
 
 function renderAdminAjax() {
     var str = "renderAdminAjax=" + '1';
     $.ajax({
-        url: '../controllers/Ajax/renderAdminAjax', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '../controllers/Ajax/renderAdminAjax',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
@@ -308,117 +223,109 @@ function renderAdminAjax() {
 function addNewGood() {
     //preventDefault(); // делаем отмену действия браузера и формируем ajax
     var str = "addNewGood=" + 1;
-
-    // данные с формы завернем в переменную для ajax
     $.ajax({
-        type: 'POST', // тип запроса
-        url: '../controllers/Ajax/addNewGood', // куда будем отправлять, можно явно указать
-        data: str, // данные, которые передаем
-        success: function (data) { // в случае успешного завершения
-            console.log("Завершилось успешно"); // выведем в консоли успех
-            console.log(data); // выведем в консоли успех
+        type: 'POST',
+        url: '../controllers/Ajax/addNewGood',
+        data: str,
+        success: function (data) {
+            console.log("Завершилось успешно");
+            console.log(data);
             renderAdminAjax();
         },
-        error: function (data) { // в случае провала
-            console.log("Завершилось с ошибкой"); // сообщение об ошибке
-            console.log(data); // и данные по ошибке в том числе
+        error: function (data) {
+            console.log("Завершилось с ошибкой");
+            console.log(data);
         }
     });
-};
+}
 
 function scanDirLoadFiles() {
-    //preventDefault(); // делаем отмену действия браузера и формируем ajax
     var str = "scanDirLoadFiles=" + 1;
-    // данные с формы завернем в переменную для ajax
     $.ajax({
         type: 'POST', // тип запроса
-        url: '../controllers/Ajax/scanDirLoadFiles', // куда будем отправлять, можно явно указать
-        data: str, // данные, которые передаем
-        success: function (data) { // в случае успешного завершения
-            console.log("Завершилось успешно"); // выведем в консоли успех
-            console.log(data); // выведем в консоли успех
+        url: '../controllers/Ajax/scanDirLoadFiles',
+        data: str,
+        success: function (data) {
+            console.log("Завершилось успешно");
+            console.log(data);
             renderAdminAjax();
             setTimeout(function () {
                 //alert('ok');
                 $("#scanDirLoadFiles").modal("hide")
             });
         },
-        error: function (data) { // в случае провала
-            console.log("Завершилось с ошибкой"); // сообщение об ошибке
-            console.log(data); // и данные по ошибке в том числе
+        error: function (data) {
+            console.log("Завершилось с ошибкой");
+            console.log(data);
         }
     });
-};
+}
 
 
 function editGood(idGood) {
-    //preventDefault(); // делаем отмену действия браузера и формируем ajax
-    //var formData = $('#form'+idGood).serialize();
     var formData = new FormData($('#form' + idGood)[0]);
     console.log(formData);
-    // данные с формы завернем в переменную для ajax
     $.ajax({
-        type: 'POST', // тип запроса
-        url: '../controllers/Ajax/editGood', // куда будем отправлять, можно явно указать
-        data: formData, // данные, которые передаем
-        cache: false, // кэш и прочие настройки писать именно так (для файлов)
+        type: 'POST',
+        url: '../controllers/Ajax/editGood',
+        data: formData,
+        cache: false,
         // (связано это с кодировкой и всякой лабудой)
         contentType: false, // нужно указать тип контента false для картинки(файла)
         processData: false, // для передачи картинки(файла) нужно false
-        success: function (data) { // в случае успешного завершения
-            console.log("Завершилось успешно"); // выведем в консоли успех
-            console.log(data); // выведем в консоли успех
+        success: function (data) {
+            console.log("Завершилось успешно");
+            console.log(data);
             renderAdminAjax();
         },
-        error: function (data) { // в случае провала
-            console.log("Завершилось с ошибкой"); // сообщение об ошибке
-            console.log(data); // и данные по ошибке в том числе
+        error: function (data) {
+            console.log("Завершилось с ошибкой");
+            console.log(data);
         }
     });
 
-};
+}
 
 function deleteGood(id) {
     var str = "deleteGoodid=" + id;
     $.ajax({
-        url: '../controllers/Ajax/deleteGood', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '../controllers/Ajax/deleteGood',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
             renderAdminAjax();
         }
     });
-};
+}
 
 function dbCreateOrder() {
     var str = "dbCreateOrder=" + 1;
     $.ajax({
-        url: '../controllers/Ajax/dbCreateOrder', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '../controllers/Ajax/dbCreateOrder',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
             console.log(dateAnswer);
         }
     });
-};
-
+}
 
 function renderOrder() {
     var str = "renderOrder=" + '1';
     $.ajax({
-        url: '../controllers/Ajax/renderOrder', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '../controllers/Ajax/renderOrder',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
@@ -437,24 +344,23 @@ function renderOrder() {
                 }
             }
 
-                var date = new Date(dateAnswer[0].timeOrder * 1000);// Hours part from the timestamp
-                var hours = date.getHours();// Minutes part from the timestamp
-                var minutes = "0" + date.getMinutes();// Seconds part from the timestamp
-                var formattedTime = hours + ':' + minutes.substr(-2);// Will display time in 10:30:23 format
+            var date = new Date(dateAnswer[0].timeOrder * 1000);// Hours part from the timestamp
+            var hours = date.getHours();// Minutes part from the timestamp
+            var minutes = "0" + date.getMinutes();// Seconds part from the timestamp
+            var formattedTime = hours + ':' + minutes.substr(-2);// Will display time in 10:30:23 format
 
-                if (hours >= 0 && hours <= 7) {
-                    happyHoursDiscount = sumGoodDiscount * 7 / 100;
-                } else {
-                    happyHoursDiscount = 0;
-                }
+            if (hours >= 0 && hours <= 7) {
+                happyHoursDiscount = sumGoodDiscount * 7 / 100;
+            } else {
+                happyHoursDiscount = 0;
+            }
 
 
-
-                if (dateAnswer[0].delivery == 0) {
-                    delivery = 0;
-                } else {
-                    delivery = sumGoodDiscount * 10 / 100;
-                }
+            if (dateAnswer[0].delivery == 0) {
+                delivery = 0;
+            } else {
+                delivery = sumGoodDiscount * 10 / 100;
+            }
 
             var totalCoast = Math.floor(sumGoodDiscount - happyHoursDiscount - delivery);
 
@@ -478,10 +384,6 @@ function renderOrder() {
                 table += '<td>' + Math.floor(goodDiscount) + '</td></tr>';
             }
 
-
-
-
-
             table += '<tr><th colspan="5">Итого</th>';
             table += '<th>' + totalCoast + '</th></tr>';
             table += ('</table>');
@@ -498,21 +400,21 @@ function renderOrder() {
             }
         }
     });
-};
+}
 
 function addToOrder(idGood) {
     var str = "addBasketid=" + idGood;
     $.ajax({
-        url: '/controllers/Ajax/addToBasket', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '/controllers/Ajax/addToBasket',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
-                renderOrder();
-                renderBasket();
+            renderOrder();
+            renderBasket();
         }
     });
 }
@@ -520,11 +422,11 @@ function addToOrder(idGood) {
 function deleteToOrder(idGood) {
     var str = "deleteToBasketid=" + idGood;
     $.ajax({
-        url: '/controllers/Ajax/deleteToBasket', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '/controllers/Ajax/deleteToBasket',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
@@ -538,11 +440,11 @@ function deleteToOrder(idGood) {
 function deliveryCheck(mark) {
     var str = "deliveryCheck=" + mark;
     $.ajax({
-        url: '../controllers/Ajax/deliveryCheck', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '../controllers/Ajax/deliveryCheck',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
@@ -551,78 +453,51 @@ function deliveryCheck(mark) {
     });
 }
 
-/**function sendOrder() {
-    var formData = $('.formOrder').serialize();
-    console.log(formData);
-    $.ajax({
-        url: '../controllers/Basket.php', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        //cache: false, // кэш и прочие настройки писать именно так (для файлов)
-        // (связано это с кодировкой и всякой лабудой)
-        //contentType: false, // нужно указать тип контента false для картинки(файла)
-        //processData: false, // для передачи картинки(файла) нужно false
-        data: formData, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
-            alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
-        },
-        success: function (dateAnswer) {
-            console.log(dateAnswer);
-            $(location).attr('href', 'orderEnd.php');
-        }
-    });
-};*/
-
 
 function renderManager() {
     var str = "renderManager=" + '1';
     $.ajax({
-        url: '../controllers/Ajax/renderManager', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '../controllers/Ajax/renderManager',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
-            //console.log(dateAnswer);
-
             var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">#</th><th scope="col">Заказ</th><th scope="col">Время заказа</th><th scope="col">Сдача с купюры</th><th scope="col">Способ оплаты</th><th scope="col">Доставка/самовывоз</th><th scope="col">Заказ на время</th><th scope="col">Телефон</th><th scope="col">Дисконтная карта</th><th scope="col">Персон</th><th scope="col">Адрес</th><th scope="col">Комментарий</th><th scope="col">Закрыть заказ</th></tr></thead><tbody>';
 
             for (var key in dateAnswer) {
                 if (dateAnswer[key].order_status == 1) {
+                    var date = new Date(dateAnswer[key].timeOrder * 1000);
+                    var hours = date.getHours();
+                    var minutes = "0" + date.getMinutes();
+                    var formattedTime = hours + ':' + minutes.substr(-2);
 
+                    table += '<tr><th scope="row">' + dateAnswer[key].id + '</th>';
+                    table += '<td><button type="button" onclick="orderDetails(' + dateAnswer[key].id + ')" class="btn btn-primary" data-toggle="modal" data-target="#orderModal">Детали заказа</button></td>';
+                    table += '<td>' + formattedTime + '</td>';
+                    table += '<td>' + dateAnswer[key].money + '</td>';
 
-                var date = new Date(dateAnswer[key].timeOrder * 1000);// Hours part from the timestamp
-                var hours = date.getHours();// Minutes part from the timestamp
-                var minutes = "0" + date.getMinutes();// Seconds part from the timestamp
-                var formattedTime = hours + ':' + minutes.substr(-2);// Will display time in 10:30:23 format
+                    if (dateAnswer[key].pay == 1) {
+                        table += '<td>Безнал</td>';
+                    } else {
+                        table += '<td>Нал</td>';
+                    }
 
-                table += '<tr><th scope="row">' + dateAnswer[key].id + '</th>';
-                table += '<td><button type="button" onclick="orderDetails(' + dateAnswer[key].id+ ')" class="btn btn-primary" data-toggle="modal" data-target="#orderModal">Детали заказа</button></td>';
-                table += '<td>' + formattedTime + '</td>';
-                table += '<td>' + dateAnswer[key].money + '</td>';
+                    if (dateAnswer[key].delivery == 1) {
+                        table += '<td>Доставка</td>';
+                    } else {
+                        table += '<td>Самовывоз</td>';
+                    }
 
-                if (dateAnswer[key].pay == 1) {
-                    table += '<td>Безнал</td>';
-                } else {
-                    table += '<td>Нал</td>';
-                }
-
-                if (dateAnswer[key].delivery == 1) {
-                    table += '<td>Доставка</td>';
-                } else {
-                    table += '<td>Самовывоз</td>';
-                }
-
-                table += '<td>' + dateAnswer[key].desiredTime + '</td>';
-                table += '<td>' + dateAnswer[key].phone + '</td>';
-                table += '<td>' + dateAnswer[key].discountCard + '</td>';
-                table += '<td>' + dateAnswer[key].persons + '</td>';
-                table += '<td>' + dateAnswer[key].address + '</td>';
-                table += '<td>' + dateAnswer[key].comment + '</td>';
-                table += '<td><button type="button" onclick="if(confirm(\'Изменить статус заказа на выполнено?\'))completeOrder(' + dateAnswer[key].id+ ');else return false;" >Выполнено!</button></td></tr>';
-
+                    table += '<td>' + dateAnswer[key].desiredTime + '</td>';
+                    table += '<td>' + dateAnswer[key].phone + '</td>';
+                    table += '<td>' + dateAnswer[key].discountCard + '</td>';
+                    table += '<td>' + dateAnswer[key].persons + '</td>';
+                    table += '<td>' + dateAnswer[key].address + '</td>';
+                    table += '<td>' + dateAnswer[key].comment + '</td>';
+                    table += '<td><button type="button" onclick="if(confirm(\'Изменить статус заказа на выполнено?\'))completeOrder(' + dateAnswer[key].id + ');else return false;" >Выполнено!</button></td></tr>';
                 }
             }
 
@@ -637,11 +512,11 @@ function renderManager() {
 function completeOrder(order_id) {
     var str = "completeOrder=" + order_id;
     $.ajax({
-        url: '../controllers/Ajax/completeOrder', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '../controllers/Ajax/completeOrder',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
@@ -654,11 +529,11 @@ function completeOrder(order_id) {
 function orderDetails(orderId) {
     var str = "orderDetails=" + orderId;
     $.ajax({
-        url: '../controllers/Ajax/orderDetails', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '../controllers/Ajax/orderDetails',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
@@ -675,28 +550,24 @@ function orderDetails(orderId) {
                 } else {
                     sumGoodDiscount += dateAnswer[key].count * dateAnswer[key].price;
                 }
-                ;
             }
-            ;
 
-            var date = new Date(dateAnswer[0].timeOrder * 1000);// Hours part from the timestamp
-            var hours = date.getHours();// Minutes part from the timestamp
-            var minutes = "0" + date.getMinutes();// Seconds part from the timestamp
-            var formattedTime = hours + ':' + minutes.substr(-2);// Will display time in 10:30:23 format
+            var date = new Date(dateAnswer[0].timeOrder * 1000);
+            var hours = date.getHours();
+            var minutes = "0" + date.getMinutes();
+            var formattedTime = hours + ':' + minutes.substr(-2);
 
             if (hours >= 0 && hours <= 7) {
                 happyHoursDiscount = sumGoodDiscount * 7 / 100;
             } else {
                 happyHoursDiscount = 0;
             }
-            ;
 
             if (dateAnswer[key].delivery == 0) {
                 delivery = 0;
             } else {
                 delivery = sumGoodDiscount * 10 / 100;
             }
-            ;
 
             var totalCoast = Math.floor(sumGoodDiscount - happyHoursDiscount - delivery);
 
@@ -714,10 +585,8 @@ function orderDetails(orderId) {
                 } else {
                     var goodDiscount = dateAnswer[key].count * dateAnswer[key].price;
                 }
-                ;
                 table += '<td>' + Math.floor(goodDiscount) + '</td></tr>';
             }
-            ;
 
             table += '<tr><th>Итого</th><th>-</th><th>-</th>';
             table += '<th>' + Math.floor(sumGood) + '</th><th>-</th>';
@@ -734,25 +603,23 @@ function orderDetails(orderId) {
             modal.append(table);
         }
     });
-};
+}
 
 function renderOrderEnd() {
     var str = "orderEnd=" + '1';
     $.ajax({
-        url: '../controllers/Ajax/orderEnd', // путь к php-обработчику
-        type: 'POST', // метод передачи данных
-        dataType: 'json', // тип ожидаемых данных в ответе
-        data: str, // данные, которые передаем на сервер
-        error: function (req, text, error) { // отслеживание ошибок во время выполнения ajax-запроса
+        url: '../controllers/Ajax/orderEnd',
+        type: 'POST',
+        dataType: 'json',
+        data: str,
+        error: function (req, text, error) {
             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
         },
         success: function (dateAnswer) {
-
             var sumGood = 0;
             var sumGoodDiscount = 0;
             var happyHoursDiscount;
             var delivery;
-
 
             for (var key in dateAnswer) {
                 sumGood += dateAnswer[key].count * dateAnswer[key].price;
@@ -763,25 +630,22 @@ function renderOrderEnd() {
                 }
             }
 
-
-            var date = new Date(dateAnswer[0].timeOrder * 1000);// Hours part from the timestamp
-            var hours = date.getHours();// Minutes part from the timestamp
-            var minutes = "0" + date.getMinutes();// Seconds part from the timestamp
-            var formattedTime = hours + ':' + minutes.substr(-2);// Will display time in 10:30:23 format
+            var date = new Date(dateAnswer[0].timeOrder * 1000);
+            var hours = date.getHours();
+            var minutes = "0" + date.getMinutes();
+            var formattedTime = hours + ':' + minutes.substr(-2);
 
             if (hours >= 0 && hours <= 7) {
                 happyHoursDiscount = sumGoodDiscount * 7 / 100;
             } else {
                 happyHoursDiscount = 0;
             }
-            ;
 
             if (dateAnswer[0].delivery == 0) {
                 delivery = 0;
             } else {
                 delivery = sumGoodDiscount * 10 / 100;
             }
-            ;
 
             var totalCoast = Math.floor(sumGoodDiscount - happyHoursDiscount - delivery);
 
@@ -800,9 +664,7 @@ function renderOrderEnd() {
                 }
 
                 table += '<td>' + Math.floor(goodDiscount) + '</td></tr>';
-
             }
-
 
             table += '<tr><th  colspan="4">Итого</th>';
             table += '<th>' + Math.floor(sumGoodDiscount) + '</th></tr>';
@@ -814,24 +676,12 @@ function renderOrderEnd() {
             table += '<th>' + totalCoast + '</th></tr>';
             table += ('</table>');
 
-            // table += '<tr><th colspan="1">Сумма к оплате с учетом всех скидок</th>';
-            // table += '<th>' + totalCoast + ' &#8381;</th></tr>';
-            //
-            // table += '<tr><th colspan="1">Доставка</th>';
-            //
-            // if (dateAnswer[key].delivery == 0) {
-            //     table += '<th>Доставка по адресу заказчика</th></tr>';
-            // } else {
-            //     table += '<th>Самовывоз</th></tr>';
-            // }
-            // ;
-            // table += ('</table>');
-            table += '<div class="thanks">Ваша экономия - ' + Math.floor(sumGood-totalCoast) + '&#8381;<br>Ваш заказ поступил в обработку!<br> В ближайшее время с Вами свяжется менеджер для подтверждения и уточнения заказа.<br> Спасибо что выбрали нас!</div>';
+            table += '<div class="thanks">Ваша экономия - ' + Math.floor(sumGood - totalCoast) + '&#8381;<br>Ваш заказ поступил в обработку!<br> В ближайшее время с Вами свяжется менеджер для подтверждения и уточнения заказа.<br> Спасибо что выбрали нас!</div>';
 
             var orderTableEnd = $('.orderTableEnd');
             orderTableEnd.empty();
             orderTableEnd.append(table);
         }
     });
-};
+}
 

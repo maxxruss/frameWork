@@ -17,20 +17,6 @@ class OrderInfo extends Model
     protected $table = 'orderInfo';
     protected $innerJoin = 'inner join basket on orderInfo.id = basket.order_id';
 
-    /*protected $fields = [
-        'user_id',
-        'id',
-        'phone',
-        'discountCard',
-        'persons',
-        'pay',
-        'money',
-        'address',
-        'comment',
-        'delivery',
-        'desiredTime',
-        'timeOrder',
-    ];*/
     public $rules = [
         'user_id' => 'int',
         'phone' => 'string',
@@ -76,7 +62,6 @@ class OrderInfo extends Model
         }
     }
 
-//    public function
 
     function getInfoOrder()
     {
@@ -97,25 +82,25 @@ class OrderInfo extends Model
 
     }
 
-    function getOrderId()
-    {
-        $pdo = Db::getPDO();
-        //var_dump($pdo);exit;
-        $statement = $pdo->query('SELECT order_id FROM ' . $this->table);
-        $result = $statement->fetchAll();
-        return $result;
+//    function getOrderId()
+//    {
+//        $pdo = Db::getPDO();
+//        //var_dump($pdo);exit;
+//        $statement = $pdo->query('SELECT order_id FROM ' . $this->table);
+//        $result = $statement->fetchAll();
+//        return $result;
+//
+//    }
 
-    }
-
-    function getOrderInfoById($order_id)
-    {
-        $pdo = Db::getPDO();
-        //var_dump($pdo);exit;
-        $statement = $pdo->query('SELECT * FROM ' . $this->table . ' WHERE id=' . $order_id);
-        $result = $statement->fetchAll();
-        return $result;
-
-    }
+//    function getOrderInfoById($order_id)
+//    {
+//        $pdo = Db::getPDO();
+//        //var_dump($pdo);exit;
+//        $statement = $pdo->query('SELECT * FROM ' . $this->table . ' WHERE id=' . $order_id);
+//        $result = $statement->fetchAll();
+//        return $result;
+//
+//    }
 
 
     public function createOrder($user_id)
@@ -126,7 +111,6 @@ class OrderInfo extends Model
         if ($result) {
             $_SESSION['user']['order_id'] = $pdo->lastInsertId();
         };
-
         return $result;
     }
 
@@ -144,6 +128,4 @@ class OrderInfo extends Model
         $statement = $pdo->exec('UPDATE ' . $this->table . '  SET delivery=' . $mark . ' WHERE id=' . $_SESSION['user']['order_id']);
         return $statement;
     }
-
-
 }

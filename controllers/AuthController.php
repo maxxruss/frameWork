@@ -21,7 +21,6 @@ class AuthController extends Controller
         if (!$this->initResult) {
             echo $this->render('auth.index', [
                 'auth' => $this->initResult,
-//                'name' => $_SESSION['user']['name']
             ]);
         } else {
             $this->actionCabinet();
@@ -33,8 +32,7 @@ class AuthController extends Controller
     {
         $userModel = new User();
         $this->initResult = $userModel->logOutUser();
-        //d($_COOKIE);
-        //d($_SESSION);exit;
+
         echo $this->render('auth.index', [
             'auth' => $this->initResult,
         ]);
@@ -64,11 +62,9 @@ class AuthController extends Controller
     {
         $userModel = new User();
         $regUser = $userModel->regUser();
-//        $userModel->authWithCredentials();
         if ($regUser === true) {
             echo $this->render('auth.cabinet', [
                 'auth' => $regUser,
-//                'reg' => $regUser,
                 'name' => $_SESSION['user']['name']
             ]);
         } else {

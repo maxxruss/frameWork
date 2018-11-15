@@ -9,7 +9,6 @@
 
 namespace components;
 
-use components\Auth;
 use models\User;
 
 require_once "../vendor/autoload.php";
@@ -36,7 +35,6 @@ class Controller
         $twig = new \Twig_Environment($loader);
         $templateInstance = $twig->load($template . $this->templateExtension);
         $content = $templateInstance->render($params);
-        //echo ($this->templateFolder.$template.$this->templateExtension);
         return $content;
     }
 }

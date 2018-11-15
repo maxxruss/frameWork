@@ -27,7 +27,7 @@ class OrderController extends Controller
         $_SESSION['user']['accepted_order_id'] = $_SESSION['user']['order_id'];
         $modelOrderInfo = new OrderInfo();
         $modelOrderInfo->clientInfo_edit($_POST);
-header('location: /order/end');
+        header('location: /order/end');
 
     }
 

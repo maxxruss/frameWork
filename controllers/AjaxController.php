@@ -8,16 +8,10 @@
 
 namespace controllers;
 
-define("DIR_BIG", "img/");
-define("DIR_SMALL", "imgMini/");
-define("COLS", 3);
 
-use components\Db;
-use components\Model;
 use models\Basket;
 use models\OrderInfo;
 use models\Goods;
-use models\OrderProducts1;
 
 class AjaxController
 {
@@ -63,19 +57,8 @@ class AjaxController
                 $goodValue['count'] = '1';
                 $modelBasket->create($goodValue);
             }
-//
-//            $countGoodsOrder = $modelBasket->countGoodsOrder($goodValue['order_id']); //количество всех товаров в заказе
-//            $sumGoodsOrder = $modelBasket->sumGoodsOrder($goodValue['order_id']); // Итого стоимость всех товаров в заказе (количество * цена - складывается по всем товарам)
-//            $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($goodValue); // Количество одного товара в заказе по id товара
-//            $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($goodValue); // Стоимость товара в заказе по id товара (количество * цена)
-////            $orderTotalSum = $modelBasket->sumGoodsOrder($goodValue['order_id']);
-//            $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount($goodValue['order_id']);  // Итого стоимость всех товаров в заказе с учетом скидки
-//
-//            $req = [$countGoodsOrder, $sumGoodsOrder, $countOneGoodsOrder, $sumOneGoodsOrder, $sumGoodsOrderDiscount]; // присваиваем переменной нужные данные
-//            echo json_encode($req);
             exit;
         }
-
     }
 
     public function actionDeleteToBasket()
@@ -97,21 +80,9 @@ class AjaxController
 
             if ($basketGood['count'] > 1) {
                 $modelBasket->countBasketMinus($basketGood['id']);
-            } elseif ($basketGood['count']==1) {
+            } elseif ($basketGood['count'] == 1) {
                 $modelBasket->deleteBasket($basketGood['id']);
             }
-
-//            $countGoodsOrder = $modelBasket->countGoodsOrder($goodValue['order_id']);
-//            $sumGoodsOrder = $modelBasket->sumGoodsOrder($goodValue['order_id']);
-//            $countOneGoodsOrder = $modelBasket->countOneGoodsOrder($basketGood['id']);
-//            $sumOneGoodsOrder = $modelBasket->sumOneGoodsOrder($basketGood['id']);
-//            $orderTotalSum = $modelBasket->sumGoodsOrder($goodValue['order_id']);
-//            $sumGoodsOrderDiscount = $modelBasket->sumGoodsOrderDiscount($goodValue['order_id']);
-
-
-//            $req = [$countGoodsOrder, $sumGoodsOrder, $countOneGoodsOrder, $sumOneGoodsOrder, $orderTotalSum, $sumGoodsOrderDiscount]; // присваиваем переменной нужные данные
-
-//            echo json_encode();
             exit;
         }
     }
@@ -145,12 +116,11 @@ class AjaxController
 
         if ($modelOrderInfo->completeOrder($_POST['completeOrder'])) {
             $modelBasket = new Basket();
-            $modelBasket->removeCompleteOrder($_POST['completeOrder']);
+            $modelBasket->removeGoodFromOrder($_POST['completeOrder']);
             echo json_encode(true);
         } else {
             echo json_encode(false);
         }
-
         exit;
     }
 
@@ -161,11 +131,9 @@ class AjaxController
             $modelBasket = new Basket();
             $basketDetails = $modelBasket->getOrderDetails($_SESSION['user']['accepted_order_id']);
 
-
-            echo json_encode($basketDetails); // возвращаем данные ответом, преобразовав в JSON-строку
-            exit; // останавливаем дальнейшее выполнение скрипта
+            echo json_encode($basketDetails);
+            exit;
         }
-
     }
 
     public function actionRenderAdminAjax()
@@ -217,9 +185,8 @@ class AjaxController
     {
         $modelOrderInfo = new OrderInfo();
         $infoOrder = $modelOrderInfo->getInfoOrder();
-
-        echo json_encode($infoOrder); // возвращаем данные ответом, преобразовав в JSON-строку
-        exit; // останавливаем дальнейшее выполнение скрипта
+        echo json_encode($infoOrder);
+        exit;
     }
 
     public function actionOrderDetails()
@@ -227,52 +194,15 @@ class AjaxController
 
         $modelBasket = new Basket();
         $orderDetails = $modelBasket->getOrderDetails($_POST['orderDetails']);
-
-        echo json_encode($orderDetails); // возвращаем данные ответом, преобразовав в JSON-строку
-        exit; // останавливаем дальнейшее выполнение скрипта
+        echo json_encode($orderDetails);
+        exit;
     }
 
     public function actionRenderOrder()
     {
         $modelBasket = new Basket();
         $basketDetails = $modelBasket->getOrderDetails($_SESSION['user']['order_id']);
-
-
-
-        echo json_encode($basketDetails); // возвращаем данные ответом, преобразовав в JSON-строку
-        exit; // останавливаем дальнейшее выполнение скрипта
+        echo json_encode($basketDetails);
+        exit;
     }
-
-//    public function actionDbCreateOrder()
-//    {
-//        $model = new OrderInfo();
-//        $orderInfo = $model->getClientInfo_all();
-//
-//        $model->values['timeOrder'] = time();
-//
-//
-//        if (count($orderInfo) == 0) {
-//            $model->clientInfo_new($model->values);
-//        } else {
-//            $model->clientInfo_edit($model->values);
-//        };
-//
-//        $orderInfo = $model->getClientInfo_all();
-//        $idClient = $orderInfo['id'];
-//        $modelBasket = new Basket();
-//        $goodsBasket = $modelBasket->getAllBasket();
-//
-//        $modelOrder = new OrderProducts1();
-//        $modelOrder->truncateOrder();
-//
-//        foreach ($goodsBasket as $good) {
-//            $idGood = $good['id'];
-//            $count = $good['count'];
-//            $modelOrder->newOrderToManager($idClient, $idGood, $count);
-//        }
-//
-//        echo json_encode($goodsBasket); // возвращаем данные ответом, преобразовав в JSON-строку
-//        exit; // останавливаем дальнейшее выполнение скрипта
-//
-//    }
 }

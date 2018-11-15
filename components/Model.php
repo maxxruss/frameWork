@@ -8,27 +8,17 @@
 
 namespace components;
 
-use components\Interfaces\Query;
-use components\Db;
+define("DIR_BIG","img/");
+define("DIR_SMALL","imgMini/");
+define("COLS",3);
+
 use models\Goods;
 
-class Model //implements Query
+class Model
 {
     protected $table = '';
     protected $fields = '';
     protected $rules = '';
-
-    public function select($parameters)
-    {
-        $parameters = [
-            'where' => 'id = 1',
-            'orderby' => 'desc',
-            'limit ' => ' 1,10 '
-        ];
-        $pdo = Db::getPDO();
-        $statement = $pdo->query('select * from ' . $this->table . ' where ' . $parameters = ['where'] . ' orderby ' . $parameters = ['orderby'] . ' limit ' . $parameters = ['limit']);
-        return $statement->fetchAll();
-    }
 
     public function getAll($orderby = 'id')
     {
@@ -50,7 +40,6 @@ class Model //implements Query
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
         $statement = $pdo->exec('UPDATE ' . $this->table . ' SET `count`= `count`+1 WHERE id=' . $id);
-        //$result = $statement->fetchAll();
         return $statement;
     }
 
@@ -59,7 +48,6 @@ class Model //implements Query
         $pdo = Db::getPDO();
         //var_dump($pdo);exit;
         $statement = $pdo->exec('UPDATE ' . $this->table . ' SET `count`= `count`-1 WHERE id=' . $id);
-        //$result = $statement->fetchAll();
         return $statement;
     }
 
@@ -72,10 +60,7 @@ class Model //implements Query
         $pdo = Db::getPDO();
         $statement = $pdo->exec('UPDATE `' . $this->table . '` SET nameFull = "' . $values['nameFull'] .
             '", price = ' . $values['price'] . ', param = "' . $values['param'] . '", bigPhoto = "' . $values['bigPhoto'] . '", miniPhoto = "' . $values['miniPhoto'] . '", weight = ' . $values['weight'] . ', stickerFit = "' . $values['stickerFit'] . '", stickerHit = "' . $values['stickerHit'] . '", discount = ' . $values['discount'] . ' WHERE `id` = ' . $values['id']);
-        //var_dump($statement);
-        //$result = $statement->fetchAll();
-        //return empty($result[0]) ? null : $result[0];
-        return $statement;
+               return $statement;
     }
 
     public function create($values)
@@ -129,8 +114,6 @@ class Model //implements Query
 
     public function edit()
     {
-
-        //var_dump('не пустой');exit;
         $postInput = new Request();
         $post = $postInput->post();
 
@@ -181,8 +164,6 @@ class Model //implements Query
             }
         }
 
-        //var_dump($post);        exit;
-
         $goodsModel = new Goods();
         $goodsModel->update($post);
     }
@@ -223,13 +204,10 @@ class Model //implements Query
 
     function scanDirLoadFiles()
     {
-        //var_dump(copy('../public/img/perm.php', '../public/img1/perm.php'));exit;
-
         $images = array_slice(scandir('../public/loadFiles'), 2);
 
         foreach ($images as $image) {
             $nameRecodRu = mb_convert_encoding($image, 'UTF-8');
-            //print_r($nameRecodRu);exit;
 
             $nameFull = explode('.', $nameRecodRu)[0];
             $fileName = $this->translit($nameRecodRu);
@@ -244,9 +222,6 @@ class Model //implements Query
             $arr['stickerHit'] = '0';
             $arr['bigPhoto'] = DIR_BIG . $fileName;
             $arr['miniPhoto'] = DIR_SMALL . $fileName;
-            //var_dump('../public/loadFiles/' . $image);exit;
-            //var_dump(copy('../public/loadFiles/' . $image, '../public/' . DIR_BIG . $fileName));exit;
-
 
             if (copy('../public/loadFiles/' . $image, '../public/' . DIR_BIG . $fileName)) {
                 //echo('ok');exit;
@@ -255,24 +230,6 @@ class Model //implements Query
                 $this->create($arr);
             }
         }
-    }
-
-
-
-    public function truncate()
-    {
-        $pdo = Db::getPDO();
-        $statement = $pdo->exec('TRUNCATE `orderToManager`' . $this->table);
-        //var_dump($statement);exit;
-        return $statement;
-    }
-
-    public function newOrder($idClient, $idGood, $count)
-    {
-        $pdo = Db::getPDO();
-        $statement = $pdo->exec('INSERT INTO ' . $this->table . ' (idClient, idGood, count) VALUES ($idClient, $idGood, $count)');
-        return $statement;
-
     }
 
 }

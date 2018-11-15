@@ -7,8 +7,6 @@
  */
 
 namespace components;
-use components\Db;
-use models\User;
 
 class App
 {
@@ -20,17 +18,7 @@ class App
     {
         $this->db = new Db();
         $this->db->getPDO();
-        //$this->user = new User();
-        //$this->user->checkAuthWithCookie();
-        //$this->user->init();
         $this->request = new Request();
         $this->request->init();
-//        $modelUser = new User();
-//        $modelUser->init();
-
-    }
-
-    public function init() {
-
     }
 }
