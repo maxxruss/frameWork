@@ -1,196 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84384e54-3627-433e-be39-7176a57cebea" name="Default" comment="убрал public из URL, окончательный ордер корректно рендерится, удаление товаров при обработке заказа менеджером">
-      <change afterPath="$PROJECT_DIR$/templates/contact.tmpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/guestbook.tmpl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/promo.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/composerJson.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/composerJson.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/frameWork.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/frameWork.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="84384e54-3627-433e-be39-7176a57cebea" name="Default" comment="удалены лишние методы, классы, компоненты и комментарии">
+      <change afterPath="$PROJECT_DIR$/controllers/CommentController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/autoload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Admin.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/App.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Auth.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Db.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Interfaces/Query.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Request.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Traits/Singletone.php" beforeDir="false" afterPath="$PROJECT_DIR$/components/Traits/Singletone.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AdminController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AjaxController1.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/BasketController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/BlogController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/EndController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/GoodsController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ManagerController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/info.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/my.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/my.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Basket.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Basket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Goods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/OrderInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/OrderInfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/path.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/perm.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/star.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/star.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/alyaska.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/alyaska.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/arizona.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/arizona.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/asahi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/asahi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/bangkok.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/bangkok.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/batakon.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/batakon.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/bonito_syaki.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/bonito_syaki.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/bonito_unagi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/bonito_unagi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/boston.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/boston.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/cezar.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/cezar.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/dakota.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/dakota.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/drakon.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/drakon.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/filadelfiya_lyuks.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/filadelfiya_lyuks.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/filadelfiya_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/filadelfiya_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/filadelfiya_s_tuncom.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/filadelfiya_s_tuncom.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/filadelfiya_s_zapechennym_percem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/filadelfiya_s_zapechennym_percem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/fukusima.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/fukusima.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/gejsha.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/gejsha.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/hirosima.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/hirosima.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/joko.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/joko.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/kaliforniya.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/kaliforniya.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/kaliforniya_s_krevetkoj.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/kaliforniya_s_krevetkoj.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/kaliforniya_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/kaliforniya_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/kanada.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/kanada.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/kimono.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/kimono.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/krab-krevetka.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/krab-krevetka.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/kunsej.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/kunsej.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/kurasiku_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/kurasiku_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/kurasiku_s_tuncom.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/kurasiku_s_tuncom.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/lava.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/lava.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/lava_ehbi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/lava_ehbi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/lava_unagi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/lava_unagi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/logotip.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/logotip.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/maguro.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/maguro.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/mehiko.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/mehiko.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/nagano.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/nagano.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/nidzi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/nidzi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/raduga.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/raduga.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/roll-bekon.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/roll-bekon.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/roll_s_syrom_parmezan.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/roll_s_syrom_parmezan.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/samuraj.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/samuraj.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/sensej.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/sensej.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/shahmaty.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/shahmaty.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/spring_roll_s_krevetkoj.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/spring_roll_s_krevetkoj.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/spring_roll_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/spring_roll_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tajfun.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tajfun.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tempura.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tempura.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tokio.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tokio.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tomago_chiken.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tomago_chiken.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tomago_ehbi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tomago_ehbi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tomago_kani.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tomago_kani.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tomago_syaki.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tomago_syaki.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tomago_unagi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tomago_unagi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tono.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tono.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tortilya_ovoschnaya.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tortilya_ovoschnaya.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tortilya_s_kuricej.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tortilya_s_kuricej.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/tortilya_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/tortilya_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/unagi_filadelfiya.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/unagi_filadelfiya.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/vulkan.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/vulkan.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/yaho.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/yaho.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/yamajka.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/yamajka.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/zapechennyj_s_krevetkoj.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/zapechennyj_s_krevetkoj.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/zapechennyj_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/zapechennyj_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/zapechennyj_so_snezhnym_krabom.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/zapechennyj_so_snezhnym_krabom.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/zelenyj_roll.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/zelenyj_roll.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/alyaska.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/alyaska.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/arizona.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/arizona.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/asahi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/asahi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/bangkok.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/bangkok.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/batakon.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/batakon.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/bonito_syaki.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/bonito_syaki.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/bonito_unagi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/bonito_unagi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/boston.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/boston.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/cezar.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/cezar.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/dakota.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/dakota.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/drakon.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/drakon.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/filadelfiya_lyuks.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/filadelfiya_lyuks.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/filadelfiya_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/filadelfiya_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/filadelfiya_s_tuncom.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/filadelfiya_s_tuncom.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/filadelfiya_s_zapechennym_percem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/filadelfiya_s_zapechennym_percem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/fukusima.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/fukusima.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/gejsha.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/gejsha.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/hirosima.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/hirosima.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/joko.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/joko.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/kaliforniya.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/kaliforniya.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/kaliforniya_s_krevetkoj.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/kaliforniya_s_krevetkoj.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/kaliforniya_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/kaliforniya_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/kanada.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/kanada.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/kimono.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/kimono.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/krab-krevetka.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/krab-krevetka.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/kunsej.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/kunsej.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/kurasiku_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/kurasiku_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/kurasiku_s_tuncom.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/kurasiku_s_tuncom.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/lava.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/lava.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/lava_ehbi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/lava_ehbi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/lava_unagi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/lava_unagi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/maguro.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/maguro.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/mehiko.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/mehiko.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/nagano.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/nagano.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/nidzi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/nidzi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/raduga.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/raduga.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/roll-bekon.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/roll-bekon.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/roll_s_syrom_parmezan.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/roll_s_syrom_parmezan.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/samuraj.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/samuraj.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/sensej.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/sensej.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/shahmaty.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/shahmaty.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/spring_roll_s_krevetkoj.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/spring_roll_s_krevetkoj.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/spring_roll_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/spring_roll_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tajfun.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tajfun.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tempura.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tempura.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tokio.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tokio.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tomago_chiken.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tomago_chiken.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tomago_ehbi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tomago_ehbi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tomago_kani.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tomago_kani.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tomago_syaki.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tomago_syaki.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tomago_unagi.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tomago_unagi.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tono.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tono.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tortilya_ovoschnaya.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tortilya_ovoschnaya.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tortilya_s_kuricej.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tortilya_s_kuricej.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/tortilya_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/tortilya_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/unagi_filadelfiya.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/unagi_filadelfiya.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/vulkan.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/vulkan.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/yaho.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/yaho.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/yamajka.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/yamajka.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/zapechennyj_s_krevetkoj.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/zapechennyj_s_krevetkoj.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/zapechennyj_s_lososem.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/zapechennyj_s_lososem.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/zapechennyj_so_snezhnym_krabom.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/zapechennyj_so_snezhnym_krabom.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/imgMini/zelenyj_roll.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/imgMini/zelenyj_roll.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/loadFiles/Киота.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/public/loadFiles/Киота.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin.index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin.index.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth.cabinet.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.cabinet.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth.index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.index.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth.reg.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.reg.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/manager.index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/manager.index.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/manager.order1.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/manager.order1.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/guestbook.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/guestbook.tmpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/menu.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu_block_admin.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu_block_admin.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu_block_auth_false.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu_block_auth_false.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu_block_auth_true.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu_block_auth_true.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/order.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/order.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/order_end.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/order_end.tmpl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -308,9 +125,9 @@
           <entry key="js" value="13" />
           <entry key="json" value="1" />
           <entry key="lock" value="1" />
-          <entry key="php" value="317" />
+          <entry key="php" value="322" />
           <entry key="test" value="1" />
-          <entry key="tmpl" value="84" />
+          <entry key="tmpl" value="88" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -319,9 +136,9 @@
           <entry key="Image" value="3" />
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="13" />
-          <entry key="PHP" value="317" />
+          <entry key="PHP" value="322" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Twig" value="81" />
+          <entry key="Twig" value="85" />
           <entry key="htaccess" value="12" />
         </counts>
       </usages-collector>
@@ -331,9 +148,9 @@
           <entry key="dummy" value="1" />
           <entry key="htaccess" value="175" />
           <entry key="js" value="1524" />
-          <entry key="php" value="5003" />
-          <entry key="tmpl" value="799" />
-          <entry key="txt" value="784" />
+          <entry key="php" value="5407" />
+          <entry key="tmpl" value="859" />
+          <entry key="txt" value="844" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -341,9 +158,9 @@
           <entry key="CSS" value="24" />
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="1522" />
-          <entry key="PHP" value="5003" />
-          <entry key="PLAIN_TEXT" value="785" />
-          <entry key="Twig" value="799" />
+          <entry key="PHP" value="5407" />
+          <entry key="PLAIN_TEXT" value="845" />
+          <entry key="Twig" value="859" />
           <entry key="htaccess" value="175" />
         </counts>
       </usages-collector>
@@ -378,38 +195,62 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/IndexController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
+              <folding>
+                <element signature="e#114#140#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/OrderController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/components/Model.php">
+        <entry file="file://$PROJECT_DIR$/controllers/CommentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+            <state relative-caret-position="288">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Goods.php">
+        <entry file="file://$PROJECT_DIR$/models/Comment.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+            <state relative-caret-position="324">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+              <folding>
+                <element signature="e#109#127#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/AjaxController.php">
+        <entry file="file://$PROJECT_DIR$/templates/menu.tmpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
+            <state relative-caret-position="346">
+              <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Basket.php">
+        <entry file="file://$PROJECT_DIR$/templates/guestbook.tmpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
+            <state relative-caret-position="466">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -435,8 +276,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/components/Auth.php" />
-        <option value="$PROJECT_DIR$/models/test.php" />
         <option value="$PROJECT_DIR$/components/Db.php" />
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/public/.htaccess" />
@@ -460,12 +299,10 @@
         <option value="$PROJECT_DIR$/components/Request.php" />
         <option value="$PROJECT_DIR$/templates/menu_block_auth_true.tmpl" />
         <option value="$PROJECT_DIR$/templates/menu_block_auth_false.tmpl" />
-        <option value="$PROJECT_DIR$/templates/menu.tmpl" />
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/templates/order.tmpl" />
         <option value="/media/max/MEDIA/domains/PHP17/my_shop/public/guestbook.php" />
         <option value="$PROJECT_DIR$/templates/promo.tmpl" />
-        <option value="$PROJECT_DIR$/templates/guestbook.tmpl" />
         <option value="$PROJECT_DIR$/templates/contact.tmpl" />
         <option value="$PROJECT_DIR$/templates/index.tmpl" />
         <option value="$PROJECT_DIR$/js/my.js" />
@@ -483,9 +320,13 @@
         <option value="$PROJECT_DIR$/components/Admin.php" />
         <option value="$PROJECT_DIR$/components/Model.php" />
         <option value="$PROJECT_DIR$/components/App.php" />
-        <option value="$PROJECT_DIR$/controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/components/Controller.php" />
         <option value="$PROJECT_DIR$/models/User.php" />
+        <option value="$PROJECT_DIR$/controllers/IndexController.php" />
+        <option value="$PROJECT_DIR$/templates/menu.tmpl" />
+        <option value="$PROJECT_DIR$/templates/guestbook.tmpl" />
+        <option value="$PROJECT_DIR$/models/Comment.php" />
+        <option value="$PROJECT_DIR$/controllers/CommentController.php" />
       </list>
     </option>
   </component>
@@ -525,6 +366,21 @@
               <item name="framework" type="b2602c69:ProjectViewProjectNode" />
               <item name="framework" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="framework" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="framework" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="framework" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -542,17 +398,17 @@
     <property name="settings.editor.selected.configurable" value="settings.php.debug.skipped.paths" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/controllers" />
-      <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$/public/imgMini" />
-      <recent name="$PROJECT_DIR$/public/img" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="C:\OSPanel\domains\frameWork\public" />
       <recent name="C:\OSPanel\domains\frameWork" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/models" />
+      <recent name="$PROJECT_DIR$/controllers" />
+      <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/public/imgMini" />
+      <recent name="$PROJECT_DIR$/public/img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -665,7 +521,7 @@
       <workItem from="1542120659076" duration="5007000" />
       <workItem from="1542180137184" duration="4286000" />
       <workItem from="1542200915555" duration="10074000" />
-      <workItem from="1542266616932" duration="10717000" />
+      <workItem from="1542266616932" duration="15988000" />
     </task>
     <task id="LOCAL-00001" summary="begin project">
       <created>1534953408411</created>
@@ -870,11 +726,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542210989985</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="удалены лишние методы, классы, компоненты и комментарии">
+      <created>1542277673593</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1542277673593</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="598651000" />
+    <option name="totallyTimeSpent" value="603922000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -920,7 +783,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="AjaxController в процессе" />
     <MESSAGE value="Админка - кнопки сохранить удалить" />
     <MESSAGE value="начинаем Ajax" />
     <MESSAGE value="Ajax заработал. Добавить и удалить кнопки на главной работают через  Ajax" />
@@ -945,23 +807,10 @@
     <MESSAGE value="корректно работают страницы товаров, корректно работает инит нового пользователя, вход с полномочиями, регистрация. Генерация и инициализация токена пользователя" />
     <MESSAGE value="инициализация корзины при гибридной регистрации работает корректно" />
     <MESSAGE value="убрал public из URL, окончательный ордер корректно рендерится, удаление товаров при обработке заказа менеджером" />
-    <option name="LAST_COMMIT_MESSAGE" value="убрал public из URL, окончательный ордер корректно рендерится, удаление товаров при обработке заказа менеджером" />
+    <MESSAGE value="удалены лишние методы, классы, компоненты и комментарии" />
+    <option name="LAST_COMMIT_MESSAGE" value="удалены лишние методы, классы, компоненты и комментарии" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="259" column="19" selection-start-line="259" selection-start-column="19" selection-end-line="259" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/manager.index.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -1103,13 +952,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/guestbook.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/promo.tmpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1121,20 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
           <caret line="77" selection-start-line="77" selection-end-line="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/menu.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1187,20 +1015,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/OrderInfo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="17" column="81" selection-start-line="17" selection-start-column="81" selection-end-line="17" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/OrderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/my.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7486">
@@ -1218,13 +1032,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/Goods.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/AjaxController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -1236,13 +1043,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1284,10 +1084,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/Goods.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.tmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/components/Model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+        <state relative-caret-position="288">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/OrderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/IndexController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+          <folding>
+            <element signature="e#114#140#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/menu.tmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="34" column="37" lean-forward="true" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/guestbook.tmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/OrderInfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1332">
+          <caret line="16" column="11" lean-forward="true" selection-start-line="16" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/Comment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#109#127#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/CommentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>

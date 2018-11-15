@@ -64,4 +64,22 @@ class IndexController extends Controller
             'name' => $_SESSION['user']['name']
         ]);
     }
+
+    public function actionPromo()
+    {
+        echo $this->render('promo', [
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
+        ]);
+    }
+
+    public function actionContact()
+    {
+        echo $this->render('contact', [
+            'auth' => $this->initResult,
+            'name' => $_SESSION['user']['name']
+        ]);
+    }
+
+
 }

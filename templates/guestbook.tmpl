@@ -12,31 +12,20 @@
 {% include 'menu.tmpl' %}
 
 <div id="container">
-
     <div class="leftblock">
-
     </div>
     <div class="content">
         <h1>Гостевая книга</h1>
-        <?php
-        if ($comments) {
-            foreach ($comments as $comment) {
-                echo "<div style='border: 1px solid #ccc; margin: 10px; padding: 5px;;'>ФИО: {$comment[fio]}<br>Email: {$comment[email]}<br>Текст: {$comment[text]}<br><i>Дата: {$comment[date]}</i></div>";
-    }
-    }
-    ?>
     <hr>
-    <form method="post">
-        <p><strong>Оставить отзыв о сайте:</strong></p>
-        <p>Введите ФИО: <input type="text" name="fio" maxlength="30" required></p>
+    <form method="post" action="/index/comment">
+        <p><strong>Оставить отзыв:</strong></p>
+        <p>Введите ФИО: <input type="text" name="name" maxlength="30" required></p>
         <p>Введите Email: <input type="email" name="email" maxlength="20" required></p>
-        <p>Введите Текст: <textarea name="text" rows="10" required></textarea></p>
+        <p>Введите Текст: <textarea name="comment" rows="10" required></textarea></p>
         <p><input type="submit" name="submit"></p>
     </form>
 </div>
-<footer>
-    <? include "../templates/footer.php"; ?>
-</footer>
+
 </div>
 
 {% include 'footer.tmpl' %}
