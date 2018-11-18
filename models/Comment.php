@@ -25,7 +25,7 @@ class Comment extends Model
 
     }
 
-    function getExampleComment()
+    function getFirst5Comments()
     {
         $pdo = Db::getPDO();
         $statement = $pdo->query('SELECT * FROM ' . $this->table . ' LIMIT 5');
@@ -38,7 +38,7 @@ class Comment extends Model
     {
         $pdo = Db::getPDO();
         $statement = $pdo->query('INSERT INTO ' . $this->table . '(token, name, email, comment) 
-        VALUES ("'. $_SESSION['user']['token'] . '", "' . $_POST['name'] . '", "' . $_POST['email'] . '", "' . $_POST['comment'] .'")');
+        VALUES ("' . $_SESSION['user']['token'] . '", "' . $_POST['name'] . '", "' . $_POST['email'] . '", "' . $_POST['comment'] . '")');
         return $statement;
     }
 }

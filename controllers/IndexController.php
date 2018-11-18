@@ -26,24 +26,6 @@ class IndexController extends Controller
         ]);
     }
 
-    public function actionCabinet()
-    {
-        $userModel = new User();
-
-        if ($userModel->authWithCredentials() == true) {
-            echo $this->render('cab.index', [
-                'authResult' => 'авторизация пройдена',
-                'auth' => $this->initResult,
-                'name' => $_SESSION['user']['name']
-            ]);
-        } else {
-            echo $this->render('index', [
-                'authResult' => 'неверный логин или пароль',
-                'auth' => $this->initResult,
-                'name' => $_SESSION['user']['name']
-            ]);
-        }
-    }
 
     public function actionAdmin()
     {
@@ -64,22 +46,4 @@ class IndexController extends Controller
             'name' => $_SESSION['user']['name']
         ]);
     }
-
-    public function actionPromo()
-    {
-        echo $this->render('promo', [
-            'auth' => $this->initResult,
-            'name' => $_SESSION['user']['name']
-        ]);
-    }
-
-    public function actionContact()
-    {
-        echo $this->render('contact', [
-            'auth' => $this->initResult,
-            'name' => $_SESSION['user']['name']
-        ]);
-    }
-
-
 }

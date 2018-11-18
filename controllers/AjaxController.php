@@ -8,12 +8,12 @@
 
 namespace controllers;
 
-
+use components\Controller;
 use models\Basket;
 use models\OrderInfo;
 use models\Goods;
 
-class AjaxController
+class AjaxController extends Controller
 {
     public function actionRenderBasket()
     {

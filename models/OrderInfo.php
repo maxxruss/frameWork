@@ -11,7 +11,6 @@ namespace models;
 use components\Db;
 use components\Model;
 
-
 class OrderInfo extends Model
 {
     protected $table = 'orderInfo';
@@ -81,27 +80,6 @@ class OrderInfo extends Model
         return $statement;
 
     }
-
-//    function getOrderId()
-//    {
-//        $pdo = Db::getPDO();
-//        //var_dump($pdo);exit;
-//        $statement = $pdo->query('SELECT order_id FROM ' . $this->table);
-//        $result = $statement->fetchAll();
-//        return $result;
-//
-//    }
-
-//    function getOrderInfoById($order_id)
-//    {
-//        $pdo = Db::getPDO();
-//        //var_dump($pdo);exit;
-//        $statement = $pdo->query('SELECT * FROM ' . $this->table . ' WHERE id=' . $order_id);
-//        $result = $statement->fetchAll();
-//        return $result;
-//
-//    }
-
 
     public function createOrder($user_id)
     {

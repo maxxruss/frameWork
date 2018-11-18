@@ -52,11 +52,7 @@ class User extends Model
             // проверяем соответствие логина и пароля
             if ($this->user_db) {
                 if ($this->user_db['login'] == $this->login && $this->user_db['pass'] == md5($this->password)) {
-                    // если стояла галка, то запоминаем пользователя на год
-//                    if (isset($_POST['rememberme']) && $_POST['rememberme'] == 'on') {
-////                        setcookie("id", $this->user_db['id'], time() + 3600 * 24 * 30 * 12, '/');
-////                        setcookie("hash", $this->user_db['hash'], time() + 3600 * 24 * 30 * 12, '/');
-//                    }
+
                     /** сохраним данные в сессию и куки**/
 
                     $_SESSION['user'] = $this->user_db;

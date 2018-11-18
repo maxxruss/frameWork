@@ -9,7 +9,6 @@
 namespace controllers;
 
 use components\Controller;
-use models\Goods;
 use models\OrderInfo;
 
 class OrderController extends Controller

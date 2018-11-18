@@ -9,7 +9,6 @@
 namespace controllers;
 
 use components\Controller;
-use components\Request;
 use models\User;
 
 class AuthController extends Controller
@@ -21,6 +20,7 @@ class AuthController extends Controller
         if (!$this->initResult) {
             echo $this->render('auth.index', [
                 'auth' => $this->initResult,
+                'message' => 'Введите логин и пароль',
             ]);
         } else {
             $this->actionCabinet();
@@ -44,10 +44,10 @@ class AuthController extends Controller
         $this->initResult = $userModel->authWithCredentials();
 
         if ($this->initResult) {
-        $this->actionCabinet();
+            $this->actionCabinet();
         } else {
             echo $this->render('auth.reg', [
-                'massage'=> 'Пользователь не найден, пройдите регистрацию'
+                'massage' => 'Пользователь не найден, пройдите регистрацию'
             ]);
         }
     }

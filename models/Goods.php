@@ -20,25 +20,33 @@ class Goods extends Model
         'content'
     ];
     public $rules = [
-        'id'     => 'int',
-        'title'  => 'string',
+        'id' => 'int',
+        'title' => 'string',
         'content' => 'string'
     ];
-    public function getAllGoods() {
+
+    public function getAllGoods()
+    {
         return $this->getAll();
     }
-    public function getOneGood($id) {
+
+    public function getOneGood($id)
+    {
         return $this->getOne($id);
     }
 
-    public function deleteGood($id) {
+    public function deleteGood($id)
+    {
         return $this->delete($id);
     }
-    public function editGood() {
+
+    public function editGood()
+    {
         return $this->edit();
     }
 
-    public function load() {
+    public function load()
+    {
         return $this->scanDirLoadFiles();
     }
 }

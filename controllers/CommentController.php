@@ -10,16 +10,17 @@ namespace controllers;
 
 use components\Controller;
 use models\Comment;
-use models\Goods;
-use models\OrderInfo;
+
 
 class CommentController extends Controller
 {
     public function actionIndex()
     {
+        $modelComment = new Comment();
         echo $this->render('guestbook', [
             'auth' => $this->initResult,
-            'name' => $_SESSION['user']['name']
+            'name' => $_SESSION['user']['name'],
+            'comments' => $modelComment->getFirst5Comments()
         ]);
     }
 
@@ -27,7 +28,7 @@ class CommentController extends Controller
     {
         $modelComment = new Comment();
         $modelComment->createComment();
-        header('location: /');
+        header('location: /comment');
 
     }
 
