@@ -1,28 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84384e54-3627-433e-be39-7176a57cebea" name="Default" comment="+comment, +guestBook, +contact">
-      <change afterPath="$PROJECT_DIR$/controllers/ContactController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/PromoController.php" afterDir="false" />
+    <list default="true" id="84384e54-3627-433e-be39-7176a57cebea" name="Default" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AjaxController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/CommentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Basket.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Basket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Goods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/OrderInfo.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/OrderInfo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth.cabinet.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.cabinet.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth.index.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.index.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/auth.reg.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth.reg.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/contact.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/contact.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/guestbook.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/guestbook.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/manager.order1.tmpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menu_block_auth_true.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menu_block_auth_true.tmpl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +96,7 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="36" />
-          <entry key="project.open.time.0" value="3" />
+          <entry key="project.open.time.0" value="4" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="9" />
           <entry key="project.open.time.12" value="5" />
@@ -129,7 +109,7 @@
           <entry key="project.open.time.7" value="3" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="40" />
+          <entry key="project.opened" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -139,9 +119,9 @@
           <entry key="html" value="2" />
           <entry key="jpeg" value="3" />
           <entry key="js" value="15" />
-          <entry key="json" value="1" />
-          <entry key="lock" value="1" />
-          <entry key="php" value="348" />
+          <entry key="json" value="2" />
+          <entry key="lock" value="2" />
+          <entry key="php" value="350" />
           <entry key="test" value="1" />
           <entry key="tmpl" value="99" />
         </counts>
@@ -151,9 +131,9 @@
           <entry key="CSS" value="4" />
           <entry key="HTML" value="2" />
           <entry key="Image" value="3" />
-          <entry key="JSON" value="2" />
+          <entry key="JSON" value="4" />
           <entry key="JavaScript" value="15" />
-          <entry key="PHP" value="348" />
+          <entry key="PHP" value="350" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Twig" value="96" />
           <entry key="htaccess" value="12" />
@@ -167,7 +147,7 @@
           <entry key="js" value="1524" />
           <entry key="php" value="5798" />
           <entry key="tmpl" value="1054" />
-          <entry key="txt" value="875" />
+          <entry key="txt" value="879" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -176,15 +156,15 @@
           <entry key="HTML" value="2" />
           <entry key="JavaScript" value="1522" />
           <entry key="PHP" value="5798" />
-          <entry key="PLAIN_TEXT" value="876" />
+          <entry key="PLAIN_TEXT" value="880" />
           <entry key="Twig" value="1054" />
           <entry key="htaccess" value="175" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.composer.actions">
         <counts>
-          <entry key="install_from_ComposerEditorNotificationPanel" value="2" />
-          <entry key="updateAll_from_ComposerEditorNotificationPanel" value="2" />
+          <entry key="install_from_ComposerEditorNotificationPanel" value="3" />
+          <entry key="updateAll_from_ComposerEditorNotificationPanel" value="3" />
         </counts>
       </usages-collector>
     </session>
@@ -211,7 +191,7 @@
     <favorites_list name="frameWork" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -299,12 +279,37 @@
       <server host="localhost" id="c3a23649-99f1-4ebd-a400-8eccdc443568" name="localhost" />
     </servers>
   </component>
+  <component name="PhpWebServerValidation" path_to_validation_script="/usr/lib/php/20170718/xdebug.so" selected_validation_type="LOCAL" web_path_to_validation_script="/usr/lib/php/20170718/xdebug.so" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.2" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="130" />
     <option name="y" value="75" />
     <option name="width" value="1350" />
     <option name="height" value="690" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Code style issuesJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript function metricsJavaScript</id>
+          </State>
+          <State>
+            <id>PHP</id>
+          </State>
+          <State>
+            <id>Quality toolsPHP</id>
+          </State>
+        </expanded-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -321,11 +326,6 @@
               <item name="framework" type="b2602c69:ProjectViewProjectNode" />
               <item name="framework" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="framework" type="b2602c69:ProjectViewProjectNode" />
-              <item name="framework" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -336,12 +336,12 @@
   <component name="PropertiesComponent">
     <property name="Constants" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="/usr/share/phpmyadmin" />
+    <property name="last_opened_file_path" value="/usr/lib/php/20170718" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="settings.php.debug.skipped.paths" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -470,6 +470,7 @@
       <workItem from="1542266616932" duration="16037000" />
       <workItem from="1542380747800" duration="4475000" />
       <workItem from="1542533507100" duration="7080000" />
+      <workItem from="1542708764777" duration="2147000" />
     </task>
     <task id="LOCAL-00001" summary="begin project">
       <created>1534953408411</created>
@@ -688,11 +689,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542292915241</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="test">
+      <created>1542709870827</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1542709870827</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="615526000" />
+    <option name="totallyTimeSpent" value="617673000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -706,7 +714,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1920" height="1053" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989429" visible="true" weight="0.17182498" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989429" visible="true" weight="0.1248666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5010571" side_tool="true" weight="0.12885906" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -719,7 +727,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" weight="0.32905984" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49733192" weight="0.3577586" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49733192" visible="true" weight="0.24568966" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5026681" side_tool="true" weight="0.23060344" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32765958" />
       <window_info anchor="bottom" id="Migrations" order="13" />
@@ -745,7 +753,6 @@
     <MESSAGE value="Инициализация почти готова" />
     <MESSAGE value="Инициализация почти готова-2" />
     <MESSAGE value="init работает" />
-    <MESSAGE value="test" />
     <MESSAGE value="test1" />
     <MESSAGE value="+addToBasket, +deletFromBasket, изменена db" />
     <MESSAGE value="+orderInfo в разделе Управление заказами" />
@@ -762,31 +769,10 @@
     <MESSAGE value="убрал public из URL, окончательный ордер корректно рендерится, удаление товаров при обработке заказа менеджером" />
     <MESSAGE value="удалены лишние методы, классы, компоненты и комментарии" />
     <MESSAGE value="+comment, +guestBook, +contact" />
-    <option name="LAST_COMMIT_MESSAGE" value="+comment, +guestBook, +contact" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/share/phpmyadmin/sql.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/share/phpmyadmin/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/orderEnd.tmpl" />
-    <entry file="file://$PROJECT_DIR$/templates/order_end.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/footer.tmpl">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -924,9 +910,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
           <caret line="190" lean-forward="true" selection-start-line="190" selection-end-line="190" />
-          <folding>
-            <element signature="e#114#140#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -955,9 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#114#140#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -965,9 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
           <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
-          <folding>
-            <element signature="e#109#127#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1027,27 +1004,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/max/MEDIA/lessons/JS/JS_2_3/lesson3/lesson3/lesson3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="107" column="16" selection-start-line="107" selection-start-column="16" selection-end-line="107" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Рабочий стол/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Рабочий стол/index.html">
+    <entry file="file:///media/max/MEDIA/lessons/JS/JS_2_3/lesson3/lesson3/lesson3.html" />
+    <entry file="file://$USER_HOME$/Рабочий стол/script.js" />
+    <entry file="file://$USER_HOME$/Рабочий стол/index.html" />
+    <entry file="file://$USER_HOME$/Рабочий стол/style.css" />
+    <entry file="file://$PROJECT_DIR$/1.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$USER_HOME$/Рабочий стол/style.css">
+    <entry file="file://$PROJECT_DIR$/composer.lock">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="17" lean-forward="true" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state relative-caret-position="152">
+          <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
         </state>
       </provider>
     </entry>
