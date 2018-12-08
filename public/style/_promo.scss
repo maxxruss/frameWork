@@ -1,0 +1,18 @@
+.promoWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin:25px 0;
+}
+
+.promoWrap>i {
+  margin:0 50px;
+}
+
+.promoHeader {
+  text-align:center;
+  font-family: 'El Messiri', sans-serif;
+  font-size: 60px;
+  font-weight:700;
+  color: olive;
+}

@@ -1,0 +1,30 @@
+.formOrder {
+  width: 500px;
+  margin: 50px auto;
+}
+
+.orderBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  justify-content: space-around;
+}
+.formOrder {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderTable {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+//.thanks {
+//  text-align: center;
+//  margin: 50px auto;
+//  font-family: 'El Messiri', sans-serif;
+//  color: olive;
+//  font-size: 40px;
+//  font-weight: 500;
+//}

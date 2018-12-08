@@ -58,8 +58,13 @@ class Model
          * return false;
          * }**/
         $pdo = Db::getPDO();
+        if ($values['bigPhoto']&&$values['miniPhoto']) {
+            $setPhoto = 'bigPhoto = "' . $values['bigPhoto'] . '", miniPhoto = "' . $values['miniPhoto'] . '",';
+            } else {
+            $setPhoto = '';
+        }
         $statement = $pdo->exec('UPDATE `' . $this->table . '` SET nameFull = "' . $values['nameFull'] .
-            '", price = ' . $values['price'] . ', param = "' . $values['param'] . '", bigPhoto = "' . $values['bigPhoto'] . '", miniPhoto = "' . $values['miniPhoto'] . '", weight = ' . $values['weight'] . ', stickerFit = "' . $values['stickerFit'] . '", stickerHit = "' . $values['stickerHit'] . '", discount = ' . $values['discount'] . ' WHERE `id` = ' . $values['id']);
+            '", price = ' . $values['price'] . ', param = "' . $values['param'] . '", ' . $setPhoto . '  weight = ' . $values['weight'] . ', stickerFit = "' . $values['stickerFit'] . '", stickerHit = "' . $values['stickerHit'] . '", discount = ' . $values['discount'] . ' WHERE `id` = ' . $values['id']);
                return $statement;
     }
 
@@ -128,6 +133,7 @@ class Model
         } else {
             $post['stickerHit'] = '0';
         };
+        $_FILES['userfile']['error'];
 
         if (empty($_FILES['userfile']['tmp_name'])) {
             $model = new Goods();

@@ -1,0 +1,179 @@
+.goodsTable {
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  max-width: 1345px;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.goodsWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 270px;
+  height:550px;
+  border-radius: 30px 30px 10px 10px;
+  margin: 25px auto;
+  background: lemonchiffon;
+  box-shadow: 0 0 25px #777;
+  border: 1px solid transparent;
+  position:relative;
+}
+
+
+a:hover {
+  text-decoration:none;
+}
+
+.goodsWrap:hover {
+  border-color:gray;
+}
+.goodImg {
+  border-radius: 30px;
+  box-shadow: 0 0 25px #777;
+}
+
+.wrapGoodImg {
+  text-align: center;
+  margin-top: 30px;
+  position:relative;
+}
+
+.sticker {
+  right: -50px;
+  top: -50px;
+  position:absolute;
+  /**z-index: 10;**/
+}
+.stickerImg {
+  width:125px;
+  height:125px;
+  position:relative;
+}
+.stickerTextFit {
+  text-align: center;
+  /**line-height: 100px;**/
+  font-family: cursive;
+  font-weight: 900;
+  font-size: 30px;
+  position:absolute;
+  left: 55px;
+  top: 40px;
+  color: green;
+}
+.stickerTextHit {
+  text-align: center;
+  /**line-height: 100px;**/
+  font-family: cursive;
+  font-weight: 900;
+  font-size: 30px;
+  position:absolute;
+  left: 42px;
+  top: 40px;
+  color:red;
+}
+.wrapGoodInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.goodsNameFull {
+  text-align:center;
+  font-family: 'El Messiri', sans-serif;
+  font-size: 30px;
+  line-height: 50px;
+}
+
+.goodsPrice {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px 0 20px;
+  text-align:right;
+  color:red;
+}
+.goodsParam {
+  margin: 0 auto;
+  padding: 0 20px 0 20px;
+  height: 100px;
+}
+a {
+  text-decoration: none;
+  color:black;
+  &:hover {
+    color:black;
+  };
+  &:visited {
+    color:black;
+  };
+  &:active {
+    color:black;
+  };
+}
+
+.btnWrap{
+  text-align: center;
+
+}
+
+.addToBasket, .deleteToBasket{
+  background:palegoldenrod;
+  width: 90%;
+  margin:5px auto;
+  border: 1px solid black;
+}
+
+.goodsWrapItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  /* height: 550px; */
+  margin: 25px auto;
+  /*background: lemonchiffon;
+  box-shadow: 0 0 25px #777;
+  border: 1px solid transparent;
+  /* position: relative; */
+}
+
+.wrapGoodImgItem {
+  margin: auto 0;
+}
+
+.goodsPriceItem {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px 0 20px;
+  text-align:center;
+  color:red;
+}
+
+.goodsWeightItem {
+  margin: 20px auto;
+  padding: 0 20px 0 20px;
+}
+
+.stickerImgItem {
+  width: 50px;
+  height: 50px;
+}
+
+.stickerItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin: 0 auto;
+}
+
+.stickerTextItem {
+  text-align: center;
+  font-family: cursive;
+  font-weight: 900;
+  font-size: 30px;
+  color: green;
+  margin:0 20px;
+}
+
+.openItemGood {
+  cursor: pointer;
+}

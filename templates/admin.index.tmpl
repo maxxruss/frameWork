@@ -48,53 +48,6 @@
         });
     </script>
 
-    <!--<div class="headTable">
-        <div class="headerCell id">Id</div>
-        <div class="headerCell nameFull">Hаименование</div>
-        <div class="headerCell price">Цена</div>
-        <div class="headerCell param">Состав</div>
-        <div class="headerCell weight">Вес</div>
-        <div class="headerCell discount">скидка</div>
-        <div class="headerCell loadFile">Загрузить фото</div>
-        <div class="headerCell stickerAdmin">Fit</div>
-        <div class="headerCell stickerAdmin">Hit</div>
-        <div class="headerCell views">просмотры</div>
-        <div class="headerCell operation">Операции</div>
-    </div>
-
-    {% for key in dateAnswer %}
-
-        <form class="formAdmin" id="form{{ key.id }}"
-              action="javascript:void(null);" method="POST" onsubmit="editGood({{ key.id }})" enctype="multipart/form-data">
-            <div class="rowCell id" name="id">{{ key.id }}</div>
-
-            <input type="hidden" name="id" value="{{ key.id }}">
-            <input type="hidden" name="edit" value="1">
-            <input type="text" name="nameFull" class="rowCell nameFull" value="{{ key.nameFull }}">
-            <input type="text" name="price" class="rowCell price" value="{{ key.price }}">
-            <textarea type="text" name="param" class="rowCell param">{{ key.param }}</textarea>
-            <input type="text" name="weight" class="rowCell weight" value={{ key.weight }}>
-            <input type="text" name="discount" class="rowCell discount" value={{ key.discount }}>
-            <input class="rowCell loadFile" type="file" id="userfile" name="userfile" class="rowCell  loadFile">
-            {% if key.stickerFit == 1 %}
-                <div class="rowCell stickerAdmin"><input type="checkbox" name="stickerFit" checked></div>
-            {% else %}
-                <div class="rowCell stickerAdmin"><input type="checkbox" name="stickerFit"></div>
-            {% endif %}
-
-            {% if key.stickerHit == 1 %}
-
-                <div class="rowCell stickerAdmin"><input type="checkbox" name="stickerHit" checked></div>
-            {% else %}
-                <div class="rowCell stickerAdmin"><input type="checkbox" name="stickerHit"></div>
-            {% endif %}
-
-            <div class="rowCell views">{{ key.views }}</div>
-
-            <input class="btnAdmin" type="submit" value="Сохранить">
-            <button class="btnAdmin" ><a href="/public/admin/delete={{ key.id }}">Удалить</a></button>
-        </form>
-    {% endfor %}-->
 </div>
 
 {% include 'footer.tmpl' %}

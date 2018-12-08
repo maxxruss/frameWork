@@ -8,7 +8,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ public/index.php?route=$1 [L,QSA]
 </IfModule>
 
-Options All -ExecCGI -Indexes -Includes +FollowSymLinks
+Options All +ExecCGI -Indexes -Includes +FollowSymLinks
 
 
 
