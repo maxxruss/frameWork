@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/public/css/style.css">
+    {% include 'head.tmpl' %}
     <title>Главная</title>
 </head>
 <body>
 {% include 'menu.tmpl' %}
 
-<br>
-<br>
-<br>
+<main>
+    <header class="header_top">Кабинет</header>
 
-{% if auth == 'true' %}
-    Приветствую, {{ name }}!<br>
-    Это твой личный кабинет
-{% else %}
-    Неверный логин или пароль!
+    {% if auth == 'true' %}
+        Приветствую, {{ name }}!<br>
+        Это твой личный кабинет
+    {% else %}
+        Неверный логин или пароль!
 
-{% endif %}
+    {% endif %}
 
-{% include 'footer.tmpl' %}
-
+    {% include 'footer.tmpl' %}
+</main>
 </body>
 </html>

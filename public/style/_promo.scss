@@ -11,8 +11,5 @@
 
 .promoHeader {
   text-align:center;
-  font-family: 'El Messiri', sans-serif;
-  font-size: 60px;
-  font-weight:700;
-  color: olive;
+  @include headerFont;
 }

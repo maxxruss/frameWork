@@ -1,36 +1,36 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/public/css/style.css">
+    {% include 'head.tmpl' %}
     <title>Главная</title>
 </head>
 <body>
 {% include 'menu.tmpl' %}
-
+<main>
+    <header class="header_top">Меню</header>
 <div class='goodsTable'>
     {% for item in allGoods %}
         <div class='goodsWrap'>
             {% if item.discount>0 %}
-                <div class="sticker"><img class="stickerImg" src="/public/css/star.png">
-                    <span class="stickerTextFit">{{ item.discount }}</span></div>
-            {% endif %}
-            {% if item.stickerFit==1 %}
-                <div class="sticker"><img class="stickerImg" src="/public/css/star.png">
-                    <span class="stickerTextFit">Fit!</span></div>
-            {% endif %}
-            {% if item.stickerHit==1 %}
-                <div class="sticker"><img class="stickerImg" src="/public/css/star.png">
-                    <span class="stickerTextHit">Hit!</span></div>
+                <div class="sticker">
+                    <span class="stickerTextDiscount">- {{ item.discount }}%</span>
+                </div>
+                {#{% endif %}#}
+            {% elseif item.stickerFit==1 %}
+                <div class="sticker">
+                    <span class="stickerTextFit">Fit!</span>
+                </div>
+                {#{% endif %}#}
+            {% elseif item.stickerHit==1 %}
+                <div class="sticker">
+                    <span class="stickerTextHit">Hit!</span>
+                </div>
             {% endif %}
 
             <div class="wrapGoodImg">
                 <!-- Button trigger modal -->
                 <a class="openItemGood" onclick="renderItemModal({{ item.id }})"
-                        data-toggle="modal" data-target="#goodItem">
+                   data-toggle="modal" data-target="#goodItem">
                     <img class='goodImg' src="/public/{{ item.miniPhoto }}">
                 </a>
                 <!-- Modal -->
@@ -66,10 +66,10 @@
         </div>
     {% endfor %}
 </div>
+</main>
 
 
 {% include 'footer.tmpl' %}
-
 
 
 </body>

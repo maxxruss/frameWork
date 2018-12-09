@@ -30,43 +30,15 @@
 
 
 
-
-.rowCell {
-  border: solid black 1px;
-  background: lemonchiffon;
-  text-align:center;
-  line-height: 46px;
-  height: 50px;
-}
-.headerCell {
-  background:palegoldenrod;
-  border: solid black 1px;
-  text-align:center;
-  line-height: 46px;
-  height: 50px;
-  font-weight:600;
+main {
+  max-width: 1345px;
 }
 
-
-.btnAdmin {
-  background:palegoldenrod;
-  border: 1px solid black;
-  max-width:100px;
-  min-width:100px;
+.header_top {
+  text-align: center;
+  margin: 25px auto;
+  @include headerFont();
 }
-
-.countModal {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width:100px;
-  line-height: 14px;
-}
-
-
-
-
-
 
 @import "contact";
 @import "admin";

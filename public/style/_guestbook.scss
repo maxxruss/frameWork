@@ -1,0 +1,103 @@
+//.main_content {
+//  max-width: 1345px;
+//  margin: auto;
+//}
+
+//h1 {
+//  text-align: center;
+//@include headerFont;
+//}
+
+//.guestbook__table {
+//  display: flex;
+//  flex-direction: column;
+//
+//}
+
+.guestbook__commentWrap {
+  max-width: 100%;
+  margin: 25px auto;
+  height: auto;
+  padding: 15px;
+  border-radius: 10px;
+  background: lemonchiffon;
+  box-shadow: 0 0 25px #777;
+  border: 1px solid transparent;
+  @media all and (max-width: 560px){
+    margin: 25px auto;
+  }
+}
+
+.guestbook__userName {
+  color: chocolate;
+  border-bottom: 1px solid gray;
+}
+
+.guestbook__comment {
+  margin: 25px auto;
+}
+
+.guestbook__dateTime {
+  color: chocolate;
+  border-top: 1px solid gray;
+}
+
+
+.guestbook__feedback {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+
+  .guestbook__wrap {
+    max-width: 400px;
+    padding: 15px;
+    border: 1px solid chocolate;
+    border-radius: 15px;
+  }
+
+  header {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  form {
+    padding: 50px;
+    box-sizing: border-box;
+
+    label, input, textarea {
+      display: block;
+      width: 100%;
+    }
+
+    input[type="text"],
+    textarea {
+      outline: none;
+      color: chocolate;
+      margin-bottom: 21px;
+      padding: 7px 5px;
+      border: 1px solid chocolate;
+      border-radius: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: lemonchiffon;
+      width: 140px;
+      height: 40px;
+      text-align: center;
+      color: chocolate;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      border: 1px solid chocolate;
+      border-radius: 5px;
+      display: block;
+      margin: 0 auto;
+      cursor: pointer;
+      outline: none;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -1,93 +1,91 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/public/css/style.css">
+    {% include 'head.tmpl' %}
     <title>Admin</title>
 </head>
 {% include 'menu.tmpl' %}
 
 <body>
+<main>
+    <header class="header_top">Ваш заказ</header>
+    <div class="orderBody">
+        <div class="order">
+            <div class="orderTable">
+                <script>
+                    $(document).ready(function () {
+                        renderOrder();
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="formClientInfo">
+            <div class="bonusInfo">
+                <div class="bonus_header">Действующие акции</div>
+                <div class="happy_hours">Скидка "Счастливый час" (-7% при заказе с 00:00 до 08:00)</div>
+                <div class="delivery">Скидка за самовывоз (10%)</div>
+            </div>
+            <form class="formOrder" id="formOrder" action="/order/makeanorder" method="POST">
+                <fieldset>
+                    <p>
+                        <legend>Способ доставки</legend>
+                        <input type="radio" id="inputDelivery" name="delivery" value="1" onchange="deliveryCheck(1)">Самовывоз<br>
+                        <input type="radio" id="inputDelivery" name="delivery" value="0" onchange="deliveryCheck(0)">Доставка<br>
+                    </p>
+                </fieldset>
 
-<div class="orderBody">
-    <div class="order">
-        <div><h1>Ваш заказ</h1></div>
-        <div class="orderTable">
-            <script>
-                $(document).ready(function() {
-                    renderOrder();
-                });
-            </script>
+                <fieldset>
+                    <legend>Информация о заказе</legend>
+                    <p>
+                        <label for="inputName" class="">Имя</label>
+                        <input type="text" name="name" id="inputName" placeholder="Введите имя">
+                    </p>
+                    <p>
+                        <label for="inputPhone" class="">Телефон</label>
+                        <input type="text" name="phone" class="rowGoods nameFull" placeholder="Введите номер телефона">
+                    </p>
+                    <p>
+                        <label for="inputDiscountCard" class="">Дисконтная карта</label>
+                        <input type="text" name="discountCard" id="inputDiscountCard" class=""
+                               placeholder="Номер дисконтной карты">
+                    </p>
+                    <p>
+                        <label for="inputPersons" class="">Количество персон</label>
+                        <input type="text" name="persons" id="inputPersons" placeholder="Введите Количество персон">
+                    </p>
+                    <p>
+                        <label for="inputtypepay" class="">Способ оплаты</label>
+                        <select class="form-control input-sm" name="pay" id="inputtypepay">
+                            <option value="0">Наличные</option>
+                            <option value="1">Кредитная карта</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="inputTime" class="">Заказ на время</label>
+                        <input type="text" name="desiredTime" id="inputTime"
+                               placeholder="Введите желаемое время исполнения заказа">
+                    </p>
+                    <p>
+                        <label for="inputMoney" class="">Сдача</label>
+                        <input type="text" name="money" id="inputMoney" placeholder="С какой купюры приготовить сдачу">
+                    </p>
+                    <p>
+                        <label for="inputAddress" class="">Адрес</label>
+                        <textarea name="address" id="inputAddress" placeholder="Адрес доставки"></textarea>
+                    </p>
+                    <p>
+                        <label for="inputComment" class="">Комментарий</label>
+                        <textarea name="comment" id="inputComment" placeholder="Комментарий к заказу"></textarea>
+                    </p>
+                    <p>
+                        <input type="hidden" name="totalCoast" value="123456!">
+                        <input type="submit" class="btn btn-primary" value="Заказать!">
+                    </p>
+                </fieldset>
+            </form>
         </div>
     </div>
-    <div class="formClientInfo">
-        <div class="bonusInfo">
-            <div class="bonus_header">Действующие акции</div>
-            <div class="happy_hours">Скидка "Счастливый час" (-7% при заказе с 00:00 до 08:00)</div>
-            <div class="delivery">Скидка за самовывоз (10%)</div>
-        </div>
-        <form class="formOrder" id="formOrder" action="/order/makeanorder"  method="POST">
-            <fieldset>
-                <p>
-                <legend>Способ доставки</legend>
-                <input type="radio" id="inputDelivery" name="delivery" value="1" onchange="deliveryCheck(1)">Самовывоз<br>
-                <input type="radio" id="inputDelivery"  name="delivery" value="0" onchange="deliveryCheck(0)">Доставка<br>
-                </p>
-            </fieldset>
-
-            <fieldset>
-                <legend>Информация о заказе</legend>
-                <p>
-                    <label for="inputName" class="">Имя</label>
-                    <input type="text" name="name" id="inputName" placeholder="Введите имя">
-                </p>
-                <p>
-                    <label for="inputPhone" class="">Телефон</label>
-                    <input type="text" name="phone" class="rowGoods nameFull" placeholder="Введите номер телефона">
-                </p>
-                <p>
-                    <label for="inputDiscountCard" class="">Дисконтная карта</label>
-                    <input type="text" name="discountCard" id="inputDiscountCard" class="" placeholder="Номер дисконтной карты">
-                </p>
-                <p>
-                    <label for="inputPersons" class="">Количество персон</label>
-                    <input type="text" name="persons" id="inputPersons" placeholder="Введите Количество персон">
-                </p>
-                <p>
-                    <label for="inputtypepay" class="">Способ оплаты</label>
-                    <select class="form-control input-sm" name="pay" id="inputtypepay">
-                        <option value="0">Наличные</option>
-                        <option value="1">Кредитная карта</option>
-                    </select>
-                </p>
-                <p>
-                    <label for="inputTime" class="">Заказ на время</label>
-                    <input type="text" name="desiredTime" id="inputTime" placeholder="Введите желаемое время исполнения заказа">
-                </p>
-                <p>
-                    <label for="inputMoney" class="">Сдача</label>
-                    <input type="text" name="money" id="inputMoney" placeholder="С какой купюры приготовить сдачу">
-                </p>
-                <p>
-                    <label for="inputAddress" class="">Адрес</label>
-                    <textarea name="address" id="inputAddress" placeholder="Адрес доставки"></textarea>
-                </p>
-                <p>
-                    <label for="inputComment" class="">Комментарий</label>
-                    <textarea name="comment" id="inputComment" placeholder="Комментарий к заказу"></textarea>
-                </p>
-                <p>
-                    <input type="hidden"  name="totalCoast" value="123456!">
-                    <input type="submit" class="btn btn-primary" value="Заказать!">
-                </p>
-            </fieldset>
-        </form>
-    </div>
-</div>
-
+</main>
 {% include 'footer.tmpl' %}
 </body>
 </html>

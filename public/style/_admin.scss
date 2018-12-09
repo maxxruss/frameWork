@@ -1,44 +1,85 @@
+.rowCell {
+  border: solid black 1px;
+  background: lemonchiffon;
+  text-align: center;
+  line-height: 46px;
+  height: 50px;
+}
+
+.headerCell {
+  background: palegoldenrod;
+  border: solid black 1px;
+  text-align: center;
+  line-height: 46px;
+  height: 50px;
+  font-weight: 600;
+}
+
+
+.btnAdmin {
+  background: palegoldenrod;
+  border: 1px solid black;
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.countModal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100px;
+  line-height: 14px;
+}
 
 .headTable, .formAdmin {
-  display:flex;
-  flex-direction:row;
+  display: flex;
+  flex-direction: row;
 }
 
 .id {
   width: 50px;
 
 }
+
 .nameFull {
- width: 250px;
+  width: 250px;
 }
+
 .price {
   width: 50px;
 
 }
+
 .param {
   width: 150px;
 
 }
+
 .weight {
   width: 50px;
 
 }
+
 .discount {
   width: 70px;
 
 }
+
 .loadFile {
   width: 260px;
 
 }
+
 .stickerAdmin {
   width: 150px;
 
 }
+
 .views {
   width: 100px;
 
 }
+
 .operation {
-  width:200px;
+  width: 200px;
 }
