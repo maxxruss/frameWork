@@ -9,17 +9,14 @@
 <body>
 <main>
     <header class="header_top">Ваш заказ</header>
-    <div class="orderBody">
-        <div class="order">
-            <div class="orderTable">
+            <div class="order__table">
                 <script>
                     $(document).ready(function () {
                         renderOrder();
                     });
                 </script>
             </div>
-        </div>
-        <div class="formClientInfo">
+        <div class="oreder__formClient">
             <div class="bonusInfo">
                 <div class="bonus_header">Действующие акции</div>
                 <div class="happy_hours">Скидка "Счастливый час" (-7% при заказе с 00:00 до 08:00)</div>
@@ -84,7 +81,6 @@
                 </fieldset>
             </form>
         </div>
-    </div>
 </main>
 {% include 'footer.tmpl' %}
 </body>

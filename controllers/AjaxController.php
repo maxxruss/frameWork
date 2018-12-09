@@ -52,11 +52,12 @@ class AjaxController extends Controller
 
 
             if ($basketGood) {
-                $modelBasket->countPlus($basketGood['id']);
+                $result = $modelBasket->countPlus($basketGood['id']);
             } else {
                 $goodValue['count'] = '1';
-                $modelBasket->create($goodValue);
+                $result = $modelBasket->create($goodValue);
             }
+            echo json_encode($result);
             exit;
         }
     }
@@ -79,10 +80,11 @@ class AjaxController extends Controller
 
 
             if ($basketGood['count'] > 1) {
-                $modelBasket->countBasketMinus($basketGood['id']);
+                $result = $modelBasket->countBasketMinus($basketGood['id']);
             } elseif ($basketGood['count'] == 1) {
-                $modelBasket->deleteBasket($basketGood['id']);
+                $result = $modelBasket->deleteBasket($basketGood['id']);
             }
+            echo json_encode($result);
             exit;
         }
     }
