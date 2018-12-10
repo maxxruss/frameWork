@@ -4,29 +4,17 @@
   background-size: cover;
 }
 
-//.head {
-//  max-width: 1345px;
-//  justify-content: space-between;
-//  margin: 0 auto;
-//}
-//.headTitle {
-//  text-align:center;
-//}
-
-
 .navbar-light {
   background: palegoldenrod;
 }
 
-.basketInfo>a:hover {
-  color:black;
+.basketInfo > a:hover {
+  color: black;
 }
 
 .basketInfoOut {
-  width:125px;
+  width: 125px;
   color: olive;
-  /**background-color: transparent;
-  background-image: none;**/
   border-color: olive;
 }
 
@@ -40,11 +28,11 @@
   box-shadow: 0 0 0 0.2rem olive;
 }
 
-.btn-outline-success:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-success.dropdown-toggle:focus {
+.btn-outline-success:not(:disabled):not(.disabled):active:focus, .show > .btn-outline-success.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem olive;
 }
 
-.btn-outline-success:not(:disabled):not(.disabled):active, .show>.btn-outline-success.dropdown-toggle {
+.btn-outline-success:not(:disabled):not(.disabled):active, .show > .btn-outline-success.dropdown-toggle {
   color: #fff;
   background-color: olive;
   border-color: olive;

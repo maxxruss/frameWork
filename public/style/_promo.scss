@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: row;
   justify-content: start;
-  margin:25px 0;
+  margin: 25px 0;
 }
 
-.promoWrap>i {
-  margin:0 50px;
+.promoWrap > i {
+  margin: 0 50px;
 }
 
 .promoHeader {
-  text-align:center;
+  text-align: center;
   @include headerFont;
 }

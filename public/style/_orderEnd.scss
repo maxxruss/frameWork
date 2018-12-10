@@ -1,0 +1,62 @@
+.orderEnd__table {
+  max-width: 100%;
+  margin: 25px auto;
+  height: auto;
+  padding: 15px;
+  border-radius: 10px;
+  background: lemonchiffon;
+  box-shadow: 0 0 25px #777;
+  border: 1px solid transparent;
+  @media all and (max-width: 560px) {
+    margin: 25px auto;
+  }
+}
+
+.orderEnd__head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: palegoldenrod;
+  border-radius: 5px;
+  font-weight: bold;
+
+}
+
+.orderEnd__itemWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.orderEnd__name,
+.orderEnd__priceDiscount,
+.orderEnd__discount,
+.orderEnd__discountValue,
+.orderEnd__delivery,
+.orderEnd__deliveryValue,
+.orderEnd__totalLable,
+.orderEnd__totalValue {
+  width: calc(100% / 2);
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+
+
+.orderEnd__total {
+  display: flex;
+  flex-direction: row;
+  background: palegoldenrod;
+  border-radius: 5px;
+  font-weight: bold;
+
+}
+
+.orderEnd__thanks {
+  text-align: center;
+  margin: 50px auto;
+  font-family: 'El Messiri', sans-serif;
+  color: olive;
+  font-size: 40px;
+  font-weight: 500;
+}

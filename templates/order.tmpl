@@ -9,79 +9,111 @@
 <body>
 <main>
     <header class="header_top">Ваш заказ</header>
-            <div class="order__table">
-                <script>
-                    $(document).ready(function () {
-                        renderOrder();
-                    });
-                </script>
-            </div>
-        <div class="oreder__formClient">
-            <div class="bonusInfo">
-                <div class="bonus_header">Действующие акции</div>
-                <div class="happy_hours">Скидка "Счастливый час" (-7% при заказе с 00:00 до 08:00)</div>
-                <div class="delivery">Скидка за самовывоз (10%)</div>
-            </div>
-            <form class="formOrder" id="formOrder" action="/order/makeanorder" method="POST">
-                <fieldset>
-                    <p>
-                        <legend>Способ доставки</legend>
-                        <input type="radio" id="inputDelivery" name="delivery" value="1" onchange="deliveryCheck(1)">Самовывоз<br>
-                        <input type="radio" id="inputDelivery" name="delivery" value="0" onchange="deliveryCheck(0)">Доставка<br>
-                    </p>
-                </fieldset>
+    <div class="order__table">
+        <script>
+            $(document).ready(function () {
+                renderOrder();
+            });
+        </script>
+    </div>
+    <div class="oreder__formClient">
+        <div class="bonusInfo">
+            <div class="bonus_header">Действующие акции</div>
+            <div class="happy_hours">Скидка "Счастливый час" (-7% при заказе с 00:00 до 08:00)</div>
+            <div class="delivery">Скидка за самовывоз (10%)</div>
+        </div>
 
-                <fieldset>
-                    <legend>Информация о заказе</legend>
-                    <p>
-                        <label for="inputName" class="">Имя</label>
-                        <input type="text" name="name" id="inputName" placeholder="Введите имя">
-                    </p>
-                    <p>
-                        <label for="inputPhone" class="">Телефон</label>
-                        <input type="text" name="phone" class="rowGoods nameFull" placeholder="Введите номер телефона">
-                    </p>
-                    <p>
-                        <label for="inputDiscountCard" class="">Дисконтная карта</label>
-                        <input type="text" name="discountCard" id="inputDiscountCard" class=""
-                               placeholder="Номер дисконтной карты">
-                    </p>
-                    <p>
-                        <label for="inputPersons" class="">Количество персон</label>
-                        <input type="text" name="persons" id="inputPersons" placeholder="Введите Количество персон">
-                    </p>
-                    <p>
-                        <label for="inputtypepay" class="">Способ оплаты</label>
-                        <select class="form-control input-sm" name="pay" id="inputtypepay">
+        <form class="needs-validation" action="/order/makeanorder" method="post" novalidate>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="inputName">Имя</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Введите имя" name="name"
+                           required>
+                    <div class="invalid-feedback">
+                        Напишите Ваше имя
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="inputPhone">Телефон</label>
+                    <input type="text" class="form-control" id="inputPhone" placeholder="Введите номер телефона"
+                           name="phone" required>
+                    <div class="invalid-feedback">
+                        Введите номер
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="inputDiscountCard">Дисконтная карта</label>
+                    <input type="text" class="form-control" id="inputDiscountCard"
+                           placeholder="Номер дисконтной карты (если есть)"
+                           name="discountCard">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-8 mb-3">
+                    <label for="inputAddress">Адрес</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Адрес доставки"
+                           name="address" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid city.
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="inputTime">Заказ на время</label>
+                    <input type="text" class="form-control" id="inputTime"
+                           placeholder="Введите желаемое время исполнения заказа" name="desiredTime">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="inputMoney">Сдача</label>
+                    <input type="text" class="form-control" id="inputMoney"
+                           placeholder="С какой купюры приготовить сдачу" name="money">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="inputPersons">Количество персон</label>
+                    <input type="text" class="form-control" id="inputPersons" placeholder="Введите Количество персон"
+                           name="persons">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="form-group">
+                        <label for="inputtypepay">Способ оплаты</label>
+                        <select class="custom-select" name="pay" required>
+                            <option value="">Способ оплаты</option>
                             <option value="0">Наличные</option>
                             <option value="1">Кредитная карта</option>
                         </select>
-                    </p>
-                    <p>
-                        <label for="inputTime" class="">Заказ на время</label>
-                        <input type="text" name="desiredTime" id="inputTime"
-                               placeholder="Введите желаемое время исполнения заказа">
-                    </p>
-                    <p>
-                        <label for="inputMoney" class="">Сдача</label>
-                        <input type="text" name="money" id="inputMoney" placeholder="С какой купюры приготовить сдачу">
-                    </p>
-                    <p>
-                        <label for="inputAddress" class="">Адрес</label>
-                        <textarea name="address" id="inputAddress" placeholder="Адрес доставки"></textarea>
-                    </p>
-                    <p>
-                        <label for="inputComment" class="">Комментарий</label>
-                        <textarea name="comment" id="inputComment" placeholder="Комментарий к заказу"></textarea>
-                    </p>
-                    <p>
-                        <input type="hidden" name="totalCoast" value="123456!">
-                        <input type="submit" class="btn btn-primary" value="Заказать!">
-                    </p>
-                </fieldset>
-            </form>
-        </div>
+                        <div class="invalid-feedback">Способ оплаты</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="inputComment">Комментарий к заказу</label>
+                    <textarea class="form-control" id="inputComment" placeholder="Комментарий к заказу"
+                              name="comment"></textarea>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <legend>Способ доставки</legend>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="customControlValidation2" name="delivery"
+                               value="1"
+                               required>
+                        <label class="custom-control-label" for="customControlValidation2">Самовывоз</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                        <input type="radio" class="custom-control-input" id="customControlValidation3" name="delivery"
+                               value="0"
+                               required>
+                        <label class="custom-control-label" for="customControlValidation3">Доставка</label>
+                        <div class="invalid-feedback">More example invalid feedback text</div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Заказать</button>
+        </form>
+    </div>
 </main>
 {% include 'footer.tmpl' %}
+<script src='/js/formValidate.js' defer></script>
 </body>
 </html>

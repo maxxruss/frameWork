@@ -8,23 +8,81 @@
 {% include 'menu.tmpl' %}
 <main>
     <header class="header_top">Регистрация</header>
-    <br>
-    <br>
-    {{ massage }}
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <form action="/public/auth/regCheck" method="post">
-        <p>Имя: <input type="text" name="name" maxlength="30" placeholder="Введите Имя" autofocus required></p>
-        <p>Логин: <input type="text" name="login" maxlength="30" placeholder="Введите Логин" required></p>
-        <p>Email: <input type="email" name="email" maxlength="30" placeholder="Введите Email" required></p>
-        <p>Пароль: <input type="password" minlength="2" name="pass" placeholder="Введите Пароль" required></p>
-        <input type="submit" name="submit" value="Зарегистрироваться">
-    </form>
+
+
+    <div class="auth__formWrap">
+        <form class="needs-validation" action="/public/auth/regCheck" method="post" novalidate>
+            <label class=" auth__wrap_reg" for="name">Ваше имя</label>
+            <input type="text" class="form-control" id="name" placeholder="Введите ваше имя" name="name"
+                   required>
+            <div class="invalid-feedback">
+                Напишите Ваше имя
+            </div>
+            <label class=" auth__wrap_reg" for="login">Логин</label>
+            <input type="text" class="form-control" id="login" placeholder="Введите ваш логин"
+                   name="login" required>
+            <div class="invalid-feedback">
+                Введите логин
+            </div>
+            <label class=" auth__wrap_reg" for="email">пароль</label>
+            <input type="email" class="form-control" id="email"
+                   placeholder="Введите ваш email"
+                   name="email">
+            <div class="invalid-feedback">
+                Введите email
+            </div>
+            <label class=" auth__wrap_reg" for="password">пароль</label>
+            <input type="password" class="form-control" id="password" placeholder="Введите ваш пароль"
+                   name="pass" required>
+            <div class="invalid-feedback">
+                Введите пароль
+            </div>
+
+            <button class="btn btn-primary auth__wrap_reg" type="submit" name="submit">Зарегистрировать</button>
+        </form>
+        <div class="auth__wrap_reg">
+            {{ massage }}
+        </div>
+
+
+
+        {#<form action="/public/auth/regCheck" method="post">#}
+            {#<div class="form-group">#}
+                {#<label for="name">Ваше имя</label>#}
+                {#<input type="text" class="form-control" id="name" placeholder="Введите ваше имя" name="name" autofocus#}
+                       {#required>#}
+            {#</div>#}
+            {#<div class="form-group">#}
+                {#<label for="login">Логин</label>#}
+                {#<input type="text" class="form-control" id="login" placeholder="Введите ваш логин" name="login"#}
+                       {#required>#}
+            {#</div>#}
+            {#<div class="form-group">#}
+                {#<label for="email">пароль</label>#}
+                {#<input type="email" class="form-control" id="email" placeholder="Введите ваш email" name="email"#}
+                       {#required>#}
+            {#</div>#}
+            {#<div class="form-group">#}
+                {#<label for="password">пароль</label>#}
+                {#<input type="password" class="form-control" id="password" placeholder="Введите ваш пароль" name="pass">#}
+            {#</div>#}
+
+
+            {#<button type="submit" class="btn btn-primary">Войти</button>#}
+        {#</form>#}
+    </div>
+
+
+    {#<form action="/public/auth/regCheck" method="post">#}
+        {#<p>Имя: <input type="text" name="name" maxlength="30" placeholder="Введите Имя" autofocus required></p>#}
+        {#<p>Логин: <input type="text" name="login" maxlength="30" placeholder="Введите Логин" required></p>#}
+        {#<p>Email: <input type="email" name="email" maxlength="30" placeholder="Введите Email" required></p>#}
+        {#<p>Пароль: <input type="password" minlength="2" name="pass" placeholder="Введите Пароль" required></p>#}
+        {#<input type="submit" name="submit" value="Зарегистрироваться">#}
+    {#</form>#}
 </main>
 {% include 'footer.tmpl' %}
+<script src='/js/formValidate.js' defer></script>
 
 </body>
 </html>

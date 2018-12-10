@@ -1,19 +1,3 @@
-//.main_content {
-//  max-width: 1345px;
-//  margin: auto;
-//}
-
-//h1 {
-//  text-align: center;
-//@include headerFont;
-//}
-
-//.guestbook__table {
-//  display: flex;
-//  flex-direction: column;
-//
-//}
-
 .guestbook__commentWrap {
   max-width: 100%;
   margin: 25px auto;
@@ -23,7 +7,7 @@
   background: lemonchiffon;
   box-shadow: 0 0 25px #777;
   border: 1px solid transparent;
-  @media all and (max-width: 560px){
+  @media all and (max-width: 560px) {
     margin: 25px auto;
   }
 }

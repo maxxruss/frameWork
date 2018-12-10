@@ -3,13 +3,13 @@ body {
 }
 
 main {
-  max-width:1345px;
-  margin:0 auto;
+  max-width: 1345px;
+  margin: 0 auto;
 }
 
 @mixin headerFont {
   font-size: 60px;
-  font-weight:700;
+  font-weight: 700;
   color: olive;
   font-family: El Messiri, sans-serif;
 }

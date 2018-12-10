@@ -302,21 +302,21 @@ function deleteGood(id) {
     });
 }
 
-function dbCreateOrder() {
-    var str = "dbCreateOrder=" + 1;
-    $.ajax({
-        url: '../controllers/Ajax/dbCreateOrder',
-        type: 'POST',
-        dataType: 'json',
-        data: str,
-        error: function (req, text, error) {
-            alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
-        },
-        success: function (dateAnswer) {
-            console.log(dateAnswer);
-        }
-    });
-}
+// function dbCreateOrder() {
+//     var str = "dbCreateOrder=" + 1;
+//     $.ajax({
+//         url: '../controllers/Ajax/dbCreateOrder',
+//         type: 'POST',
+//         dataType: 'json',
+//         data: str,
+//         error: function (req, text, error) {
+//             alert('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
+//         },
+//         success: function (dateAnswer) {
+//             console.log(dateAnswer);
+//         }
+//     });
+// }
 
 function renderOrder() {
     var str = "renderOrder=" + '1';
@@ -365,7 +365,6 @@ function renderOrder() {
             var totalCoast = Math.floor(sumGoodDiscount - happyHoursDiscount - delivery);
 
             var table = '<div class="order__head"><div class="order__headName order__name">Наименование</div><div class="order__headCount order__count">Количество</div><div class="order__headPrice order__price">Цена</div><div class="order__headSum order__sum">Стоимость</div><div class="order__headDiscount order__discount">Скидка</div><div class="order__headPriceDiscount order__priceDiscount">Сумма</div></div>';
-            // table += '<div class="order__body">';
             for (var key in dateAnswer) {
                 table += '<div class="order__goodsWrap">';
                 table += '<div class="order__nameGood order__name">' + dateAnswer[key].nameFull + '</div>';
@@ -389,9 +388,6 @@ function renderOrder() {
             table += '<div class="order__total"><div class="order__totalLable">Итого</div>';
             table += '<div class="order__totalValue">' + totalCoast + '</div></div>';
 
-            // var modal = $('.order__table');
-            // modal.empty();
-            // modal.append(table);
             var orderTable = $('.order__table');
             orderTable.empty();
             if (dateAnswer.length == 0) {
@@ -450,13 +446,11 @@ function renderOrderEnd() {
 
             var totalCoast = Math.floor(sumGoodDiscount - happyHoursDiscount - delivery);
 
-            var table = '<table class="table table-hover table-bordered"><thead><tr><th scope="col">Наименование</th><th scope="col">Цена</th><th scope="col">Сумма</th><th scope="col">Скидка</th><th scope="col">Сумма c учетом скидки</th></tr></thead><tbody >';
+            var table = '<div class="orderEnd__head"><div class="orderEnd__headName orderEnd__name">Наименование</div><div class="orderEnd__headPriceDiscount orderEnd__priceDiscount">Сумма</div></div>';
+
             for (var key in dateAnswer) {
-                table += '<tr class="rowGoods' + dateAnswer[key].id + '">';
-                table += '<tr><td>' + dateAnswer[key].nameFull + '</td>';
-                table += '<td>' + dateAnswer[key].price + '</td>';
-                table += '<td>' + dateAnswer[key].count * dateAnswer[key].price + '</td>';
-                table += '<td>' + dateAnswer[key].discount + ' %</td>';
+                table += '<div class="orderEnd__goodsWrap orderEnd__itemWrap">';
+                table += '<div class="orderEnd__nameGood orderEnd__name">' + dateAnswer[key].nameFull + '</div>';
 
                 if (dateAnswer[key].discount > 0) {
                     var goodDiscount = dateAnswer[key].count * dateAnswer[key].price * ((100 - dateAnswer[key].discount) / 100);
@@ -464,22 +458,24 @@ function renderOrderEnd() {
                     var goodDiscount = dateAnswer[key].count * dateAnswer[key].price;
                 }
 
-                table += '<td>' + Math.floor(goodDiscount) + '</td></tr>';
+                table += '<div class="orderEnd__sumDiscountGood orderEnd__priceDiscount">' + Math.floor(goodDiscount) + '</div></div>';
             }
 
-            table += '<tr><th  colspan="4">Итого</th>';
-            table += '<th>' + Math.floor(sumGoodDiscount) + '</th></tr>';
-            table += '<tr><th colspan="4">Скидка "Счастливый час" (Заказ был сделан в ' + formattedTime + ')</th>';
-            table += '<th>-' + Math.floor(happyHoursDiscount) + '</th></tr>';
-            table += '<tr><th colspan="4">Скидка за самовывоз</th>';
-            table += '<th>-' + Math.floor(delivery) + '</th></tr>';
-            table += '<tr><th colspan="4">Сумма к оплате</th>';
-            table += '<th>' + totalCoast + '</th></tr>';
-            table += ('</table>');
+            table += '<div class="orderEnd__discountWrap orderEnd__itemWrap">';
+            // table += '</div></div>';
+            table += '<div class="orderEnd__discount">Скидка "Счастливый час" (Заказ был сделан в  ' + formattedTime + ')</div>';
+            table += '<div class="orderEnd__discountValue">-' + Math.floor(happyHoursDiscount) + '</div></div>';
+            table += '<div class="orderEnd__deliveryWrap orderEnd__itemWrap">';
+            table += '<div class="orderEnd__delivery">Скидка за самовывоз</div>';
+            table += '<div class="orderEnd__deliveryValue">-' + Math.floor(delivery) + '</div></div>';
 
-            table += '<div class="thanks">Ваша экономия - ' + Math.floor(sumGood - totalCoast) + '&#8381;<br>Ваш заказ поступил в обработку!<br> В ближайшее время с Вами свяжется менеджер для подтверждения и уточнения заказа.<br> Спасибо что выбрали нас!</div>';
+            table += '<div class="orderEnd__total orderEnd__itemWrap">';
+            table += '<div class="orderEnd__totalLable">Сумма к оплате</div>';
+            table += '<div class="orderEnd__totalValue">' + totalCoast + '</div></div>';
 
-            var orderTableEnd = $('.orderTableEnd');
+            table += '<div class="orderEnd__thanks">Ваша экономия - ' + Math.floor(sumGood - totalCoast) + '&#8381;<br>Ваш заказ поступил в обработку!<br> В ближайшее время с Вами свяжется менеджер для подтверждения и уточнения заказа.<br> Спасибо что выбрали нас!</div>';
+
+            var orderTableEnd = $('.orderEnd__table');
             orderTableEnd.empty();
             orderTableEnd.append(table);
         }
