@@ -1,0 +1,593 @@
+body {
+  background: lightyellow;
+}
+
+main {
+  max-width: 1345px;
+  margin: 0 auto;
+}
+
+main {
+  max-width: 1345px;
+}
+
+.header_top {
+  text-align: center;
+  margin: 25px auto;
+  font-size: 60px;
+  font-weight: 700;
+  color: olive;
+  font-family: El Messiri, sans-serif;
+}
+
+.content {
+  max-width: 1345px;
+  margin: auto;
+}
+
+.rowCell {
+  border: solid black 1px;
+  background: lemonchiffon;
+  text-align: center;
+  line-height: 46px;
+  height: 50px;
+}
+
+.headerCell {
+  background: palegoldenrod;
+  border: solid black 1px;
+  text-align: center;
+  line-height: 46px;
+  height: 50px;
+  font-weight: 600;
+}
+
+.btnAdmin {
+  background: palegoldenrod;
+  border: 1px solid black;
+  max-width: 100px;
+  min-width: 100px;
+}
+
+.countModal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100px;
+  line-height: 14px;
+}
+
+.headTable, .formAdmin {
+  display: flex;
+  flex-direction: row;
+}
+
+.id {
+  width: 50px;
+}
+
+.nameFull {
+  width: 250px;
+}
+
+.price {
+  width: 50px;
+}
+
+.param {
+  width: 150px;
+}
+
+.weight {
+  width: 50px;
+}
+
+.discount {
+  width: 70px;
+}
+
+.loadFile {
+  width: 260px;
+}
+
+.stickerAdmin {
+  width: 150px;
+}
+
+.views {
+  width: 100px;
+}
+
+.operation {
+  width: 200px;
+}
+
+.auth__formWrap {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.auth__wrap_reg {
+  margin-top: 20px;
+}
+
+.goodsTable {
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  max-width: 1345px;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.goodsWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 270px;
+  height: 550px;
+  border-radius: 30px 30px 10px 10px;
+  margin: 25px auto;
+  background: lemonchiffon;
+  box-shadow: 0 0 25px #777;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.goodsWrap:hover {
+  border-color: gray;
+}
+
+.goodImg {
+  border-radius: 30px;
+  box-shadow: 0 0 25px #777;
+}
+
+.wrapGoodImg {
+  text-align: center;
+  margin-top: 30px;
+  position: relative;
+}
+
+.sticker {
+  width: 125px;
+  height: 125px;
+  right: -50px;
+  top: -50px;
+  position: absolute;
+  background: url("../img/star.png") no-repeat;
+  background-size: contain;
+  line-height: 125px;
+  text-align: center;
+}
+
+.stickerTextDiscount {
+  font-family: cursive;
+  font-weight: 900;
+  font-size: 23px;
+  color: red;
+}
+
+.stickerTextFit {
+  text-align: center;
+  font-family: cursive;
+  font-weight: 900;
+  font-size: 30px;
+  color: green;
+  line-height: 125px;
+}
+
+.stickerTextHit {
+  text-align: center;
+  font-family: cursive;
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 125px;
+  color: blue;
+}
+
+.wrapGoodInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.goodsNameFull {
+  text-align: center;
+  font-family: "El Messiri", sans-serif;
+  font-size: 30px;
+  line-height: 50px;
+}
+
+.goodsPrice {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px 0 20px;
+  text-align: right;
+  color: red;
+}
+
+.goodsParam {
+  margin: 0 auto;
+  padding: 0 20px 0 20px;
+  height: 100px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: black;
+}
+a:visited {
+  color: black;
+}
+a:active {
+  color: black;
+}
+
+.btnWrap {
+  text-align: center;
+}
+
+.addToBasket, .deleteToBasket {
+  background: palegoldenrod;
+  width: 90%;
+  margin: 5px auto;
+  border: 1px solid black;
+}
+
+.goodsWrapItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: auto;
+  margin: 25px auto;
+}
+
+.wrapGoodImgItem {
+  margin: auto 0;
+}
+
+.goodsPriceItem {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px 0 20px;
+  text-align: center;
+  color: red;
+}
+
+.goodsWeightItem {
+  margin: 20px auto;
+  padding: 0 20px 0 20px;
+}
+
+.stickerImgItem {
+  width: 50px;
+  height: 50px;
+}
+
+.stickerItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin: 0 auto;
+}
+
+.stickerTextItem {
+  text-align: center;
+  font-family: cursive;
+  font-weight: 900;
+  font-size: 30px;
+  color: green;
+  margin: 0 20px;
+}
+
+.openItemGood {
+  cursor: pointer;
+}
+
+.header {
+  height: 100px;
+  background-image: url("../images/layer2.png");
+  background-size: cover;
+}
+
+.navbar-light {
+  background: palegoldenrod;
+}
+
+.basketInfo > a:hover {
+  color: black;
+}
+
+.basketInfoOut {
+  width: 125px;
+  color: olive;
+  border-color: olive;
+}
+
+.basketInfoOut:hover {
+  color: #fff;
+  background-color: olive;
+  border-color: olive;
+}
+
+.btn-outline-success.focus, .btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem olive;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active:focus, .show > .btn-outline-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem olive;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active, .show > .btn-outline-success.dropdown-toggle {
+  color: #fff;
+  background-color: olive;
+  border-color: olive;
+}
+
+.order__table {
+  max-width: 100%;
+  margin: 25px auto;
+  height: auto;
+  padding: 15px;
+  border-radius: 10px;
+  background: lemonchiffon;
+  box-shadow: 0 0 25px #777;
+  border: 1px solid transparent;
+}
+@media all and (max-width: 560px) {
+  .order__table {
+    margin: 25px auto;
+  }
+}
+
+.order__head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: palegoldenrod;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.order__goodsWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.order__name,
+.order__count,
+.order__price,
+.order__sum,
+.order__discount,
+.order__priceDiscount,
+.order__totalValue {
+  width: calc(100% / 6);
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+
+@media all and (max-width: 700px) {
+  .order__price,
+.order__sum,
+.order__discount {
+    display: none;
+  }
+}
+
+.order__countGood {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.order__fa {
+  margin: 0 15px;
+}
+
+.order__total {
+  display: flex;
+  flex-direction: row;
+  background: palegoldenrod;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.order__totalLable {
+  height: 50px;
+  line-height: 50px;
+  width: calc(100% / 6 * 5);
+  padding-left: 7%;
+}
+
+.bonusInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  height: 250px;
+  justify-content: space-evenly;
+}
+
+.bonus_header,
+.happy_hours,
+.delivery {
+  font-family: El Messiri, sans-serif;
+  color: chocolate;
+  font-size: 30px;
+}
+
+.orderEnd__table {
+  max-width: 100%;
+  margin: 25px auto;
+  height: auto;
+  padding: 15px;
+  border-radius: 10px;
+  background: lemonchiffon;
+  box-shadow: 0 0 25px #777;
+  border: 1px solid transparent;
+}
+@media all and (max-width: 560px) {
+  .orderEnd__table {
+    margin: 25px auto;
+  }
+}
+
+.orderEnd__head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: palegoldenrod;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.orderEnd__itemWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.orderEnd__name,
+.orderEnd__priceDiscount,
+.orderEnd__discount,
+.orderEnd__discountValue,
+.orderEnd__delivery,
+.orderEnd__deliveryValue,
+.orderEnd__totalLable,
+.orderEnd__totalValue {
+  width: calc(100% / 2);
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+
+.orderEnd__total {
+  display: flex;
+  flex-direction: row;
+  background: palegoldenrod;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.orderEnd__thanks {
+  text-align: center;
+  margin: 50px auto;
+  font-family: "El Messiri", sans-serif;
+  color: olive;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.promoWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin: 25px 0;
+}
+
+.promoWrap > i {
+  margin: 0 50px;
+}
+
+.promoHeader {
+  text-align: center;
+  font-size: 60px;
+  font-weight: 700;
+  color: olive;
+  font-family: El Messiri, sans-serif;
+}
+
+.guestbook__commentWrap {
+  max-width: 100%;
+  margin: 25px auto;
+  height: auto;
+  padding: 15px;
+  border-radius: 10px;
+  background: lemonchiffon;
+  box-shadow: 0 0 25px #777;
+  border: 1px solid transparent;
+}
+@media all and (max-width: 560px) {
+  .guestbook__commentWrap {
+    margin: 25px auto;
+  }
+}
+
+.guestbook__userName {
+  color: chocolate;
+  border-bottom: 1px solid gray;
+}
+
+.guestbook__comment {
+  margin: 25px auto;
+}
+
+.guestbook__dateTime {
+  color: chocolate;
+  border-top: 1px solid gray;
+}
+
+.guestbook__feedback {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+}
+.guestbook__feedback .guestbook__wrap {
+  max-width: 400px;
+  padding: 15px;
+  border: 1px solid chocolate;
+  border-radius: 15px;
+}
+.guestbook__feedback header {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.guestbook__feedback form {
+  padding: 50px;
+  box-sizing: border-box;
+}
+.guestbook__feedback form label, .guestbook__feedback form input, .guestbook__feedback form textarea {
+  display: block;
+  width: 100%;
+}
+.guestbook__feedback form input[type=text],
+.guestbook__feedback form textarea {
+  outline: none;
+  color: chocolate;
+  margin-bottom: 21px;
+  padding: 7px 5px;
+  border: 1px solid chocolate;
+  border-radius: 5px;
+}
+.guestbook__feedback form input[type=submit] {
+  background-color: lemonchiffon;
+  width: 140px;
+  height: 40px;
+  text-align: center;
+  color: chocolate;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  border: 1px solid chocolate;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  outline: none;
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=main.css.map */
