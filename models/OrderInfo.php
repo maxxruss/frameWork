@@ -96,7 +96,7 @@ class OrderInfo extends Model
     public function clientInfo_edit($values)
     {
         $pdo = DB::getPDO();
-        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET phone = "' . $values['phone'] . '", discountCard = "' . $values['discountCard'] . '", persons = "' . $values['persons'] . '", pay = ' . $values['pay'] . ', money = "' . $values['money'] . '", address = "' . $values['address'] . '", comment = "' . $values['comment'] . '", delivery = ' . $values['delivery'] . ', desiredTime = "' . $values['desiredTime'] . '", timeOrder = ' . time() . ', order_status =  1  WHERE `id` = ' . $_SESSION['user']['order_id']);
+        $statement = $pdo->exec('UPDATE ' . $this->table . ' SET name = "' . $values['name'] . '", phone = "' . $values['phone'] . '", discountCard = "' . $values['discountCard'] . '", persons = "' . $values['persons'] . '", pay = ' . $values['pay'] . ', money = "' . $values['money'] . '", address = "' . $values['address'] . '", comment = "' . $values['comment'] . '", delivery = ' . $values['delivery'] . ', desiredTime = "' . $values['desiredTime'] . '", timeOrder = ' . time() . ', order_status =  1  WHERE `id` = ' . $_SESSION['user']['order_id']);
         return $statement;
     }
 

@@ -23,9 +23,9 @@
             <header>Оставьте свой отзыв</header>
             <form method="post" action="/comment/add">
                 <label for="guestName">Имя</label>
-                <input type="text" id="guestName" name="name" required>
+                <input type="text" id="guestName" name="name" maxlength="50" pattern="\s*?\S+\s*?" oninvalid="setCustomValidity('Введите Ваше имя')" required>
                 <label for="guestMail">E-mail</label>
-                <input type="text" id="guestMail" name="email" required>
+                <input type="email" id="guestMail" name="email" required>
                 <label for="guestMassage">Сообщение</label>
                 <textarea id="guestMassage" name="comment" required></textarea>
                 <input type="submit" name="submit">

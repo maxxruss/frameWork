@@ -27,7 +27,9 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                     <label for="inputName">Имя</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Введите имя" name="name"
+                    <input type="text" class="form-control" maxlength="50" pattern="\s*?\S+\s*?" id="inputName"
+                           placeholder="Введите имя"
+                           name="name"
                            required>
                     <div class="invalid-feedback">
                         Напишите Ваше имя
@@ -35,7 +37,8 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="inputPhone">Телефон</label>
-                    <input type="text" class="form-control" id="inputPhone" placeholder="Введите номер телефона"
+                    <input type="text" class="form-control" id="inputPhone" maxlength="50" pattern="\s*?[\S,\d]{10,50}\s*?"
+                           placeholder="Введите номер телефона"
                            name="phone" required>
                     <div class="invalid-feedback">
                         Введите номер
@@ -43,19 +46,20 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="inputDiscountCard">Дисконтная карта</label>
-                    <input type="text" class="form-control" id="inputDiscountCard"
+                    <input type="text" class="form-control" id="inputDiscountCard" maxlength="10" pattern="\d{10}?"
                            placeholder="Номер дисконтной карты (если есть)"
                            name="discountCard">
+                    <div class="invalid-feedback">
+                        Номер карты некорректен (10 цифр) либо оставьте пустое поле
+                    </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-8 mb-3">
                     <label for="inputAddress">Адрес</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="Адрес доставки"
-                           name="address" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid city.
-                    </div>
+                    <input type="text" class="form-control" id="inputAddress" maxlength="200"
+                           placeholder="Адрес доставки"
+                           name="address">
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="inputTime">Заказ на время</label>
