@@ -37,6 +37,7 @@ class AjaxController extends Controller
         exit;
     }
 
+
     public function actionAddToBasket()
     {
         if (isset($_POST['addBasketid'])) {
