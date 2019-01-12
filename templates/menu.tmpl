@@ -21,7 +21,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">Контакты</a>
                 </li>
-
                 {% if auth == 'true' %}
                     {% include 'menu_block_auth_true.tmpl' %}
                 {% else %}
@@ -31,6 +30,9 @@
                 {% if name == 'admin'%}
                 {% include 'menu_block_admin.tmpl' %}
                 {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link"><strong><u> Панель администратора:  login:admin   pass:admin</u></strong></a>
+                </li>
             </ul>
         </div>
         <!-- Button trigger modal -->

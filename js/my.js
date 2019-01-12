@@ -94,9 +94,11 @@ function renderItemModal(idGood) {
 
             table += '</table>';
 
-            var footer = '<button type="button" class="btn btn-secondary" data-dismiss="modal">Продолжить покупки</button>';
+            var footer = '<div class="modal_footer__button_wrap">';
             footer += '<div class="btnWrap"><input type="button" class="addToBasket btn" value="Дoбавить в корзину" onclick="addToBasket(' + dateAnswer.id + ')">';
             footer += '<input type="button" class="deleteToBasket btn" value="Удалить из корзины" onclick="deleteToBasket(' + dateAnswer.id + ')"></div>';
+            footer += '<button type="button" class="btn btn-secondary" data-dismiss="modal">Продолжить покупки</button>';
+            footer += '</div>';
 
             var modal = $('.item_modal');
             var modalFooter = $('.item_footer');
