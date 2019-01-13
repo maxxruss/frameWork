@@ -21,8 +21,6 @@ class Db
     public $password = '1';
     public $port = '3306';
     public $charset = 'utf8';
-    //public $opt;
-    //public $dsn;
 
     public function __construct() {
         $dsn = 'mysql:host=' . $this->host . '; dbname=' . $this->database .';charset=' . $this->charset;
@@ -31,15 +29,10 @@ class Db
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
         ];
         $this->pdo = new \PDO($dsn, $this->username, $this->password, $opt);
-        //var_dump(self::$pdo);exit;
     }
-
-
-
     /**
      * @return \PDO
      */
-
     public static function getPDO() {
         return self::getInstance()->pdo;
     }

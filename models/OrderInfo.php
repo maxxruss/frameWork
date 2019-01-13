@@ -65,7 +65,6 @@ class OrderInfo extends Model
     function getInfoOrder()
     {
         $pdo = Db::getPDO();
-        //var_dump($pdo);exit;
         $statement = $pdo->query('SELECT * FROM ' . $this->table);
         $result = $statement->fetchAll();
         return $result;
@@ -75,7 +74,6 @@ class OrderInfo extends Model
     function completeOrder($order_id)
     {
         $pdo = Db::getPDO();
-        //var_dump($pdo);exit;
         $statement = $pdo->exec('UPDATE ' . $this->table . ' SET order_status = 2 WHERE id = ' . $order_id);
         return $statement;
 

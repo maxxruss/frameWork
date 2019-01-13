@@ -24,7 +24,6 @@ class Model
     {
         $pdo = Db::getPDO();
         $statement = $pdo->query('select * from ' . $this->table . ' order by ' . $orderby);
-        //var_dump($statement);exit;
         return $statement->fetchAll();
     }
 
@@ -38,7 +37,6 @@ class Model
     public function countPlus($id)
     {
         $pdo = Db::getPDO();
-        //var_dump($pdo);exit;
         $statement = $pdo->exec('UPDATE ' . $this->table . ' SET `count`= `count`+1 WHERE id=' . $id);
         return $statement;
     }
@@ -46,7 +44,6 @@ class Model
     public function countMinus($id)
     {
         $pdo = Db::getPDO();
-        //var_dump($pdo);exit;
         $statement = $pdo->exec('UPDATE ' . $this->table . ' SET `count`= `count`-1 WHERE id=' . $id);
         return $statement;
     }
@@ -81,14 +78,6 @@ class Model
         $statement = $pdo->exec('DELETE from ' . $this->table . ' where id = ' . $id);
         return $statement;
     }
-
-    /**function newComment($fio, $email, $text)
-     * {
-     * $pdo = DB::getPDO();
-     * $pdo->query("INSERT INTO ". $this->table. "(name, description, src, small_src, price) VALUES ('" . $values['name'] . "', '" . $values['description'] ."', '". $values['src'] . "', '" . $values['small_src'] ."', '" . $values['price'] ."')");
-     *
-     * return true;
-     * }**/
 
     public function validate($values, $rules)
     {
@@ -155,7 +144,6 @@ class Model
                     if (copy($filePath, '../public/' . DIR_BIG . $fileName)) {
                         $type = explode('/', $_FILES['userfile']['type'])[1];
                         $this->changeImage(220, 117, '../public/' . DIR_BIG . $fileName, '../public/' . DIR_SMALL . $fileName, $type);
-
 
                         $message = "<h3>Файл успешно загружен на сервер</h3>";
                     } else {

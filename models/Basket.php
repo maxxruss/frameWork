@@ -40,7 +40,6 @@ class Basket extends Model
     function getOrderDetails($order_id)
     {
         $pdo = Db::getPDO();
-        //var_dump($pdo);exit;
         $statement = $pdo->query('SELECT * FROM ' . $this->table . ' ' . $this->innerJoin . ' WHERE order_id=' . $order_id);
         $result = $statement->fetchAll();
         return $result;
@@ -79,7 +78,6 @@ class Basket extends Model
     public function countGoodsOrder($order_id)
     {
         $pdo = Db::getPDO();
-        //var_dump($pdo);exit;
         $statement = $pdo->query('SELECT sum(`count`) AS count FROM ' . $this->table . ' ' . $this->innerJoin . ' WHERE order_id=' . $order_id);
         $result = $statement->fetchAll();
         return $result[0]['count'];

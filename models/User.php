@@ -54,7 +54,6 @@ class User extends Model
                 if ($this->user_db['login'] == $this->login && $this->user_db['pass'] == md5($this->password)) {
 
                     /** сохраним данные в сессию и куки**/
-
                     $_SESSION['user'] = $this->user_db;
                     setcookie("token", $this->user_db['token'], time() + 3600 * 24 * 30 * 12, '/');
                     $orderInfo = new OrderInfo();

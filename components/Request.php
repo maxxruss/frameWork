@@ -8,7 +8,6 @@
 
 namespace components;
 
-
 class Request
 {
     protected $controller = 'index';
@@ -21,55 +20,40 @@ class Request
 
     public function init()
     {
-        $url =  $_SERVER['REQUEST_URI'];
-        //var_dump($url);exit;
+        $url = $_SERVER['REQUEST_URI'];
 
         if (strpos($url, '?') !== false) {
             $url = $cleanUrl = stristr($url, '?', true);
         }
 
-        $this->inputArr['get']  = $_GET;
+        $this->inputArr['get'] = $_GET;
         $this->inputArr['post'] = $_POST;
 
+        $path = explode('/', $url);
 
-
-        $path = explode('/',$url);
-        //var_dump($path);exit;
-//
-//        if(count($path) == 4) {
-//            $this->controller = $path[2];
-//            $this->action = $path[3];
-//        } elseif (count($path) == 3 && !empty($path[2])) {
-//            $this->controller = $path[2];
-//        }
-//
         if (count($path) == 2 && !empty($path[1])) {
             $this->controller = $path[1];
-        } elseif (count($path) > 2)  {
-            $this->controller = $path[count($path)-2];
-            $this->action = $path[count($path)-1];
+        } elseif (count($path) > 2) {
+            $this->controller = $path[count($path) - 2];
+            $this->action = $path[count($path) - 1];
         }
-
 
         $classController = $this->controllerNamespace . '\\' . ucfirst($this->controller) . 'Controller';
 
         if (strpos($this->action, '=') !== false) {
             $actionArr = explode('=', $this->action);
 
-            //print_r($actionArr[1]);
             $this->action = $actionArr[0];
             $get = $actionArr[1];
-            //var_dump($this->action);
         }
 
         $action = 'action' . ucfirst($this->action);
 
-        if(class_exists($classController)) {
+        if (class_exists($classController)) {
             $instanceController = new $classController('../templates/', '.tmpl');
 
-
-            if(method_exists($instanceController,$action)) {
-                call_user_func_array([$instanceController,$action],[$get]);
+            if (method_exists($instanceController, $action)) {
+                call_user_func_array([$instanceController, $action], [$get]);
             } else {
                 throw new \Exception('Метод не существует');
             }
@@ -77,29 +61,29 @@ class Request
 
     }
 
-    public function get($key = null) {
-        if(empty($key)) {
+    public function get($key = null)
+    {
+        if (empty($key)) {
             return $this->inputArr['get'];
         }
 
-        if(isset($this->inpuArr['get'][$key])) {
+        if (isset($this->inpuArr['get'][$key])) {
             return $this->inputArr['get'][$key];
         }
 
         return null;
-
     }
 
-    public function post($key = null) {
-        if(empty($key)) {
+    public function post($key = null)
+    {
+        if (empty($key)) {
             return $_POST;
         }
 
-        if(isset($_POST[$key])) {
+        if (isset($_POST[$key])) {
             return $_POST[$key];
         }
 
         return null;
-
     }
 }
